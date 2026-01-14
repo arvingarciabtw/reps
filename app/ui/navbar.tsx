@@ -1,3 +1,34 @@
+import Image from "next/image";
+import Link from "next/link";
+import { Menu } from "react-feather";
+
 export default function NavBar() {
-  return <p>This is a navbar.</p>;
+	return (
+		<header>
+			<nav className="m-auto flex max-w-4xl items-center gap-3 p-6">
+				<Link href="/">
+					<Image
+						className="ease transition duration-300 hover:opacity-75"
+						src="/images/logo.svg"
+						width={32}
+						height={32}
+						alt="Application logo"
+						loading="eager"
+					/>
+				</Link>
+				<h1 className="font-logo text-2xl">reps</h1>
+				<button className="ml-auto hover:cursor-pointer sm:hidden">
+					<Menu />
+				</button>
+				<ul className="ml-auto hidden gap-10 text-(--color-gray-1) sm:flex">
+					<li className="ease transition duration-300 hover:opacity-75">
+						<Link href="/about">About</Link>
+					</li>
+					<li className="ease transition duration-300 hover:opacity-75">
+						<Link href="/dashboard">Launch App</Link>
+					</li>
+				</ul>
+			</nav>
+		</header>
+	);
 }
