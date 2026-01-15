@@ -20,7 +20,7 @@ export default function NavBar() {
 				<button className="ml-auto hover:cursor-pointer sm:hidden">
 					<Menu />
 				</button>
-				<ul className="ml-auto hidden gap-10 text-(--color-gray-1) sm:flex">
+				<ul className="ml-auto hidden gap-10 text-(--color-gray-300) sm:flex">
 					<li className="ease transition duration-300 hover:opacity-75">
 						<Link href="/about">About</Link>
 					</li>
