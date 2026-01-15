@@ -6,16 +6,13 @@
 	--color-highlight: oklch(0.7484 0.1551 233.2517);
 }
 
-::selection {
-	background: var(--color-highlight);
-	color: var(--color-fg);
-}
-
 @theme inline {
 	--font-sans: var(--font-atkinson-hyperlegible-next);
 	--font-mono: var(--font-atkinson-hyperlegible-mono);
 	--font-logo: var(--font-zalando-sans-expanded);
 
+	--color-black: oklch(0.12 0.0224 261.75);
+	--color-white: oklch(0.982 0.0041 91.45);
 	--color-primary: oklch(0.7484 0.1551 233.2517);
 	--color-gray-800: oklch(0.18 0.0224 261.75);
 	--color-gray-700: oklch(0.3 0.0224 261.75);
@@ -34,11 +31,6 @@
 		--color-bg: oklch(0.12 0.0224 261.75);
 		--color-fg: oklch(0.982 0.0041 91.45);
 		--color-highlight: oklch(0.2435 0 0);
-	}
-
-	::selection {
-		background: var(--color-highlight);
-		color: var(--color-fg);
 	}
 }
 
