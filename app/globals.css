@@ -8,7 +8,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-atkinson-hyperlegible-next);
+	--font-sans: var(--font-atkinson-hyperlegible-next);
+	--font-mono: var(--font-atkinson-hyperlegible-mono);
+	--font-logo: var(--font-zalando-sans-expanded);
 }
 
 @media (prefers-color-scheme: dark) {
