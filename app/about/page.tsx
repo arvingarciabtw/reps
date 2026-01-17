@@ -1,12 +1,7 @@
-import NavBar from "../ui/navbar";
-import Footer from "../ui/footer";
-
 export default function About() {
 	return (
 		<>
-			<NavBar />
 			<Content />
-			<Footer />
 		</>
 	);
 }

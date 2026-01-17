@@ -1,12 +1,31 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Menu } from "react-feather";
+import { useRouter } from "next/navigation";
 
-export default function NavBar() {
+import type { Session } from "@/lib/definitions";
+import { authClient } from "@/lib/auth-client";
+
+export default function NavBar({ session }: { session: Session }) {
+	const router = useRouter();
+
+	async function handleSignOut() {
+		await authClient.signOut({
+			fetchOptions: {
+				onSuccess: () => {
+					router.refresh();
+					router.push("/");
+				},
+			},
+		});
+	}
+
 	return (
 		<header>
 			<nav className="m-auto flex max-w-4xl items-center gap-3 p-6">
-				<Link href="/">
+				<Link href={session !== null ? `/dashboard` : `/`}>
 					<Image
 						className="ease transition duration-300 hover:opacity-75"
 						src="/images/logo.svg"
@@ -24,9 +43,18 @@ export default function NavBar() {
 					<li className="ease transition duration-300 hover:opacity-75">
 						<Link href="/about">About</Link>
 					</li>
-					<li className="ease transition duration-300 hover:opacity-75">
-						<Link href="/dashboard">Launch App</Link>
-					</li>
+					{session === null && (
+						<li className="ease transition duration-300 hover:opacity-75">
+							<Link href="/dashboard">Launch App</Link>
+						</li>
+					)}
+					{session && (
+						<li className="ease transition duration-300 hover:opacity-75">
+							<button onClick={handleSignOut} className="cursor-pointer">
+								Sign Out
+							</button>
+						</li>
+					)}
 				</ul>
 			</nav>
 		</header>

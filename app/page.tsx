@@ -1,18 +1,24 @@
-import NavBar from "@/app/ui/navbar";
-import Footer from "@/app/ui/footer";
 import Link from "next/link";
 
-export default function App() {
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+
+export default async function App() {
 	return (
 		<>
-			<NavBar />
 			<LandingSection />
-			<Footer />
 		</>
 	);
 }
 
-function LandingSection() {
+async function LandingSection() {
+	const session = await auth.api.getSession({
+		headers: await headers(),
+	});
+
+	if (session) redirect("/dashboard");
+
 	return (
 		<main className="mx-auto grid w-full max-w-4xl flex-1 items-center p-6 font-sans text-(--color-fg)">
 			<div className="mb-4">
@@ -25,9 +31,9 @@ function LandingSection() {
 					lines, to retain programming concepts in your brain.
 				</p>
 				<div>
-					<Link href="/login">
+					<Link href="/sign-in">
 						<button className="ease cursor-pointer rounded-2xl bg-(--color-primary) px-5 py-2 font-medium text-(--color-bg) transition duration-300 hover:opacity-75">
-							Log in
+							Sign in
 						</button>
 					</Link>
 				</div>

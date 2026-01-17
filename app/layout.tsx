@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
+
+import "./globals.css";
 import {
 	Atkinson_Hyperlegible_Next,
 	Atkinson_Hyperlegible_Mono,
 	Zalando_Sans_Expanded,
 } from "next/font/google";
-import "./globals.css";
+
+import NavBar from "@/app/ui/navbar";
+import Footer from "@/app/ui/footer";
+
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 const atkinsonHyperlegibleNext = Atkinson_Hyperlegible_Next({
 	variable: "--font-atkinson-hyperlegible-next",
@@ -35,17 +42,25 @@ export const metadata: Metadata = {
 	publisher: "Arvin Garcia",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const session = await auth.api.getSession({
+		headers: await headers(),
+	});
+
 	return (
 		<html
 			lang="en"
 			className={`${atkinsonHyperlegibleNext.variable} ${atkinsonHyperlegibleMono.variable} ${zalandoSansExpanded.variable} antialiased`}
 		>
-			<body>{children}</body>
+			<body>
+				<NavBar session={session} />
+				{children}
+				<Footer />
+			</body>
 		</html>
 	);
 }

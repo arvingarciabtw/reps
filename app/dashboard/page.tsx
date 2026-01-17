@@ -1,18 +1,25 @@
-"use client";
+import type { Deck } from "@/lib/definitions";
 
-import NavBar from "../ui/navbar";
-import Footer from "../ui/footer";
 import Link from "next/link";
-import { useState } from "react";
 import { Plus, X } from "react-feather";
 import { Dialog } from "radix-ui";
 
-export default function Home() {
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+
+import prisma from "@/lib/prisma";
+
+export default async function Home() {
+	const session = await auth.api.getSession({
+		headers: await headers(),
+	});
+
+	if (!session) redirect("/sign-in");
+
 	return (
 		<>
-			<NavBar />
 			<Dashboard />
-			<Footer />
 		</>
 	);
 }
@@ -26,17 +33,8 @@ function Dashboard() {
 	);
 }
 
-function Decks() {
-	const [decks] = useState([
-		{ name: "HTML" },
-		{ name: "CSS" },
-		{ name: "JavaScript" },
-		{ name: "React" },
-		{ name: "Node" },
-		{ name: "Express" },
-		{ name: "SQL" },
-		{ name: "Prisma" },
-	]);
+async function Decks() {
+	const decks = await prisma.deck.findMany();
 
 	return (
 		<>
@@ -46,8 +44,8 @@ function Decks() {
 				contents. Click on the add button on the bottom right to create a deck.
 			</p>
 			<section className="grid grid-cols-1 gap-4 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
-				{decks.map((deck: { name: string }) => (
-					<Deck key={deck.name} deckName={deck.name} />
+				{decks.map((deck: Deck) => (
+					<Deck key={deck.title} deckName={deck.title} />
 				))}
 			</section>
 		</>
@@ -71,13 +69,13 @@ function AddDeck() {
 	return (
 		<Dialog.Root>
 			<Dialog.Trigger asChild>
-				<button className="ease fixed right-0 bottom-0 mr-6 mb-6 cursor-pointer rounded-[50%] border border-(--color-gray-700) bg-(--color-gray-800) p-3 ring-(--color-primary) transition duration-300 hover:opacity-75 focus:ring-1 focus:outline-none xs:absolute">
+				<button className="ease absolute right-0 bottom-[-60] mr-6 mb-6 cursor-pointer rounded-[50%] border border-(--color-gray-700) bg-(--color-gray-800) p-3 ring-(--color-primary) transition duration-300 hover:opacity-75 focus:ring-1 focus:outline-none">
 					<Plus className="stroke-(--color-primary)" />
 				</button>
 			</Dialog.Trigger>
 			<Dialog.Portal>
 				<Dialog.Overlay className="fixed inset-0 bg-(--color-black) opacity-75" />
-				<Dialog.Content className="fixed top-[50%] left-[50%] flex max-w-75 translate-x-[-50%] translate-y-[-50%] flex-col rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) p-6 text-(--color-gray-300) outline-none">
+				<Dialog.Content className="fixed top-[50%] left-[50%] flex max-w-75 min-w-70 translate-x-[-50%] translate-y-[-50%] flex-col rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) p-6 text-(--color-gray-300) outline-none">
 					<Dialog.Title className="mb-2 text-2xl font-medium text-(--color-white)">
 						Add Deck
 					</Dialog.Title>
