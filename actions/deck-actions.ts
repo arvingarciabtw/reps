@@ -69,3 +69,47 @@ export async function createDeck(
 	redirect("/dashboard");
 }
 
+export async function editDeck(
+	prevState: State,
+	formData: FormData,
+): Promise<State> {
+	const session = await auth.api.getSession({
+		headers: await headers(),
+	});
+
+	if (!session) {
+		return {
+			message: "Unauthorized. Please sign in.",
+		};
+	}
+
+	const validatedFields = FormSchema.safeParse({
+		deckId: formData.get("deckId"),
+		title: formData.get("title"),
+	});
+
+	if (!validatedFields.success) {
+		return {
+			errors: validatedFields.error.flatten().fieldErrors,
+			message: "Missing fields. Failed to edit deck.",
+		};
+	}
+
+	const { deckId, title } = validatedFields.data;
+
+	try {
+		await prisma.deck.update({
+			where: { id: deckId },
+			data: { title },
+		});
+	} catch (err) {
+		console.error("Failed to update deck:", err);
+		return {
+			message: "Database error: Failed to update deck.",
+		};
+	}
+
+	revalidatePath("/dashboard");
+	redirect("/dashboard");
+}
+
