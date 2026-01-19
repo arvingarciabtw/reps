@@ -1,4 +1,4 @@
-export type Deck = {
+export type DeckType = {
 	id: string;
 	title: string;
 	createdAt: Date;
