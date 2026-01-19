@@ -7,12 +7,6 @@ import {
 	Zalando_Sans_Expanded,
 } from "next/font/google";
 
-import NavBar from "@/app/ui/navbar";
-import Footer from "@/app/ui/footer";
-
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
-
 const atkinsonHyperlegibleNext = Atkinson_Hyperlegible_Next({
 	variable: "--font-atkinson-hyperlegible-next",
 	subsets: ["latin"],
@@ -47,20 +41,12 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const session = await auth.api.getSession({
-		headers: await headers(),
-	});
-
 	return (
 		<html
 			lang="en"
 			className={`${atkinsonHyperlegibleNext.variable} ${atkinsonHyperlegibleMono.variable} ${zalandoSansExpanded.variable} antialiased`}
 		>
-			<body>
-				<NavBar session={session} />
-				{children}
-				<Footer />
-			</body>
+			<body>{children}</body>
 		</html>
 	);
 }

@@ -20,7 +20,7 @@ async function LandingSection() {
 	if (session) redirect("/dashboard");
 
 	return (
-		<main className="mx-auto grid w-full max-w-4xl flex-1 items-center p-6 font-sans text-(--color-fg)">
+		<div className="my-auto">
 			<div className="mb-4">
 				<h1 className="mb-4 w-full text-6xl font-semibold sm:max-w-xl">
 					Spaced repetition, for <span>coders.</span>
@@ -38,6 +38,6 @@ async function LandingSection() {
 					</Link>
 				</div>
 			</div>
-		</main>
+		</div>
 	);
 }
