@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import {
 	Atkinson_Hyperlegible_Next,
-	Atkinson_Hyperlegible_Mono,
 	Zalando_Sans_Expanded,
+	Fira_Code,
 } from "next/font/google";
 
 const atkinsonHyperlegibleNext = Atkinson_Hyperlegible_Next({
@@ -13,8 +13,8 @@ const atkinsonHyperlegibleNext = Atkinson_Hyperlegible_Next({
 	fallback: ["Arial", "sans-serif"],
 });
 
-const atkinsonHyperlegibleMono = Atkinson_Hyperlegible_Mono({
-	variable: "--font-atkinson-hyperlegible-mono",
+const firaCode = Fira_Code({
+	variable: "--font-fira-code",
 	subsets: ["latin"],
 	fallback: ["Arial", "sans-serif"],
 });
@@ -44,7 +44,7 @@ export default async function RootLayout({
 	return (
 		<html
 			lang="en"
-			className={`${atkinsonHyperlegibleNext.variable} ${atkinsonHyperlegibleMono.variable} ${zalandoSansExpanded.variable} antialiased`}
+			className={`${atkinsonHyperlegibleNext.variable} ${firaCode.variable} ${zalandoSansExpanded.variable} antialiased`}
 		>
 			<body>{children}</body>
 		</html>
