@@ -20,7 +20,7 @@ function Content() {
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						markdown
+						Markdown
 					</a>
 					, you can write code lines or blocks that are color-coded within your
 					flashcards. This helps to write questions that involve code, which are
@@ -48,9 +48,12 @@ function Content() {
 					<span className="text-(--color-primary)">[1]</span> The UI is not to
 					my liking. <span className="text-(--color-primary)">[2]</span> It is
 					not convenient to type code lines or blocks inside flashcards, you
-					have to use the <code>code</code> tag.{" "}
-					<span className="text-(--color-primary)">[3]</span> I only want to use
-					simple features, but Anki comes with way too much of them.
+					have to use the{" "}
+					<code className="rounded-lg bg-(--color-gray-800) px-2 py-0.5 text-sm">
+						code
+					</code>{" "}
+					tag. <span className="text-(--color-primary)">[3]</span> I only want
+					to use simple features, but Anki comes with way too much of them.
 				</p>
 				<p className="text-(--color-gray-300)">
 					And so, Reps was built. This app was not built for a wider audience in
