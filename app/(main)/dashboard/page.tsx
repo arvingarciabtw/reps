@@ -1,7 +1,7 @@
 import type { DeckType } from "@/lib/definitions";
 import AddDeckModal from "@/app/ui/add-deck-modal";
 import Deck from "@/app/ui/deck";
-import prisma from "@/lib/prisma";
+import { fetchDecks } from "@/lib/queries";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
@@ -29,9 +29,7 @@ async function Decks() {
 
 	if (!session) return <p>Unauthorized.</p>;
 
-	const decks = await prisma.deck.findMany({
-		where: { userId: session.user.id },
-	});
+	const decks = await fetchDecks(session.user.id);
 
 	return (
 		<>
