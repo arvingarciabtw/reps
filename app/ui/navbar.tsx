@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Menu } from "react-feather";
+import MobileMenu from "./mobile-menu";
 import { AlertDialog } from "radix-ui";
 import { useRouter } from "next/navigation";
 
@@ -37,9 +37,7 @@ export default function NavBar({ session }: { session: Session }) {
 					/>
 				</Link>
 				<h1 className="font-logo text-2xl">reps</h1>
-				<button className="ml-auto hover:cursor-pointer sm:hidden">
-					<Menu />
-				</button>
+				<MobileMenu session={session} onSignOut={handleSignOut} />
 				<ul className="ml-auto hidden gap-10 text-(--color-gray-300) sm:flex">
 					{session !== null && (
 						<li className="ease transition duration-300 hover:opacity-75">
