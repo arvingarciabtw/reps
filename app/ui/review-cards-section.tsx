@@ -1,0 +1,71 @@
+"use client";
+
+import Card from "@/app/ui/card";
+import { Check, X } from "react-feather";
+import type { CardType } from "@/lib/definitions";
+import Link from "next/link";
+import { useState } from "react";
+
+export default function ReviewCardsSection({
+	cards,
+	deckId,
+}: {
+	cards: CardType[];
+	deckId: string;
+}) {
+	const [remainingCards, setRemainingCards] = useState(cards);
+	const [cardIndex] = useState(0);
+
+	function handleCorrect() {
+		const newCards = remainingCards.filter((_, index) => index !== cardIndex);
+		setRemainingCards(newCards);
+	}
+
+	function handleWrong() {
+		const newCards = [...remainingCards];
+		const [removedCard] = newCards.splice(cardIndex, 1);
+		newCards.push(removedCard);
+		setRemainingCards(newCards);
+	}
+
+	if (remainingCards.length === 0) {
+		return (
+			<div className="my-auto flex flex-col items-center gap-4 self-center text-(--color-gray-300)">
+				<p>No more cards to be reviewed.</p>
+				<Link href={`/deck/${deckId}`}>
+					<button className="ease cursor-pointer rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) px-5 py-2 transition duration-300 hover:opacity-75">
+						Back to deck
+					</button>
+				</Link>
+			</div>
+		);
+	}
+
+	return (
+		<div className="my-auto flex h-50 w-full flex-col items-center gap-4 self-center sm:w-104">
+			<Card
+				front={remainingCards[cardIndex].front}
+				back={remainingCards[cardIndex].back}
+			/>
+			<div className="flex w-full max-w-104 flex-wrap items-center justify-between gap-2">
+				<p className="mr-auto text-(--color-gray-300)">
+					Cards left: <span className="font-sans">{remainingCards.length}</span>
+				</p>
+				<div className="flex gap-4">
+					<button
+						onClick={handleCorrect}
+						className="ease flex cursor-pointer items-center gap-2 rounded-2xl bg-green-400 p-1 text-(--color-black) transition duration-300 hover:opacity-75"
+					>
+						<Check className="h-4.5 w-4.5" />
+					</button>
+					<button
+						onClick={handleWrong}
+						className="ease flex cursor-pointer items-center gap-2 rounded-2xl bg-red-400 p-1 text-(--color-black) transition duration-300 hover:opacity-75"
+					>
+						<X className="h-4.5 w-4.5" />
+					</button>
+				</div>
+			</div>
+		</div>
+	);
+}
