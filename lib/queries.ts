@@ -47,3 +47,22 @@ export async function fetchCard(cardId: string) {
 		throw new Error("Failed to fetch card.");
 	}
 }
+
+export async function fetchCardsForReview(deckId: string) {
+	const now = new Date();
+	now.setHours(0, 0, 0, 0);
+
+	const cards = await prisma.card.findMany({
+		where: {
+			deckId,
+			dateToDisplay: {
+				lte: now,
+			},
+		},
+		orderBy: {
+			dateToDisplay: "asc",
+		},
+	});
+
+	return cards;
+}
