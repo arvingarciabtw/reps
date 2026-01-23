@@ -7,7 +7,7 @@ export default function Footer() {
 					href="https://github.com/arvingarciabtw"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-(--color-primary) underline hover:no-underline"
+					className="underline hover:no-underline"
 				>
 					@arvingarciabtw
 				</a>
