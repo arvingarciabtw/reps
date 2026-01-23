@@ -41,6 +41,11 @@ export default function NavBar({ session }: { session: Session }) {
 					<Menu />
 				</button>
 				<ul className="ml-auto hidden gap-10 text-(--color-gray-300) sm:flex">
+					{session !== null && (
+						<li className="ease transition duration-300 hover:opacity-75">
+							<Link href="/dashboard">Dashboard</Link>
+						</li>
+					)}
 					<li className="ease transition duration-300 hover:opacity-75">
 						<Link href="/about">About</Link>
 					</li>
