@@ -58,9 +58,11 @@ model Deck {
 }
 
 model Card {
-  id    String @id @default(cuid(2))
-  front String @db.Text
-  back  String @db.Text
+  id            String   @id @default(cuid(2))
+  front         String   @db.Text
+  back          String   @db.Text
+  days          Int      @default(0)
+  dateToDisplay DateTime @default(now())
 
   deckId String
   deck   Deck   @relation(fields: [deckId], references: [id], onDelete: Cascade)
