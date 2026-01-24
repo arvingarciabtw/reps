@@ -1,4 +1,4 @@
-import { fetchCards } from "@/lib/queries";
+import { fetchCardsForReview } from "@/lib/queries";
 import ReviewCardsSection from "@/app/ui/review-cards-section";
 
 export default async function ReviewPage({
@@ -7,7 +7,7 @@ export default async function ReviewPage({
 	params: Promise<{ id: string }>;
 }) {
 	const { id } = await params;
-	const cards = await fetchCards(id);
+	const cards = await fetchCardsForReview(id);
 
 	return <ReviewCardsSection cards={cards} deckId={id} />;
 }

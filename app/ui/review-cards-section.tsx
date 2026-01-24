@@ -5,6 +5,7 @@ import { Check, X } from "react-feather";
 import type { CardType } from "@/lib/definitions";
 import Link from "next/link";
 import { useState } from "react";
+import { markCardCorrect, markCardWrong } from "@/actions/card-actions";
 
 export default function ReviewCardsSection({
 	cards,
@@ -15,17 +16,42 @@ export default function ReviewCardsSection({
 }) {
 	const [remainingCards, setRemainingCards] = useState(cards);
 	const [cardIndex] = useState(0);
+	const [isProcessing, setIsProcessing] = useState(false);
 
-	function handleCorrect() {
-		const newCards = remainingCards.filter((_, index) => index !== cardIndex);
-		setRemainingCards(newCards);
+	async function handleCorrect() {
+		if (isProcessing) return;
+		setIsProcessing(true);
+
+		try {
+			const currentCard = remainingCards[cardIndex];
+			await markCardCorrect(currentCard.id, deckId);
+
+			const newCards = remainingCards.filter((_, index) => index !== cardIndex);
+			setRemainingCards(newCards);
+		} catch (error) {
+			console.error("Error marking card correct:", error);
+		} finally {
+			setIsProcessing(false);
+		}
 	}
 
-	function handleWrong() {
-		const newCards = [...remainingCards];
-		const [removedCard] = newCards.splice(cardIndex, 1);
-		newCards.push(removedCard);
-		setRemainingCards(newCards);
+	async function handleWrong() {
+		if (isProcessing) return;
+		setIsProcessing(true);
+
+		try {
+			const currentCard = remainingCards[cardIndex];
+			await markCardWrong(currentCard.id, deckId);
+
+			const newCards = [...remainingCards];
+			const [removedCard] = newCards.splice(cardIndex, 1);
+			newCards.push(removedCard);
+			setRemainingCards(newCards);
+		} catch (error) {
+			console.error("Error marking card wrong:", error);
+		} finally {
+			setIsProcessing(false);
+		}
 	}
 
 	if (remainingCards.length === 0) {
@@ -54,13 +80,15 @@ export default function ReviewCardsSection({
 				<div className="flex gap-4">
 					<button
 						onClick={handleCorrect}
-						className="ease flex cursor-pointer items-center gap-2 rounded-2xl bg-green-400 p-1 text-(--color-black) transition duration-300 hover:opacity-75"
+						disabled={isProcessing}
+						className="ease flex cursor-pointer items-center gap-2 rounded-2xl bg-green-400 p-1 text-(--color-black) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
 					>
 						<Check className="h-4.5 w-4.5" />
 					</button>
 					<button
 						onClick={handleWrong}
-						className="ease flex cursor-pointer items-center gap-2 rounded-2xl bg-red-400 p-1 text-(--color-black) transition duration-300 hover:opacity-75"
+						disabled={isProcessing}
+						className="ease flex cursor-pointer items-center gap-2 rounded-2xl bg-red-400 p-1 text-(--color-black) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
 					>
 						<X className="h-4.5 w-4.5" />
 					</button>
