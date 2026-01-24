@@ -47,12 +47,17 @@ export async function createCard(
 
 	const { front, back, deckId } = validatedFields.data;
 
+	const today = new Date();
+	today.setHours(0, 0, 0, 0);
+
 	try {
 		await prisma.card.create({
 			data: {
 				front,
 				back,
 				deckId,
+				days: 0,
+				dateToDisplay: today,
 			},
 		});
 	} catch (err) {
@@ -142,3 +147,4 @@ export async function deleteCard(
 	revalidatePath(`/deck/${deckId}/view`);
 	redirect(`/deck/${deckId}/view`);
 }
+
