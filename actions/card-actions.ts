@@ -148,3 +148,43 @@ export async function deleteCard(
 	redirect(`/deck/${deckId}/view`);
 }
 
+export async function markCardCorrect(cardId: string, deckId: string) {
+	const card = await prisma.card.findUnique({
+		where: { id: cardId },
+	});
+
+	if (!card) {
+		throw new Error("Card not found");
+	}
+
+	const newDays = card.days === 0 ? 1 : Math.min(card.days * 2, 32);
+
+	const nextDate = new Date();
+	nextDate.setDate(nextDate.getDate() + newDays);
+	nextDate.setHours(0, 0, 0, 0);
+
+	await prisma.card.update({
+		where: { id: cardId },
+		data: {
+			days: newDays,
+			dateToDisplay: nextDate,
+		},
+	});
+
+	revalidatePath(`/deck/${deckId}/review`);
+}
+
+export async function markCardWrong(cardId: string, deckId: string) {
+	const today = new Date();
+	today.setHours(0, 0, 0, 0);
+
+	await prisma.card.update({
+		where: { id: cardId },
+		data: {
+			days: 0,
+			dateToDisplay: today,
+		},
+	});
+
+	revalidatePath(`/deck/${deckId}/review`);
+}
