@@ -1,32 +1,27 @@
 "use client";
 
 import Link from "next/link";
-import Output from "@/app/ui/output";
-import { updateCard } from "@/actions/card-actions";
+import Output from "@/ui/output";
+import { createCard } from "@/actions/card-actions";
 import { useState, useActionState } from "react";
 
-export default function UpdateCardForm({
+export default function CreateCardForm({
 	deckId,
 	deckTitle,
-	card,
 }: {
 	deckId: string;
 	deckTitle: string;
-	card: {
-		id: string;
-		front: string;
-		back: string;
-		deckId: string;
-	};
 }) {
-	const [state, formAction] = useActionState(updateCard, { message: null });
-	const [frontValue, setFrontValue] = useState(card.front);
-	const [backValue, setBackValue] = useState(card.back);
+	const [state, formAction] = useActionState(createCard, { message: null });
+	const [frontValue, setFrontValue] = useState(`\`\`\`javascript
+console.log(typeof + "21");
+\`\`\``);
+	const [backValue, setBackValue] = useState("number");
 
 	return (
 		<div className="mx-auto my-auto flex w-full flex-col text-center text-(--color-gray-300)">
 			<p className="max-w-120 self-center">
-				To edit cards in your{" "}
+				To add cards to your{" "}
 				<Link
 					href={`/deck/${deckId}`}
 					className="text-(--color-primary) underline hover:no-underline"
@@ -46,7 +41,6 @@ export default function UpdateCardForm({
 			</p>
 			<form className="flex flex-col" action={formAction}>
 				<input type="hidden" name="deckId" value={deckId} />
-				<input type="hidden" name="cardId" value={card.id} />
 
 				<div className="mt-4 mb-6 flex items-center gap-4 self-center">
 					<Link href={`/deck/${deckId}/view`}>
@@ -58,7 +52,7 @@ export default function UpdateCardForm({
 						type="submit"
 						className="ease cursor-pointer self-center rounded-2xl bg-(--color-primary) px-5 py-2 text-(--color-black) transition duration-300 hover:opacity-75"
 					>
-						Edit card
+						Add card
 					</button>
 				</div>
 				{state.errors?.front && (

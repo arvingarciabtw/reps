@@ -1,5 +1,5 @@
 import { fetchDeck, fetchCard } from "@/lib/queries";
-import UpdateCardForm from "@/app/ui/update-card-form";
+import UpdateCard from "@/ui/card/update-card";
 
 export default async function CreateCardPage({
 	params,
@@ -15,5 +15,5 @@ export default async function CreateCardPage({
 
 	if (!card) return <p>Card not fetched.</p>;
 
-	return <UpdateCardForm deckId={id} deckTitle={deck.title} card={card} />;
+	return <UpdateCard deckId={id} deckTitle={deck.title} card={card} />;
 }

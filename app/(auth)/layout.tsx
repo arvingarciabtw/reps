@@ -1,6 +1,5 @@
-import NavBar from "@/app/ui/navbar";
-import Footer from "@/app/ui/footer";
-
+import NavBar from "@/ui/general/navbar";
+import Footer from "@/ui/general/footer";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";

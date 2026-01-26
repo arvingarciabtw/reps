@@ -1,6 +1,6 @@
 import { fetchDeck, fetchCards } from "@/lib/queries";
 import { Edit2, Plus } from "react-feather";
-import DeleteCardModal from "@/app/ui/delete-card-modal";
+import DeleteCard from "@/ui/card/delete-card";
 import Link from "next/link";
 
 export default async function ViewCardsPage({
@@ -44,7 +44,7 @@ export default async function ViewCardsPage({
 								<Link href={`/deck/${id}/update/${card.id}`}>
 									<Edit2 className="ease h-4 w-4 transition duration-300 hover:stroke-(--color-primary)" />
 								</Link>
-								<DeleteCardModal cardId={card.id} deckId={deck.id} />
+								<DeleteCard cardId={card.id} deckId={deck.id} />
 							</div>
 						))}
 					</div>

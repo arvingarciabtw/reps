@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import EditDeckModal from "@/app/ui/edit-deck-modal";
-import DeleteDeckModal from "@/app/ui/delete-deck-modal";
+import UpdateDeck from "@/ui/deck/update-deck";
+import DeleteDeck from "@/ui/deck/delete-deck";
 
 export default function Deck({
 	deckName,
@@ -20,8 +20,8 @@ export default function Deck({
 				<p>{deckName}</p>
 			</Link>
 			<div className="flex gap-2 text-(--color-gray-300)">
-				<EditDeckModal deckId={deckId} deckName={deckName} />
-				<DeleteDeckModal deckId={deckId} />
+				<UpdateDeck deckId={deckId} deckName={deckName} />
+				<DeleteDeck deckId={deckId} />
 			</div>
 		</article>
 	);

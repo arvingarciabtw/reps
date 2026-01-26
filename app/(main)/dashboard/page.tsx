@@ -1,9 +1,9 @@
 import type { DeckType } from "@/lib/definitions";
-import AddDeckModal from "@/app/ui/add-deck-modal";
-import Deck from "@/app/ui/deck";
 import { fetchDecks } from "@/lib/queries";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import Deck from "@/ui/deck/deck";
+import AddDeckModal from "@/ui/deck/create-deck";
 
 export default function Home() {
 	return (

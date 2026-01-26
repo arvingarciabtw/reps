@@ -1,5 +1,5 @@
 import { fetchCardsForReview } from "@/lib/queries";
-import ReviewCardsSection from "@/app/ui/review-cards-section";
+import ReviewCards from "@/ui/card/review-cards";
 
 export default async function ReviewPage({
 	params,
@@ -9,5 +9,5 @@ export default async function ReviewPage({
 	const { id } = await params;
 	const cards = await fetchCardsForReview(id);
 
-	return <ReviewCardsSection cards={cards} deckId={id} />;
+	return <ReviewCards cards={cards} deckId={id} />;
 }

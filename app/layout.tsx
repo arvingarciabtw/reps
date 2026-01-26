@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-
-import "./globals.css";
 import {
 	Atkinson_Hyperlegible_Next,
 	Zalando_Sans_Expanded,
 	Fira_Code,
 } from "next/font/google";
+import "./globals.css";
 
 const atkinsonHyperlegibleNext = Atkinson_Hyperlegible_Next({
 	variable: "--font-atkinson-hyperlegible-next",

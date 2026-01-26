@@ -1,6 +1,6 @@
 "use client";
 
-import Card from "@/app/ui/card";
+import Card from "@/ui/card/card";
 import { Check, X } from "react-feather";
 import type { CardType } from "@/lib/definitions";
 import Link from "next/link";

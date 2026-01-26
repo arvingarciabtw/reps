@@ -1,6 +1,6 @@
 "use client";
 
-import Card from "@/app/ui/card";
+import Card from "@/ui/card/card";
 
 export default function Output({
 	front,
