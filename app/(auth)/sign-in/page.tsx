@@ -1,8 +1,8 @@
 "use client";
 
 import { GitHub } from "react-feather";
-import { signInWithGoogle } from "@/actions/google-auth-action";
-import { signInWithGithub } from "@/actions/github-auth-action";
+import { signInWithGoogle } from "@/actions/auth-actions";
+import { signInWithGithub } from "@/actions/auth-actions";
 
 export default function SignInPage() {
 	return (
