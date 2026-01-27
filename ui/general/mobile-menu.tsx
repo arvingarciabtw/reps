@@ -1,4 +1,4 @@
-import type { Session } from "@/lib/definitions";
+import type { SessionType } from "@/lib/definitions";
 import { Menu, ArrowLeft } from "react-feather";
 import { Dialog, AlertDialog, VisuallyHidden } from "radix-ui";
 import Link from "next/link";
@@ -8,7 +8,7 @@ export default function MobileMenu({
 	session,
 	onSignOut,
 }: {
-	session: Session;
+	session: SessionType;
 	onSignOut: () => void;
 }) {
 	const [open, setOpen] = useState(false);

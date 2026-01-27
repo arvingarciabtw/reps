@@ -5,7 +5,7 @@ export type DeckType = {
 	userId: string;
 };
 
-export type Session = {
+export type SessionType = {
 	session: {
 		id: string;
 		userId: string;

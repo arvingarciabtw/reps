@@ -6,10 +6,10 @@ import MobileMenu from "./mobile-menu";
 import { AlertDialog } from "radix-ui";
 import { useRouter } from "next/navigation";
 
-import type { Session } from "@/lib/definitions";
+import type { SessionType } from "@/lib/definitions";
 import { authClient } from "@/lib/auth-client";
 
-export default function NavBar({ session }: { session: Session }) {
+export default function NavBar({ session }: { session: SessionType }) {
 	const router = useRouter();
 
 	async function handleSignOut() {
