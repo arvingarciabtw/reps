@@ -1,7 +1,4 @@
-<h1 style="display: flex; align-items: center; gap: 12px; align-self: center; justify-content: center;">
-  <img src="./public/images/logo.svg"/>
-  Reps 
-</h1>
+<img align="center" src="./public/images/logo.svg" width="100%" height="48px"/>
 
 <div align="center">
 
@@ -12,7 +9,7 @@
 
 </div>
 
-A spaced repetition flashcard application designed specifically for programmers. Reps provides a simpler alternative to Anki with support for [Markdown](https://www.markdownguide.org/) syntax and syntax highlighting. The algorithm shows cards exponentially (32-day cap) to allow for quicker review times.
+[Reps](https://reps.arvingarcia.com/) is a spaced repetition flashcard application designed specifically for programmers. Reps provides a simpler alternative to Anki with support for [Markdown](https://www.markdownguide.org/) syntax and syntax highlighting. The algorithm shows cards exponentially (32-day cap) to allow for quicker review times.
 
 ### Prerequisites
 
