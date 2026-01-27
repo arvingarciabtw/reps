@@ -163,13 +163,20 @@ export async function markCardCorrect(cardId: string, deckId: string) {
 	nextDate.setDate(nextDate.getDate() + newDays);
 	nextDate.setHours(0, 0, 0, 0);
 
-	await prisma.card.update({
-		where: { id: cardId },
-		data: {
-			days: newDays,
-			dateToDisplay: nextDate,
-		},
-	});
+	try {
+		await prisma.card.update({
+			where: { id: cardId },
+			data: {
+				days: newDays,
+				dateToDisplay: nextDate,
+			},
+		});
+	} catch (err) {
+		console.error("Failed to mark card correctly:", err);
+		return {
+			message: "Database error: Failed to mark card correctly.",
+		};
+	}
 
 	revalidatePath(`/deck/${deckId}/review`);
 }
@@ -178,13 +185,20 @@ export async function markCardWrong(cardId: string, deckId: string) {
 	const today = new Date();
 	today.setHours(0, 0, 0, 0);
 
-	await prisma.card.update({
-		where: { id: cardId },
-		data: {
-			days: 0,
-			dateToDisplay: today,
-		},
-	});
+	try {
+		await prisma.card.update({
+			where: { id: cardId },
+			data: {
+				days: 0,
+				dateToDisplay: today,
+			},
+		});
+	} catch (err) {
+		console.error("Failed to mark card wrong:", err);
+		return {
+			message: "Database error: Failed to mark card wrong.",
+		};
+	}
 
 	revalidatePath(`/deck/${deckId}/review`);
 }
