@@ -49,20 +49,25 @@ export async function fetchCard(cardId: string) {
 }
 
 export async function fetchCardsForReview(deckId: string) {
-	const now = new Date();
-	now.setHours(0, 0, 0, 0);
+	try {
+		const now = new Date();
+		now.setHours(0, 0, 0, 0);
 
-	const cards = await prisma.card.findMany({
-		where: {
-			deckId,
-			dateToDisplay: {
-				lte: now,
+		const cards = await prisma.card.findMany({
+			where: {
+				deckId,
+				dateToDisplay: {
+					lte: now,
+				},
 			},
-		},
-		orderBy: {
-			dateToDisplay: "asc",
-		},
-	});
+			orderBy: {
+				dateToDisplay: "asc",
+			},
+		});
 
-	return cards;
+		return cards;
+	} catch (err) {
+		console.error("Database error:", err);
+		throw new Error("Failed to fetch cards for review.");
+	}
 }
