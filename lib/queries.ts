@@ -4,6 +4,7 @@ export async function fetchDecks(userId: string) {
 	try {
 		const decks = await prisma.deck.findMany({
 			where: { userId },
+			cacheStrategy: { swr: 60, ttl: 60 },
 		});
 		return decks;
 	} catch (err) {
@@ -16,6 +17,7 @@ export async function fetchDeck(id: string) {
 	try {
 		const deck = await prisma.deck.findUnique({
 			where: { id },
+			cacheStrategy: { swr: 60, ttl: 60 },
 		});
 		return deck;
 	} catch (err) {
@@ -28,6 +30,7 @@ export async function fetchCards(deckId: string) {
 	try {
 		const cards = await prisma.card.findMany({
 			where: { deckId },
+			cacheStrategy: { swr: 60, ttl: 60 },
 		});
 		return cards;
 	} catch (err) {
@@ -40,6 +43,7 @@ export async function fetchCard(cardId: string) {
 	try {
 		const card = await prisma.card.findUnique({
 			where: { id: cardId },
+			cacheStrategy: { swr: 60, ttl: 60 },
 		});
 		return card;
 	} catch (err) {
@@ -63,6 +67,7 @@ export async function fetchCardsForReview(deckId: string) {
 			orderBy: {
 				dateToDisplay: "asc",
 			},
+			cacheStrategy: { swr: 60, ttl: 60 },
 		});
 
 		return cards;
