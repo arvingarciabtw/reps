@@ -1,8 +1,32 @@
 import { AlertDialog } from "radix-ui";
 import { Trash2 } from "react-feather";
-
 import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { deleteDeck } from "@/actions/deck-actions";
+
+function DeleteButtons() {
+	const { pending } = useFormStatus();
+
+	return (
+		<>
+			<AlertDialog.Cancel asChild>
+				<button
+					className="ease cursor-pointer rounded-2xl bg-(--color-gray-700) px-5 py-2 transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
+					disabled={pending}
+				>
+					Cancel
+				</button>
+			</AlertDialog.Cancel>
+			<button
+				type="submit"
+				disabled={pending}
+				className="ease cursor-pointer rounded-2xl bg-red-500 px-5 py-2 text-(--color-white) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
+			>
+				Delete deck
+			</button>
+		</>
+	);
+}
 
 export default function DeleteDeckModal({ deckId }: { deckId: string }) {
 	const [state, formAction] = useActionState(deleteDeck, { message: null });
@@ -34,17 +58,7 @@ export default function DeleteDeckModal({ deckId }: { deckId: string }) {
 						{state.message && (
 							<p className="mt-1 text-sm text-red-500">{state.message}</p>
 						)}
-						<AlertDialog.Cancel asChild>
-							<button className="ease cursor-pointer rounded-2xl bg-(--color-gray-700) px-5 py-2 transition duration-300 hover:opacity-75">
-								Cancel
-							</button>
-						</AlertDialog.Cancel>
-						<button
-							type="submit"
-							className="ease cursor-pointer rounded-2xl bg-red-500 px-5 py-2 text-(--color-white) transition duration-300 hover:opacity-75"
-						>
-							Delete deck
-						</button>
+						<DeleteButtons />
 					</form>
 				</AlertDialog.Content>
 			</AlertDialog.Portal>

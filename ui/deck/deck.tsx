@@ -16,7 +16,7 @@ export default function Deck({
 			className="ease relative flex items-center justify-between gap-6 rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) p-4 pl-5 text-(--color-fg) transition duration-300"
 			key={deckName}
 		>
-			<Link href={`/deck/${deckId}`} className="cursor-pointer">
+			<Link href={`/deck/${deckId}`} className="w-full cursor-pointer">
 				<p>{deckName}</p>
 			</Link>
 			<div className="flex gap-2 text-(--color-gray-300)">

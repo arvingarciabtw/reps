@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { createDeck } from "@/actions/deck-actions";
 import { Plus } from "react-feather";
 import { Dialog } from "radix-ui";
@@ -42,26 +43,35 @@ export default function AddDeckModal() {
 						{state.message && (
 							<p className="mt-1 text-sm text-red-500">{state.message}</p>
 						)}
-
-						<div className="flex gap-4 self-end">
-							<Dialog.Close asChild className="self-end">
-								<button
-									aria-label="Close"
-									className="ease cursor-pointer rounded-2xl bg-(--color-gray-700) px-5 py-2 transition duration-300 hover:opacity-75"
-								>
-									Cancel
-								</button>
-							</Dialog.Close>
-							<button
-								type="submit"
-								className="ease mt-6 cursor-pointer self-end rounded-2xl bg-(--color-primary) px-5 py-2 text-(--color-black) transition duration-300 hover:opacity-75"
-							>
-								Add deck
-							</button>
-						</div>
+						<SubmitButtons />
 					</form>
 				</Dialog.Content>
 			</Dialog.Portal>
 		</Dialog.Root>
+	);
+}
+
+function SubmitButtons() {
+	const { pending } = useFormStatus();
+
+	return (
+		<div className="flex gap-4 self-end">
+			<Dialog.Close asChild className="self-end">
+				<button
+					aria-label="Close"
+					disabled={pending}
+					className="ease cursor-pointer rounded-2xl bg-(--color-gray-700) px-5 py-2 transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
+				>
+					Cancel
+				</button>
+			</Dialog.Close>
+			<button
+				type="submit"
+				disabled={pending}
+				className="ease mt-6 cursor-pointer self-end rounded-2xl bg-(--color-primary) px-5 py-2 text-(--color-black) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
+			>
+				Create deck
+			</button>
+		</div>
 	);
 }
