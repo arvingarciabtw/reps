@@ -31,7 +31,7 @@ export default function Card({ front, back }: { front: string; back: string }) {
 					transition={{ duration: 0.5 }}
 					animate={{ rotateX: isFlipped ? 0 : 180 }}
 				>
-					<div className="prose prose-p:m-0 prose-p:text-(--color-gray-300) prose-code:rounded-md prose-code:bg-(--color-gray-700) prose-code:px-2 prose-code:py-1 prose-code:font-normal prose-code:text-(--color-gray-100) prose-code:before:content-none prose-code:after:content-none prose-pre:m-0 prose-pre:bg-(--color-gray-800) prose-pre:px-0">
+					<div className="prose prose-p:m-0 prose-p:text-(--color-gray-300) prose-code:rounded-md prose-code:bg-(--color-gray-700) prose-code:px-2 prose-code:py-1 prose-code:font-normal prose-code:text-(--color-gray-100) prose-code:before:content-none prose-code:after:content-none prose-pre:m-0 prose-pre:bg-(--color-gray-800) prose-pre:px-0 prose-pre:text-left">
 						<Markdown rehypePlugins={[rehypeHighlight]}>{front}</Markdown>
 					</div>
 				</motion.div>
@@ -43,7 +43,7 @@ export default function Card({ front, back }: { front: string; back: string }) {
 					transition={{ duration: 0.5 }}
 					animate={{ rotateX: isFlipped ? 180 : 0 }}
 				>
-					<div className="prose prose-p:m-0 prose-p:text-2xl prose-p:text-(--color-gray-300) prose-code:rounded-md prose-code:bg-[#011627] prose-code:px-2 prose-code:py-1 prose-code:text-xl prose-code:font-normal prose-code:text-(--color-gray-100) prose-code:before:content-none prose-code:after:content-none prose-pre:m-0 prose-pre:bg-(--color-gray-800) prose-pre:px-0">
+					<div className="prose prose-p:m-0 prose-p:text-(--color-gray-300) prose-code:rounded-md prose-code:bg-(--color-gray-700) prose-code:px-2 prose-code:py-1 prose-code:font-normal prose-code:text-(--color-gray-100) prose-code:before:content-none prose-code:after:content-none prose-pre:m-0 prose-pre:bg-(--color-gray-800) prose-pre:px-0 prose-pre:text-left">
 						<Markdown rehypePlugins={[rehypeHighlight]}>{back}</Markdown>
 					</div>
 				</motion.div>
