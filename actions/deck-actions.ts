@@ -69,7 +69,7 @@ export async function createDeck(
 	redirect("/dashboard");
 }
 
-export async function editDeck(
+export async function updateDeck(
 	prevState: State,
 	formData: FormData,
 ): Promise<State> {
