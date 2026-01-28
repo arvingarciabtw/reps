@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Output from "@/ui/output";
+import Card from "@/ui/card/card";
 import { updateCard } from "@/actions/card-actions";
 import { useState, useActionState } from "react";
 
@@ -86,7 +86,10 @@ export default function UpdateCardForm({
 							onChange={setBackValue}
 						/>
 					</div>
-					<Output front={frontValue} back={backValue} />
+					<section className="flex w-full flex-1 flex-col gap-2 self-stretch">
+						<h1 className="self-start text-(--color-white)">Output</h1>
+						<Card front={frontValue} back={backValue} />
+					</section>
 				</div>
 			</form>
 		</div>
