@@ -4,8 +4,9 @@ import Link from "next/link";
 import Card from "@/ui/card/card";
 import { updateCard } from "@/actions/card-actions";
 import { useState, useActionState } from "react";
+import { useFormStatus } from "react-dom";
 
-export default function UpdateCardForm({
+export default function UpdateCard({
 	deckId,
 	deckTitle,
 	card,
@@ -47,20 +48,7 @@ export default function UpdateCardForm({
 			<form className="flex flex-col" action={formAction}>
 				<input type="hidden" name="deckId" value={deckId} />
 				<input type="hidden" name="cardId" value={card.id} />
-
-				<div className="mt-4 mb-6 flex items-center gap-4 self-center">
-					<Link href={`/deck/${deckId}/view`}>
-						<button className="ease cursor-pointer rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) px-5 py-2 transition duration-300 hover:opacity-75">
-							View cards
-						</button>
-					</Link>
-					<button
-						type="submit"
-						className="ease cursor-pointer self-center rounded-2xl bg-(--color-primary) px-5 py-2 text-(--color-black) transition duration-300 hover:opacity-75"
-					>
-						Edit card
-					</button>
-				</div>
+				<SubmitButtons deckId={deckId} />
 				{state.errors?.front && (
 					<p className="mt-1 text-sm text-red-500">{state.errors.front[0]}</p>
 				)}
@@ -124,5 +112,29 @@ function Input({
 				onChange={handleChange}
 			></textarea>
 		</section>
+	);
+}
+
+function SubmitButtons({ deckId }: { deckId: string }) {
+	const { pending } = useFormStatus();
+
+	return (
+		<div className="mt-4 mb-6 flex items-center gap-4 self-center">
+			<Link href={`/deck/${deckId}/view`}>
+				<button
+					className="ease cursor-pointer rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) px-5 py-2 transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
+					disabled={pending}
+				>
+					View cards
+				</button>
+			</Link>
+			<button
+				type="submit"
+				disabled={pending}
+				className="ease cursor-pointer self-center rounded-2xl bg-(--color-primary) px-5 py-2 text-(--color-black) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
+			>
+				Update card
+			</button>
+		</div>
 	);
 }

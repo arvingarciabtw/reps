@@ -2,11 +2,11 @@
 
 import { AlertDialog } from "radix-ui";
 import { Trash2 } from "react-feather";
-
 import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { deleteCard } from "@/actions/card-actions";
 
-export default function DeleteCardModal({
+export default function DeleteCard({
 	cardId,
 	deckId,
 }: {
@@ -48,20 +48,34 @@ export default function DeleteCardModal({
 						{state.message && (
 							<p className="mt-1 text-sm text-red-500">{state.message}</p>
 						)}
-						<AlertDialog.Cancel asChild>
-							<button className="ease cursor-pointer rounded-2xl bg-(--color-gray-700) px-5 py-2 transition duration-300 hover:opacity-75">
-								Cancel
-							</button>
-						</AlertDialog.Cancel>
-						<button
-							type="submit"
-							className="ease cursor-pointer rounded-2xl bg-red-500 px-5 py-2 text-(--color-white) transition duration-300 hover:opacity-75"
-						>
-							Delete card
-						</button>
+						<SubmitButtons />
 					</form>
 				</AlertDialog.Content>
 			</AlertDialog.Portal>
 		</AlertDialog.Root>
+	);
+}
+
+function SubmitButtons() {
+	const { pending } = useFormStatus();
+
+	return (
+		<>
+			<AlertDialog.Cancel asChild>
+				<button
+					className="ease cursor-pointer rounded-2xl bg-(--color-gray-700) px-5 py-2 transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
+					disabled={pending}
+				>
+					Cancel
+				</button>
+			</AlertDialog.Cancel>
+			<button
+				type="submit"
+				disabled={pending}
+				className="ease cursor-pointer rounded-2xl bg-red-500 px-5 py-2 text-(--color-white) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
+			>
+				Delete card
+			</button>
+		</>
 	);
 }
