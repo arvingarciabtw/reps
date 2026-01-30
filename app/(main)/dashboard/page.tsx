@@ -38,7 +38,7 @@ async function Decks() {
 				All of your decks are below. Click on a deck to interact with its
 				contents. Click on the add button on the bottom right to create a deck.
 			</p>
-			<section className="grid grid-cols-1 gap-4 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+			<section className="grid grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-3">
 				{decks.map((deck: DeckType) => (
 					<Deck key={deck.id} deckName={deck.title} deckId={deck.id} />
 				))}
