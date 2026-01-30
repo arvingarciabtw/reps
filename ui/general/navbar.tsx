@@ -3,24 +3,32 @@
 import Image from "next/image";
 import Link from "next/link";
 import MobileMenu from "./mobile-menu";
-import { AlertDialog } from "radix-ui";
+import SignOut from "../auth/sign-out";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 import type { SessionType } from "@/lib/definitions";
 import { authClient } from "@/lib/auth-client";
 
 export default function NavBar({ session }: { session: SessionType }) {
 	const router = useRouter();
+	const [isSigningOut, setIsSigningOut] = useState(false);
 
 	async function handleSignOut() {
-		await authClient.signOut({
-			fetchOptions: {
-				onSuccess: () => {
-					router.push("/");
-					router.refresh();
+		setIsSigningOut(true);
+		try {
+			await authClient.signOut({
+				fetchOptions: {
+					onSuccess: () => {
+						router.push("/");
+						router.refresh();
+					},
 				},
-			},
-		});
+			});
+		} catch (error) {
+			console.error("Sign out failed:", error);
+			setIsSigningOut(false);
+		}
 	}
 
 	return (
@@ -37,7 +45,11 @@ export default function NavBar({ session }: { session: SessionType }) {
 					/>
 				</Link>
 				<h1 className="font-logo text-2xl">reps</h1>
-				<MobileMenu session={session} onSignOut={handleSignOut} />
+				<MobileMenu
+					session={session}
+					onSignOut={handleSignOut}
+					isSigningOut={isSigningOut}
+				/>
 				<ul className="ml-auto hidden gap-10 text-(--color-gray-300) sm:flex">
 					{session !== null && (
 						<li className="ease transition duration-300 hover:opacity-75">
@@ -54,35 +66,14 @@ export default function NavBar({ session }: { session: SessionType }) {
 					)}
 					{session && (
 						<li className="ease transition duration-300 hover:opacity-75">
-							<AlertDialog.Root>
-								<AlertDialog.Trigger asChild>
-									<button className="cursor-pointer">Sign Out</button>
-								</AlertDialog.Trigger>
-								<AlertDialog.Portal>
-									<AlertDialog.Overlay className="fixed inset-0 bg-(--color-black) opacity-75" />
-									<AlertDialog.Content className="fixed top-[50%] left-[50%] flex max-w-80 min-w-80 translate-x-[-50%] translate-y-[-50%] flex-col items-center rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) p-6 text-(--color-gray-300) outline-none">
-										<AlertDialog.Title className="mb-2 text-2xl font-medium text-(--color-white)">
-											Sign out?
-										</AlertDialog.Title>
-										<AlertDialog.Description className="mb-4 text-center">
-											You are going to sign out of your account. Are you sure?
-										</AlertDialog.Description>
-										<div className="flex gap-4">
-											<AlertDialog.Cancel asChild>
-												<button className="ease cursor-pointer rounded-2xl bg-(--color-gray-700) px-5 py-2 transition duration-300 hover:opacity-75">
-													Cancel
-												</button>
-											</AlertDialog.Cancel>
-											<button
-												onClick={handleSignOut}
-												className="ease cursor-pointer rounded-2xl bg-(--color-primary) px-5 py-2 text-(--color-black) transition duration-300 hover:opacity-75"
-											>
-												Sign out
-											</button>
-										</div>
-									</AlertDialog.Content>
-								</AlertDialog.Portal>
-							</AlertDialog.Root>
+							<SignOut onSignOut={handleSignOut} isSigningOut={isSigningOut}>
+								<button
+									className="cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
+									disabled={isSigningOut}
+								>
+									Sign Out
+								</button>
+							</SignOut>
 						</li>
 					)}
 				</ul>

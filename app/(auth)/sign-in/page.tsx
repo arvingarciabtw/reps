@@ -3,8 +3,31 @@
 import { GitHub } from "react-feather";
 import { signInWithGoogle } from "@/actions/auth-actions";
 import { signInWithGithub } from "@/actions/auth-actions";
+import { useState } from "react";
 
 export default function SignInPage() {
+	const [isLoading, setIsLoading] = useState(false);
+
+	const handleGoogleSignIn = async () => {
+		setIsLoading(true);
+		try {
+			await signInWithGoogle();
+		} catch (error) {
+			console.error("Google sign-in failed:", error);
+			setIsLoading(false);
+		}
+	};
+
+	const handleGithubSignIn = async () => {
+		setIsLoading(true);
+		try {
+			await signInWithGithub();
+		} catch (error) {
+			console.error("GitHub sign-in failed:", error);
+			setIsLoading(false);
+		}
+	};
+
 	return (
 		<div className="flex flex-col items-center text-(--color-gray-300)">
 			<p className="max-w-md text-center">
@@ -13,8 +36,9 @@ export default function SignInPage() {
 			</p>
 			<div className="mt-4 flex gap-4">
 				<button
-					className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) px-5 py-2 transition duration-300 hover:text-(--color-primary)"
-					onClick={signInWithGoogle}
+					className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) px-5 py-2 transition duration-300 hover:text-(--color-primary) disabled:cursor-not-allowed disabled:opacity-50"
+					onClick={handleGoogleSignIn}
+					disabled={isLoading}
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -27,8 +51,9 @@ export default function SignInPage() {
 					Google
 				</button>
 				<button
-					className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) px-5 py-2 transition duration-300 hover:text-(--color-primary)"
-					onClick={signInWithGithub}
+					className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) px-5 py-2 transition duration-300 hover:text-(--color-primary) disabled:cursor-not-allowed disabled:opacity-50"
+					onClick={handleGithubSignIn}
+					disabled={isLoading}
 				>
 					<GitHub className="h-4 w-4" />
 					GitHub
