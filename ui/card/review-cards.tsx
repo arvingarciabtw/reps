@@ -70,6 +70,7 @@ export default function ReviewCardsSection({
 	return (
 		<div className="my-auto flex h-50 w-full flex-col items-center gap-4 self-center sm:w-104">
 			<Card
+				key={remainingCards[cardIndex].id}
 				front={remainingCards[cardIndex].front}
 				back={remainingCards[cardIndex].back}
 			/>
