@@ -35,6 +35,10 @@
 	}
 }
 
+html {
+	scrollbar-gutter: stable;
+}
+
 body {
 	background: var(--color-bg);
 	color: var(--color-fg);
