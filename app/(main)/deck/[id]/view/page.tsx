@@ -32,19 +32,35 @@ export default async function ViewCardsPage({
 							<Plus className="ease h-5 w-5 transition duration-300 hover:stroke-(--color-primary)" />
 						</Link>
 					</div>
-					<div className="flex flex-col gap-2 pt-4">
+					<div className="flex flex-col gap-8 pt-4 xs:gap-2">
 						{cards.map((card, index) => (
 							<div
 								key={card.id}
-								className="grid grid-cols-[20px_1fr_1fr_20px_20px] items-center gap-4 rounded-lg text-(--color-gray-300)"
+								className="flex grid-cols-[20px_1fr_1fr_20px_20px] flex-col items-center gap-4 rounded-lg border-b border-dashed border-(--color-gray-700) pb-4 text-(--color-gray-300) xs:grid"
 							>
-								<p>{index + 1}</p>
+								{/* Show on mobile */}
+								<div className="flex w-full justify-between xs:hidden">
+									<p>{index + 1}</p>
+									<div className="flex items-center gap-3">
+										<Link href={`/deck/${id}/update/${card.id}`}>
+											<Edit2 className="ease h-4 w-4 transition duration-300 hover:stroke-(--color-primary)" />
+										</Link>
+										<DeleteCard cardId={card.id} deckId={deck.id} />
+									</div>
+								</div>
+								{/* Show starting from xs viewports */}
+								<p className="hidden xs:block">{index + 1}</p>
 								<p>{card.front}</p>
 								<p>{card.back}</p>
-								<Link href={`/deck/${id}/update/${card.id}`}>
+								<Link
+									href={`/deck/${id}/update/${card.id}`}
+									className="hidden xs:block"
+								>
 									<Edit2 className="ease h-4 w-4 transition duration-300 hover:stroke-(--color-primary)" />
 								</Link>
-								<DeleteCard cardId={card.id} deckId={deck.id} />
+								<div className="hidden xs:block">
+									<DeleteCard cardId={card.id} deckId={deck.id} />
+								</div>
 							</div>
 						))}
 					</div>
