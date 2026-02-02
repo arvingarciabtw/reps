@@ -154,7 +154,7 @@ function CardsList({
 						>
 							<Edit2 className="ease h-4 w-4 transition duration-300 hover:stroke-(--color-primary)" />
 						</Link>
-						<div className="hidden xs:block">
+						<div className="hidden xs:grid xs:place-items-center">
 							<DeleteCard cardId={card.id} deckId={deck.id} />
 						</div>
 					</div>
