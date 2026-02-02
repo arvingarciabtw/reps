@@ -5,6 +5,8 @@ import { Edit2, Plus } from "react-feather";
 import DeleteCard from "@/ui/card/delete-card";
 import Link from "next/link";
 import Pagination from "@/ui/card/pagination";
+import { Suspense } from "react";
+import Skeleton from "@/ui/skeletons/skeleton-view-cards";
 
 export default async function ViewCardsPage({
 	params,
@@ -22,35 +24,56 @@ export default async function ViewCardsPage({
 	const currentPage = Number(page) || 1;
 	const pageSize = 10;
 
+	return (
+		<div className="grid flex-1 place-items-center">
+			<Suspense key={`${id}-${currentPage}`} fallback={<Skeleton />}>
+				<CardsContent
+					deckId={id}
+					deck={deck}
+					currentPage={currentPage}
+					pageSize={pageSize}
+				/>
+			</Suspense>
+		</div>
+	);
+}
+
+async function CardsContent({
+	deckId,
+	deck,
+	currentPage,
+	pageSize,
+}: {
+	deckId: string;
+	deck: DeckType;
+	currentPage: number;
+	pageSize: number;
+}) {
 	const { cards, totalCount, totalPages } = await fetchCards(
-		id,
+		deckId,
 		currentPage,
 		pageSize,
 	);
 
 	if (!cards) return <p>Cards not found.</p>;
 
-	return (
-		<div className="grid flex-1 place-items-center">
-			{totalCount === 0 ? (
-				<NoCards deck={deck} />
-			) : (
-				<div className="h-full w-full self-start justify-self-start">
-					<Pagination
-						currentPage={currentPage}
-						totalPages={totalPages}
-						deckId={id}
-					/>
-					<Header id={id} />
-					<CardsList
-						cards={cards}
-						currentPage={currentPage}
-						pageSize={pageSize}
-						deck={deck}
-						id={id}
-					/>
-				</div>
-			)}
+	return totalCount === 0 ? (
+		<NoCards deck={deck} />
+	) : (
+		<div className="h-full w-full self-start justify-self-start">
+			<Pagination
+				currentPage={currentPage}
+				totalPages={totalPages}
+				deckId={deckId}
+			/>
+			<Header id={deckId} />
+			<CardsList
+				cards={cards}
+				currentPage={currentPage}
+				pageSize={pageSize}
+				deck={deck}
+				id={deckId}
+			/>
 		</div>
 	);
 }
