@@ -1,69 +1,54 @@
 import { fetchDeck, fetchCards } from "@/lib/queries";
+import type { CardType } from "@/lib/definitions";
+import type { DeckType } from "@/lib/definitions";
 import { Edit2, Plus } from "react-feather";
 import DeleteCard from "@/ui/card/delete-card";
 import Link from "next/link";
+import Pagination from "@/ui/card/pagination";
 
 export default async function ViewCardsPage({
 	params,
+	searchParams,
 }: {
 	params: Promise<{ id: string }>;
+	searchParams: Promise<{ page?: string }>;
 }) {
 	const { id } = await params;
-	const deck = await fetchDeck(id);
+	const { page } = await searchParams;
 
+	const deck = await fetchDeck(id);
 	if (!deck) return <p>Deck not found.</p>;
 
-	const cards = await fetchCards(id);
+	const currentPage = Number(page) || 1;
+	const pageSize = 10;
+
+	const { cards, totalCount, totalPages } = await fetchCards(
+		id,
+		currentPage,
+		pageSize,
+	);
 
 	if (!cards) return <p>Cards not found.</p>;
 
 	return (
 		<div className="grid flex-1 place-items-center">
-			{cards.length === 0 ? (
+			{totalCount === 0 ? (
 				<NoCards deck={deck} />
 			) : (
 				<div className="h-full w-full self-start justify-self-start">
-					<div className="mb-2 grid grid-cols-[20px_1fr_1fr_20px_20px] items-center gap-4 border-b border-dashed border-(--color-gray-700) pb-4 text-(--color-gray-300)">
-						<p>#</p>
-						<p>Front</p>
-						<p>Back</p>
-						<span></span>
-						<Link href={`/deck/${id}/create`}>
-							<Plus className="ease h-5 w-5 transition duration-300 hover:stroke-(--color-primary)" />
-						</Link>
-					</div>
-					<div className="flex flex-col gap-8 pt-4 xs:gap-2">
-						{cards.map((card, index) => (
-							<div
-								key={card.id}
-								className="flex grid-cols-[20px_1fr_1fr_20px_20px] flex-col items-center gap-4 rounded-lg border-b border-dashed border-(--color-gray-700) pb-4 text-(--color-gray-300) xs:grid"
-							>
-								{/* Show on mobile */}
-								<div className="flex w-full justify-between xs:hidden">
-									<p>{index + 1}</p>
-									<div className="flex items-center gap-3">
-										<Link href={`/deck/${id}/update/${card.id}`}>
-											<Edit2 className="ease h-4 w-4 transition duration-300 hover:stroke-(--color-primary)" />
-										</Link>
-										<DeleteCard cardId={card.id} deckId={deck.id} />
-									</div>
-								</div>
-								{/* Show starting from xs viewports */}
-								<p className="hidden xs:block">{index + 1}</p>
-								<p>{card.front}</p>
-								<p>{card.back}</p>
-								<Link
-									href={`/deck/${id}/update/${card.id}`}
-									className="hidden xs:block"
-								>
-									<Edit2 className="ease h-4 w-4 transition duration-300 hover:stroke-(--color-primary)" />
-								</Link>
-								<div className="hidden xs:block">
-									<DeleteCard cardId={card.id} deckId={deck.id} />
-								</div>
-							</div>
-						))}
-					</div>
+					<Pagination
+						currentPage={currentPage}
+						totalPages={totalPages}
+						deckId={id}
+					/>
+					<Header id={id} />
+					<CardsList
+						cards={cards}
+						currentPage={currentPage}
+						pageSize={pageSize}
+						deck={deck}
+						id={id}
+					/>
 				</div>
 			)}
 		</div>
@@ -88,6 +73,70 @@ function NoCards({ deck }: { deck: { id: string; title: string } }) {
 					Add cards
 				</button>
 			</Link>
+		</div>
+	);
+}
+
+function Header({ id }: { id: string }) {
+	return (
+		<div className="mb-2 grid grid-cols-[20px_1fr_1fr_20px_20px] items-center gap-4 border-b border-dashed border-(--color-gray-700) pb-4 text-(--color-gray-300)">
+			<p>#</p>
+			<p>Front</p>
+			<p>Back</p>
+			<span></span>
+			<Link href={`/deck/${id}/create`}>
+				<Plus className="ease h-5 w-5 transition duration-300 hover:stroke-(--color-primary)" />
+			</Link>
+		</div>
+	);
+}
+
+function CardsList({
+	cards,
+	currentPage,
+	pageSize,
+	deck,
+	id,
+}: {
+	cards: CardType[];
+	currentPage: number;
+	pageSize: number;
+	deck: DeckType;
+	id: string;
+}) {
+	return (
+		<div className="flex flex-col gap-8 pt-4 xs:gap-2">
+			{cards.map((card, index) => {
+				const globalIndex = (currentPage - 1) * pageSize + index + 1;
+				return (
+					<div
+						key={card.id}
+						className="flex grid-cols-[20px_1fr_1fr_20px_20px] flex-col items-center gap-4 rounded-lg border-b border-dashed border-(--color-gray-700) pb-4 text-(--color-gray-300) xs:grid"
+					>
+						<div className="flex w-full justify-between xs:hidden">
+							<p>{globalIndex}</p>
+							<div className="flex items-center gap-3">
+								<Link href={`/deck/${id}/update/${card.id}`}>
+									<Edit2 className="ease h-4 w-4 transition duration-300 hover:stroke-(--color-primary)" />
+								</Link>
+								<DeleteCard cardId={card.id} deckId={deck.id} />
+							</div>
+						</div>
+						<p className="hidden xs:block">{globalIndex}</p>
+						<p>{card.front}</p>
+						<p>{card.back}</p>
+						<Link
+							href={`/deck/${id}/update/${card.id}`}
+							className="hidden xs:block"
+						>
+							<Edit2 className="ease h-4 w-4 transition duration-300 hover:stroke-(--color-primary)" />
+						</Link>
+						<div className="hidden xs:block">
+							<DeleteCard cardId={card.id} deckId={deck.id} />
+						</div>
+					</div>
+				);
+			})}
 		</div>
 	);
 }
