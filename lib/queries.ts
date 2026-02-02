@@ -24,12 +24,29 @@ export async function fetchDeck(id: string) {
 	}
 }
 
-export async function fetchCards(deckId: string) {
+export async function fetchCards(
+	deckId: string,
+	page: number = 1,
+	pageSize: number = 10,
+) {
 	try {
-		const cards = await prisma.card.findMany({
-			where: { deckId },
-		});
-		return cards;
+		const skip = (page - 1) * pageSize;
+
+		const [cards, totalCount] = await Promise.all([
+			prisma.card.findMany({
+				where: { deckId },
+				skip,
+				take: pageSize,
+			}),
+			prisma.card.count({ where: { deckId } }),
+		]);
+
+		return {
+			cards,
+			totalCount,
+			totalPages: Math.ceil(totalCount / pageSize),
+			currentPage: page,
+		};
 	} catch (err) {
 		console.error("Database error:", err);
 		throw new Error("Failed to fetch cards.");
