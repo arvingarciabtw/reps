@@ -66,6 +66,11 @@ export default function NavBar({ session }: { session: SessionType }) {
 					)}
 					{session && (
 						<li className="ease transition duration-300 hover:opacity-75">
+							<Link href="/profile">Profile</Link>
+						</li>
+					)}
+					{session && (
+						<li className="ease transition duration-300 hover:opacity-75">
 							<SignOut onSignOut={handleSignOut} isSigningOut={isSigningOut}>
 								<button
 									className="cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"

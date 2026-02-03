@@ -69,6 +69,16 @@ export default function MobileMenu({
 							)}
 							{session && (
 								<li className="ease transition duration-300 hover:opacity-75">
+									<Link
+										href="/profile"
+										onClick={() => setTimeout(() => setOpen(false), 500)}
+									>
+										Profile
+									</Link>
+								</li>
+							)}
+							{session && (
+								<li className="ease transition duration-300 hover:opacity-75">
 									<SignOut onSignOut={onSignOut} isSigningOut={isSigningOut}>
 										<button
 											className="cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
