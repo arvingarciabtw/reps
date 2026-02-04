@@ -1,11 +1,13 @@
 import Image from "next/image";
+import ReviewGraph from "@/ui/general/review-graph";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
 export default function ProfilePage() {
 	return (
-		<div className="flex flex-col gap-8 md:flex-row">
+		<div className="flex flex-col gap-8">
 			<ProfileDescription />
+			<ReviewGraphSection />
 		</div>
 	);
 }
@@ -17,10 +19,8 @@ async function ProfileDescription() {
 
 	if (!session) return <p>No session found.</p>;
 
-	console.log(session);
-
 	return (
-		<section className="flex items-center gap-4 md:flex-col md:items-start">
+		<section className="flex items-center gap-4">
 			<Image
 				src={session.user.image || "/images/logo.svg"}
 				alt="Profile picture"
@@ -29,9 +29,13 @@ async function ProfileDescription() {
 				className="w-full max-w-20 rounded-full"
 			/>
 			<div className="flex flex-col gap-0.5">
-				<h1 className="text-4xl md:text-2xl">{session.user.name}</h1>
+				<h1 className="text-4xl">{session.user.name}</h1>
 				<p className="text-(--color-gray-300)">{session.user.email}</p>
 			</div>
 		</section>
 	);
+}
+
+async function ReviewGraphSection() {
+	return <ReviewGraph />;
 }
