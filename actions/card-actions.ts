@@ -3,6 +3,8 @@
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 
 export type State = {
@@ -149,8 +151,17 @@ export async function deleteCard(
 }
 
 export async function markCardCorrect(cardId: string, deckId: string) {
+	const session = await auth.api.getSession({
+		headers: await headers(),
+	});
+
+	if (!session) {
+		throw new Error("User not authenticated");
+	}
+
 	const card = await prisma.card.findUnique({
 		where: { id: cardId },
+		include: { deck: true },
 	});
 
 	if (!card) {
@@ -163,13 +174,29 @@ export async function markCardCorrect(cardId: string, deckId: string) {
 	nextDate.setDate(nextDate.getDate() + newDays);
 	nextDate.setHours(0, 0, 0, 0);
 
+	const today = new Date();
+	today.setHours(0, 0, 0, 0);
+
 	try {
-		await prisma.card.update({
-			where: { id: cardId },
-			data: {
-				days: newDays,
-				dateToDisplay: nextDate,
-			},
+		await prisma.$transaction(async (tx) => {
+			await tx.card.update({
+				where: { id: cardId },
+				data: {
+					days: newDays,
+					dateToDisplay: nextDate,
+				},
+			});
+
+			await tx.reviewHistory.create({
+				data: {
+					userId: session.user.id,
+					cardId,
+					deckId,
+					reviewedAt: new Date(),
+					reviewDate: today,
+					isCorrect: true,
+				},
+			});
 		});
 	} catch (err) {
 		console.error("Failed to mark card correctly:", err);
@@ -182,16 +209,37 @@ export async function markCardCorrect(cardId: string, deckId: string) {
 }
 
 export async function markCardWrong(cardId: string, deckId: string) {
+	const session = await auth.api.getSession({
+		headers: await headers(),
+	});
+
+	if (!session) {
+		throw new Error("User not authenticated");
+	}
+
 	const today = new Date();
 	today.setHours(0, 0, 0, 0);
 
 	try {
-		await prisma.card.update({
-			where: { id: cardId },
-			data: {
-				days: 0,
-				dateToDisplay: today,
-			},
+		await prisma.$transaction(async (tx) => {
+			await tx.card.update({
+				where: { id: cardId },
+				data: {
+					days: 0,
+					dateToDisplay: today,
+				},
+			});
+
+			await tx.reviewHistory.create({
+				data: {
+					userId: session.user.id,
+					cardId,
+					deckId,
+					reviewedAt: new Date(),
+					reviewDate: today,
+					isCorrect: false,
+				},
+			});
 		});
 	} catch (err) {
 		console.error("Failed to mark card wrong:", err);
