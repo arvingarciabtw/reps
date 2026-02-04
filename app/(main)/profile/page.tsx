@@ -3,11 +3,17 @@ import ReviewGraph from "@/ui/general/review-graph";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
-export default function ProfilePage() {
+interface ProfilePageProps {
+	searchParams: {
+		year?: string;
+	};
+}
+
+export default function ProfilePage({ searchParams }: ProfilePageProps) {
 	return (
 		<div className="flex flex-col gap-8">
 			<ProfileDescription />
-			<ReviewGraphSection />
+			<ReviewGraphSection searchParams={searchParams} />
 		</div>
 	);
 }
@@ -36,6 +42,12 @@ async function ProfileDescription() {
 	);
 }
 
-async function ReviewGraphSection() {
-	return <ReviewGraph />;
+async function ReviewGraphSection({
+	searchParams,
+}: {
+	searchParams: { year?: string };
+}) {
+	const year = searchParams.year ? parseInt(searchParams.year) : undefined;
+
+	return <ReviewGraph year={year} />;
 }

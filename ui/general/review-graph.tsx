@@ -4,7 +4,7 @@ import {
 	fetchAvailableYears,
 } from "@/actions/review-history-actions";
 
-export default async function ReviewGraph({ year }: { year: number }) {
+export default async function ReviewGraph({ year }: { year?: number }) {
 	const currentYear = year || new Date().getFullYear();
 	const [data, availableYears] = await Promise.all([
 		fetchReviewHeatmapData(currentYear),
