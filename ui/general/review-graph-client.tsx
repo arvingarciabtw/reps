@@ -100,11 +100,13 @@ export default function ReviewGraphClient({
 					<h2 className="text-base">Review Activity</h2>
 					<div className="flex flex-wrap gap-4 text-sm text-gray-500">
 						<span>
+							{initialStats.totalReviews.toLocaleString()} total reviews
+						</span>
+						<span>
 							{initialStats.yearReviews.toLocaleString()} reviews this year
 						</span>
-						<span>{initialStats.currentStreak} day streak</span>
 						<span>
-							{initialStats.totalReviews.toLocaleString()} total reviews
+							{initialStats.dayReviews.toLocaleString()} reviews today
 						</span>
 					</div>
 				</div>

@@ -42,5 +42,5 @@ export type HeatmapData = {
 export type ReviewStats = {
 	totalReviews: number;
 	yearReviews: number;
-	currentStreak: number;
+	dayReviews: number;
 };
