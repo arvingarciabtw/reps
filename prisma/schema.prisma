@@ -14,11 +14,12 @@ model User {
 
   accounts      Account[]
   decks         Deck[]
-  emailVerified Boolean   @default(false)
+  emailVerified Boolean         @default(false)
   image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
   sessions      Session[]
+  reviewHistory ReviewHistory[]
 
   @@map("user")
 }
@@ -51,10 +52,10 @@ model Deck {
   title     String
   createdAt DateTime @default(now())
 
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  cards Card[]
+  userId        String
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cards         Card[]
+  reviewHistory ReviewHistory[]
 }
 
 model Card {
@@ -64,8 +65,9 @@ model Card {
   days          Int      @default(0)
   dateToDisplay DateTime @default(now())
 
-  deckId String
-  deck   Deck   @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  deckId        String
+  deck          Deck            @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  reviewHistory ReviewHistory[]
 }
 
 model Session {
@@ -94,4 +96,21 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+}
+
+model ReviewHistory {
+  id         String   @id @default(cuid(2))
+  userId     String
+  cardId     String
+  deckId     String
+  reviewedAt DateTime @default(now())
+  isCorrect  Boolean
+  reviewDate DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  card Card @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  deck Deck @relation(fields: [deckId], references: [id], onDelete: Cascade)
+
+  @@index([userId, reviewDate])
+  @@map("review_history")
 }
