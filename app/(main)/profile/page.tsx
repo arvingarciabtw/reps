@@ -1,19 +1,17 @@
 import Image from "next/image";
-import ReviewGraph from "@/ui/general/review-graph";
+import Heatmap from "@/ui/profile/heatmap";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
-interface ProfilePageProps {
-	searchParams: {
-		year?: string;
-	};
-}
-
-export default function ProfilePage({ searchParams }: ProfilePageProps) {
+export default function ProfilePage({
+	searchParams,
+}: {
+	searchParams: { year?: string };
+}) {
 	return (
 		<div className="flex flex-col gap-8">
 			<ProfileDescription />
-			<ReviewGraphSection searchParams={searchParams} />
+			<HeatmapSection searchParams={searchParams} />
 		</div>
 	);
 }
@@ -23,7 +21,7 @@ async function ProfileDescription() {
 		headers: await headers(),
 	});
 
-	if (!session) return <p>No session found.</p>;
+	if (!session) return null;
 
 	return (
 		<section className="flex items-center gap-4">
@@ -42,12 +40,12 @@ async function ProfileDescription() {
 	);
 }
 
-async function ReviewGraphSection({
+async function HeatmapSection({
 	searchParams,
 }: {
 	searchParams: { year?: string };
 }) {
 	const year = searchParams.year ? parseInt(searchParams.year) : undefined;
 
-	return <ReviewGraph year={year} />;
+	return <Heatmap year={year} />;
 }
