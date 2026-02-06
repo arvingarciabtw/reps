@@ -24,7 +24,7 @@ export default function HeatmapClient({
 	const [isPending, startTransition] = useTransition();
 
 	const getHeatmapColor = (count: number) => {
-		if (count === 0) return "bg-gray-800";
+		if (count === 0) return "bg-(--color-gray-100) dark:bg-gray-800";
 
 		const maxCount = Math.max(...initialData.map((d) => d.count), 1);
 		const intensity = count / maxCount;
@@ -119,8 +119,8 @@ function HeatmapDescription({
 	return (
 		<div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
 			<div className="flex flex-col gap-0">
-				<h2 className="text-base">Review Activity</h2>
-				<div className="flex flex-wrap gap-4 text-sm text-gray-500">
+				<h2 className="mb-1 text-base">Review Activity</h2>
+				<div className="flex flex-wrap gap-4 gap-y-0 text-sm text-(--color-gray-400) dark:text-gray-500">
 					<span>
 						{initialStats.totalReviews.toLocaleString()} total reviews
 					</span>
@@ -137,7 +137,7 @@ function HeatmapDescription({
 				disabled={isPending}
 			>
 				<Select.Trigger
-					className="flex w-23.5 cursor-pointer items-center gap-3 rounded-2xl bg-(--color-gray-800) py-2 pr-3 pl-4 text-(--color-gray-300) outline-0 disabled:opacity-50"
+					className="flex w-23.5 cursor-pointer items-center gap-3 rounded-xl bg-(--color-gray-100) py-2 pr-3 pl-4.5 text-sm text-(--color-gray-800) outline-0 disabled:opacity-50 dark:bg-(--color-gray-800) dark:text-(--color-gray-300)"
 					aria-label="year"
 				>
 					<Select.Value
@@ -150,7 +150,7 @@ function HeatmapDescription({
 				</Select.Trigger>
 				<Select.Portal>
 					<Select.Content
-						className="w-23.5 rounded-2xl bg-(--color-gray-800) px-3 py-3 shadow-xl shadow-gray-950/25"
+						className="w-23.5 rounded-2xl bg-(--color-gray-100) px-3 py-3 shadow-xl shadow-gray-950/25 dark:bg-(--color-gray-800)"
 						position="popper"
 						sideOffset={8}
 					>
@@ -160,7 +160,7 @@ function HeatmapDescription({
 								{availableYears.map((year) => (
 									<Select.Item
 										key={year}
-										className="ease grid cursor-pointer place-items-center rounded-xl py-1 text-(--color-gray-300) outline-0 transition duration-300 hover:bg-(--color-primary) hover:text-(--color-black)"
+										className="ease grid cursor-pointer place-items-center rounded-lg py-1 text-sm text-(--color-gray-800) outline-0 transition duration-300 hover:bg-(--color-gray-800) hover:text-(--color-white) dark:text-(--color-gray-300) dark:hover:bg-(--color-primary) dark:hover:text-(--color-black)"
 										value={year.toString()}
 									>
 										<Select.ItemText>{year}</Select.ItemText>
@@ -185,7 +185,7 @@ function Heatmap({
 }) {
 	return (
 		<div className="overflow-x-auto pb-2">
-			<div className="inline-flex min-w-fit gap-3">
+			<div className="inline-flex min-w-fit gap-2">
 				{/* Weekday labels */}
 				<div className="flex flex-col gap-1 pt-6">
 					{CONSTANTS.WEEKDAYS.map((day, index) => (
@@ -201,7 +201,7 @@ function Heatmap({
 				{/* Calendar grid */}
 				<div className="flex flex-col gap-1">
 					{/* Month labels */}
-					<div className="relative mb-2 h-5">
+					<div className="relative mb-1 h-5">
 						<div
 							className="absolute top-0 left-0 grid gap-1 text-xs text-gray-400"
 							style={{
@@ -276,7 +276,7 @@ function Legends() {
 					<div
 						key={index}
 						className={`h-3 w-3 rounded-sm ${
-							intensity === 0 ? "bg-gray-800" : "bg-primary"
+							intensity === 0 ? "bg-gray-100 dark:bg-gray-800" : "bg-primary"
 						}`}
 						style={{
 							opacity: intensity === 0 ? 1 : intensity,

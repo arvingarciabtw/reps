@@ -1,6 +1,6 @@
 export default function Footer() {
 	return (
-		<footer className="m-auto p-6 text-(--color-gray-300)">
+		<footer className="m-auto p-6 text-(--color-gray-800) dark:text-(--color-gray-300)">
 			<p>
 				Made by{" "}
 				<a

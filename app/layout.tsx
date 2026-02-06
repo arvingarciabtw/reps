@@ -45,7 +45,9 @@ export default async function RootLayout({
 			lang="en"
 			className={`${atkinsonHyperlegibleNext.variable} ${firaCode.variable} ${zalandoSansExpanded.variable} antialiased`}
 		>
-			<body>{children}</body>
+			<body className="flex min-h-dvh flex-col bg-(--color-white) dark:bg-(--color-black)">
+				{children}
+			</body>
 		</html>
 	);
 }

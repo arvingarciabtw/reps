@@ -15,7 +15,7 @@ export default function Card({ front, back }: { front: string; back: string }) {
 
 	return (
 		<motion.div
-			className="relative flex h-full min-h-50 w-full max-w-104 flex-1 cursor-pointer flex-col overflow-y-auto rounded-lg bg-(--color-gray-800) p-4 sm:flex-1"
+			className="relative flex h-full min-h-50 w-full max-w-104 flex-1 cursor-pointer flex-col overflow-y-auto rounded-lg bg-(--color-gray-100) p-4 sm:flex-1 dark:bg-(--color-gray-800)"
 			transition={{ duration: 0.5 }}
 			animate={{ rotateX: isFlipped ? 0 : 180 }}
 			onClick={handleClick}
@@ -31,7 +31,7 @@ export default function Card({ front, back }: { front: string; back: string }) {
 					transition={{ duration: 0.5 }}
 					animate={{ rotateX: isFlipped ? 0 : 180 }}
 				>
-					<div className="prose prose-p:m-0 prose-p:text-(--color-gray-300) prose-code:rounded-md prose-code:bg-(--color-gray-700) prose-code:px-2 prose-code:py-1 prose-code:font-normal prose-code:text-(--color-gray-100) prose-code:before:content-none prose-code:after:content-none prose-pre:m-0 prose-pre:bg-(--color-gray-800) prose-pre:px-0 prose-pre:text-left">
+					<div className="prose prose-p:m-0 prose-p:text-(--color-gray-600) dark:prose-p:text-(--color-gray-300) prose-code:rounded-md prose-code:bg-(--color-gray-700) prose-code:px-2 prose-code:py-1 prose-code:font-normal prose-code:text-(--color-gray-100) prose-code:before:content-none prose-code:after:content-none prose-pre:m-0 prose-pre:bg-(--color-gray-800) prose-pre:px-0 prose-pre:text-left">
 						<Markdown rehypePlugins={[rehypeHighlight]}>{front}</Markdown>
 					</div>
 				</motion.div>
@@ -43,7 +43,7 @@ export default function Card({ front, back }: { front: string; back: string }) {
 					transition={{ duration: 0.5 }}
 					animate={{ rotateX: isFlipped ? 180 : 0 }}
 				>
-					<div className="prose prose-p:m-0 prose-p:text-(--color-gray-300) prose-code:rounded-md prose-code:bg-(--color-gray-700) prose-code:px-2 prose-code:py-1 prose-code:font-normal prose-code:text-(--color-gray-100) prose-code:before:content-none prose-code:after:content-none prose-pre:m-0 prose-pre:bg-(--color-gray-800) prose-pre:px-0 prose-pre:text-left">
+					<div className="prose prose-p:m-0 prose-p:text-(--color-gray-600) dark:prose-p:text-(--color-gray-300) prose-code:rounded-md prose-code:bg-(--color-gray-700) prose-code:px-2 prose-code:py-1 prose-code:font-normal prose-code:text-(--color-gray-100) prose-code:before:content-none prose-code:after:content-none prose-pre:m-0 prose-pre:bg-(--color-gray-800) prose-pre:px-0 prose-pre:text-left">
 						<Markdown rehypePlugins={[rehypeHighlight]}>{back}</Markdown>
 					</div>
 				</motion.div>

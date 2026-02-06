@@ -22,10 +22,10 @@ async function LandingSection() {
 	return (
 		<div className="my-auto">
 			<div className="mb-4">
-				<h1 className="mb-4 w-full text-6xl font-semibold sm:max-w-xl">
+				<h1 className="mb-4 w-full text-6xl font-semibold sm:max-w-xl dark:text-(--color-white)">
 					Spaced repetition, for <span>coders.</span>
 				</h1>
-				<p className="mb-6 max-w-lg text-(--color-gray-300)">
+				<p className="mb-6 max-w-lg text-(--color-gray-600) dark:text-(--color-gray-300)">
 					Reps is a clean, simple, and no-fluff spaced repetition app that
 					supports syntax highlighting. Write code examples with easily readable
 					lines, to retain programming concepts in your brain.

@@ -34,7 +34,9 @@ async function ProfileDescription() {
 			/>
 			<div className="flex flex-col gap-0.5">
 				<h1 className="text-4xl">{session.user.name}</h1>
-				<p className="text-(--color-gray-300)">{session.user.email}</p>
+				<p className="text-(--color-gray-600) dark:text-(--color-gray-300)">
+					{session.user.email}
+				</p>
 			</div>
 		</section>
 	);

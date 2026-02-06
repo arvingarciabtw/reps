@@ -1,11 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-
-:root {
-	--color-bg: oklch(1 0 0);
-	--color-fg: oklch(0.1822 0 0);
-	--color-highlight: oklch(0.7484 0.1551 233.2517);
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
 	--font-sans: var(--font-atkinson-hyperlegible-next);
@@ -27,24 +22,8 @@
 	--breakpoint-xs: 440px;
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--color-bg: oklch(0.12 0.0224 261.75);
-		--color-fg: oklch(0.982 0.0041 91.45);
-		--color-highlight: oklch(0.2435 0 0);
-	}
-}
-
 html {
 	scrollbar-gutter: stable;
-}
-
-body {
-	background: var(--color-bg);
-	color: var(--color-fg);
-	min-height: 100dvh;
-	display: flex;
-	flex-direction: column;
 }
 
 * {

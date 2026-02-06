@@ -37,7 +37,7 @@ export default function Pagination({
 		<div className="mb-8 flex items-center justify-center gap-3">
 			<Link
 				href={`/deck/${deckId}/view?page=${currentPage - 1}`}
-				className={`${currentPage === 1 ? "pointer-events-none opacity-50" : ""}`}
+				className={`dark:text-(--color-gray-300) ${currentPage === 1 ? "pointer-events-none opacity-25" : ""}`}
 			>
 				<ChevronLeft className="h-5 w-5" />
 			</Link>
@@ -53,8 +53,8 @@ export default function Pagination({
 						href={`/deck/${deckId}/view?page=${page}`}
 						className={`rounded-md px-2.5 py-px ${
 							currentPage === page
-								? "bg-(--color-primary) text-(--color-black)"
-								: "ease transition duration-300 hover:bg-(--color-gray-700)"
+								? "bg-(--color-primary) text-(--color-black) dark:text-(--color-black)"
+								: "ease transition duration-300 hover:bg-(--color-gray-100) dark:text-(--color-gray-300) dark:hover:bg-(--color-gray-700)"
 						}`}
 					>
 						{page}
@@ -64,7 +64,7 @@ export default function Pagination({
 
 			<Link
 				href={`/deck/${deckId}/view?page=${currentPage + 1}`}
-				className={`${currentPage === totalPages ? "pointer-events-none opacity-50" : ""}`}
+				className={`dark:text-(--color-gray-300) ${currentPage === totalPages ? "pointer-events-none opacity-25" : ""}`}
 			>
 				<ChevronRight className="h-5 w-5" />
 			</Link>

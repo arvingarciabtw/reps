@@ -19,13 +19,13 @@ export default function MobileMenu({
 	return (
 		<Dialog.Root open={open} onOpenChange={setOpen}>
 			<Dialog.Trigger asChild>
-				<button className="ml-auto hover:cursor-pointer sm:hidden">
+				<button className="ml-auto hover:cursor-pointer sm:hidden dark:text-(--color-gray-300)">
 					<Menu />
 				</button>
 			</Dialog.Trigger>
 			<Dialog.Portal>
 				<Dialog.Overlay className="fixed inset-0 bg-(--color-black) opacity-75" />
-				<Dialog.Content className="fixed grid h-full w-full place-items-center border border-(--color-gray-700) bg-(--color-black) p-6 text-(--color-gray-300) outline-none">
+				<Dialog.Content className="fixed grid h-full w-full place-items-center border border-(--color-gray-700) bg-(--color-white) p-6 text-(--color-gray-800) outline-none dark:bg-(--color-black) dark:text-(--color-gray-300)">
 					<VisuallyHidden.Root>
 						<Dialog.Title>Mobile Menu</Dialog.Title>
 					</VisuallyHidden.Root>
@@ -63,7 +63,7 @@ export default function MobileMenu({
 										href="/dashboard"
 										onClick={() => setTimeout(() => setOpen(false), 500)}
 									>
-										Sign In
+										Sign in
 									</Link>
 								</li>
 							)}
@@ -84,7 +84,7 @@ export default function MobileMenu({
 											className="cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
 											disabled={isSigningOut}
 										>
-											Sign Out
+											Sign out
 										</button>
 									</SignOut>
 								</li>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import MobileMenu from "./mobile-menu";
 import SignOut from "../auth/sign-out";
+import { Sun, Moon } from "react-feather";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -44,24 +45,24 @@ export default function NavBar({ session }: { session: SessionType }) {
 						loading="eager"
 					/>
 				</Link>
-				<h1 className="font-logo text-2xl">reps</h1>
-				<MobileMenu
-					session={session}
-					onSignOut={handleSignOut}
-					isSigningOut={isSigningOut}
-				/>
-				<ul className="ml-auto hidden gap-10 text-(--color-gray-300) sm:flex">
-					{session !== null && (
-						<li className="ease transition duration-300 hover:opacity-75">
-							<Link href="/dashboard">Dashboard</Link>
-						</li>
-					)}
+				<h1 className="font-logo text-2xl text-(--color-black) dark:text-(--color-white)">
+					reps
+				</h1>
+				<div className="ml-auto flex gap-4">
+					{/* <Sun /> */}
+					<MobileMenu
+						session={session}
+						onSignOut={handleSignOut}
+						isSigningOut={isSigningOut}
+					/>
+				</div>
+				<ul className="ml-auto hidden gap-10 text-(--color-gray-800) sm:flex dark:text-(--color-gray-300)">
 					<li className="ease transition duration-300 hover:opacity-75">
 						<Link href="/about">About</Link>
 					</li>
 					{session === null && (
 						<li className="ease transition duration-300 hover:opacity-75">
-							<Link href="/dashboard">Launch App</Link>
+							<Link href="/dashboard">Sign in</Link>
 						</li>
 					)}
 					{session && (
@@ -76,7 +77,7 @@ export default function NavBar({ session }: { session: SessionType }) {
 									className="cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
 									disabled={isSigningOut}
 								>
-									Sign Out
+									Sign out
 								</button>
 							</SignOut>
 						</li>

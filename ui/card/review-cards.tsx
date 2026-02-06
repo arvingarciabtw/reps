@@ -56,10 +56,10 @@ export default function ReviewCardsSection({
 
 	if (remainingCards.length === 0) {
 		return (
-			<div className="my-auto flex flex-col items-center gap-4 self-center text-(--color-gray-300)">
+			<div className="my-auto flex flex-col items-center gap-4 self-center text-(--color-gray-600) dark:text-(--color-gray-300)">
 				<p>No more cards to be reviewed.</p>
 				<Link href={`/deck/${deckId}`}>
-					<button className="ease cursor-pointer rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) px-5 py-2 transition duration-300 hover:opacity-75">
+					<button className="ease cursor-pointer rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) px-5 py-2 text-(--color-white) transition duration-300 hover:opacity-75 dark:text-(--color-gray-300)">
 						Back to deck
 					</button>
 				</Link>

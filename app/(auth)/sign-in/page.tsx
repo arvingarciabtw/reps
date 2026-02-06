@@ -29,12 +29,12 @@ export default function SignInPage() {
 	};
 
 	return (
-		<div className="flex flex-col items-center text-(--color-gray-300)">
+		<div className="flex flex-col items-center text-(--color-gray-600) dark:text-(--color-gray-300)">
 			<p className="max-w-md text-center">
 				This app currently only supports signing in with either Google or
 				GitHub. Choose your preferred sign-in method below.
 			</p>
-			<div className="mt-4 flex gap-4">
+			<div className="mt-4 flex gap-4 text-(--color-white) dark:text-(--color-gray-300)">
 				<button
 					className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) px-5 py-2 transition duration-300 hover:text-(--color-primary) disabled:cursor-not-allowed disabled:opacity-50"
 					onClick={handleGoogleSignIn}

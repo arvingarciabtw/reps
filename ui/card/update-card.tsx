@@ -25,7 +25,7 @@ export default function UpdateCard({
 	const [backValue, setBackValue] = useState(card.back);
 
 	return (
-		<div className="mx-auto my-auto flex w-full flex-col text-center text-(--color-gray-300)">
+		<div className="mx-auto my-auto flex w-full flex-col text-center text-(--color-gray-600) dark:text-(--color-gray-300)">
 			<p className="max-w-120 self-center">
 				To edit cards in your{" "}
 				<Link
@@ -75,7 +75,9 @@ export default function UpdateCard({
 						/>
 					</div>
 					<section className="flex w-full flex-1 flex-col gap-2 self-stretch">
-						<h1 className="self-start text-(--color-white)">Output</h1>
+						<h1 className="self-start text-(--color-gray-600) dark:text-(--color-white)">
+							Output
+						</h1>
 						<Card front={frontValue} back={backValue} />
 					</section>
 				</div>
@@ -101,13 +103,15 @@ function Input({
 
 	return (
 		<section className="flex flex-col gap-2 sm:flex-1">
-			<h1 className="self-start text-(--color-white)">{heading}</h1>
+			<h1 className="self-start text-(--color-gray-600) dark:text-(--color-white)">
+				{heading}
+			</h1>
 			<textarea
 				required
 				name={type}
 				id={type}
 				draggable="false"
-				className="min-h-50 w-full resize-none overflow-y-auto rounded-lg bg-(--color-gray-800) p-4 font-mono text-sm sm:min-h-25"
+				className="min-h-50 w-full resize-none overflow-y-auto rounded-lg bg-(--color-gray-100) p-4 font-mono text-sm text-(--color-gray-800) sm:min-h-25 dark:bg-(--color-gray-800) dark:text-(--color-gray-300)"
 				value={value}
 				onChange={handleChange}
 			></textarea>
@@ -119,7 +123,7 @@ function SubmitButtons({ deckId }: { deckId: string }) {
 	const { pending } = useFormStatus();
 
 	return (
-		<div className="mt-4 mb-6 flex items-center gap-4 self-center">
+		<div className="mt-4 mb-6 flex items-center gap-4 self-center text-(--color-white) dark:text-(--color-gray-300)">
 			<Link href={`/deck/${deckId}/view`}>
 				<button
 					className="ease cursor-pointer rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) px-5 py-2 transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
@@ -131,7 +135,7 @@ function SubmitButtons({ deckId }: { deckId: string }) {
 			<button
 				type="submit"
 				disabled={pending}
-				className="ease cursor-pointer self-center rounded-2xl bg-(--color-primary) px-5 py-2 text-(--color-black) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
+				className="ease cursor-pointer self-center rounded-2xl border border-(--color-primary) bg-(--color-primary) px-5 py-2 text-(--color-black) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
 			>
 				Update card
 			</button>

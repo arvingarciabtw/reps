@@ -3,7 +3,7 @@ import { fetchDecks } from "@/lib/queries";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Deck from "@/ui/deck/deck";
-import AddDeckModal from "@/ui/deck/create-deck";
+import CreateDeck from "@/ui/deck/create-deck";
 
 export default function Home() {
 	return (
@@ -17,7 +17,7 @@ function Dashboard() {
 	return (
 		<>
 			<Decks />
-			<AddDeckModal />
+			<CreateDeck />
 		</>
 	);
 }
@@ -33,8 +33,8 @@ async function Decks() {
 
 	return (
 		<>
-			<h1 className="text-4xl font-medium">Decks</h1>
-			<p className="mt-4 mb-10 max-w-lg text-(--color-gray-300)">
+			<h1 className="text-4xl font-medium dark:text-(--color-white)">Decks</h1>
+			<p className="mt-4 mb-10 max-w-lg text-(--color-gray-600) dark:text-(--color-gray-300)">
 				All of your decks are below. Click on a deck to interact with its
 				contents. Click on the add button on the bottom right to create a deck.
 			</p>

@@ -81,7 +81,7 @@ async function CardsContent({
 function NoCards({ deck }: { deck: { id: string; title: string } }) {
 	return (
 		<div className="flex flex-col items-center gap-4">
-			<p className="max-w-3xs text-center text-(--color-gray-300)">
+			<p className="max-w-3xs text-center text-(--color-gray-600) dark:text-(--color-gray-300)">
 				No cards yet in your{" "}
 				<Link
 					href={`/deck/${deck.id}`}
@@ -92,7 +92,7 @@ function NoCards({ deck }: { deck: { id: string; title: string } }) {
 				deck. Add some cards now!
 			</p>
 			<Link href={`/deck/${deck.id}/create`}>
-				<button className="ease cursor-pointer rounded-2xl bg-(--color-primary) px-5 py-2 text-(--color-black) transition duration-300 hover:opacity-75">
+				<button className="ease cursor-pointer rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) px-5 py-2 text-(--color-white) transition duration-300 hover:opacity-75 dark:text-(--color-gray-300)">
 					Add cards
 				</button>
 			</Link>
@@ -102,7 +102,7 @@ function NoCards({ deck }: { deck: { id: string; title: string } }) {
 
 function Header({ id }: { id: string }) {
 	return (
-		<div className="mb-2 grid grid-cols-[20px_1fr_1fr_20px_20px] items-center gap-4 border-b border-dashed border-(--color-gray-700) pb-4 text-(--color-gray-300)">
+		<div className="mb-2 grid grid-cols-[20px_1fr_1fr_20px_20px] items-center gap-4 border-b border-dashed border-(--color-gray-700) pb-4 text-(--color-gray-600) dark:text-(--color-gray-300)">
 			<p>#</p>
 			<p>Front</p>
 			<p>Back</p>
@@ -134,7 +134,7 @@ function CardsList({
 				return (
 					<div
 						key={card.id}
-						className="flex grid-cols-[20px_1fr_1fr_20px_20px] flex-col items-center gap-4 rounded-lg border-b border-dashed border-(--color-gray-700) pb-4 text-(--color-gray-300) xs:grid"
+						className="flex grid-cols-[20px_1fr_1fr_20px_20px] flex-col items-center gap-4 border-b border-dashed border-(--color-gray-700) pb-4 text-(--color-gray-600) xs:grid dark:text-(--color-gray-300)"
 					>
 						<div className="flex w-full justify-between xs:hidden">
 							<p>{globalIndex}</p>
