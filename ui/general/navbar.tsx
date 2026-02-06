@@ -5,6 +5,7 @@ import Link from "next/link";
 import MobileMenu from "./mobile-menu";
 import SignOut from "../auth/sign-out";
 import { Sun, Moon } from "react-feather";
+import { useTheme } from "@/ui/theme-provider";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -14,6 +15,8 @@ import { authClient } from "@/lib/auth-client";
 export default function NavBar({ session }: { session: SessionType }) {
 	const router = useRouter();
 	const [isSigningOut, setIsSigningOut] = useState(false);
+
+	const { resolvedTheme, setTheme } = useTheme();
 
 	async function handleSignOut() {
 		setIsSigningOut(true);
@@ -30,6 +33,10 @@ export default function NavBar({ session }: { session: SessionType }) {
 			console.error("Sign out failed:", error);
 			setIsSigningOut(false);
 		}
+	}
+
+	function handleLightDark() {
+		setTheme(resolvedTheme === "dark" ? "light" : "dark");
 	}
 
 	return (
@@ -49,14 +56,24 @@ export default function NavBar({ session }: { session: SessionType }) {
 					reps
 				</h1>
 				<div className="ml-auto flex gap-4">
-					{/* <Sun /> */}
+					<button
+						onClick={handleLightDark}
+						className="cursor-pointer sm:hidden"
+						aria-label="Toggle theme"
+					>
+						{resolvedTheme === "dark" ? (
+							<Moon className="h-5 w-5 text-(--color-gray-300)" />
+						) : (
+							<Sun className="h-5 w-5" />
+						)}
+					</button>
 					<MobileMenu
 						session={session}
 						onSignOut={handleSignOut}
 						isSigningOut={isSigningOut}
 					/>
 				</div>
-				<ul className="ml-auto hidden gap-10 text-(--color-gray-800) sm:flex dark:text-(--color-gray-300)">
+				<ul className="ml-auto hidden items-center gap-10 text-(--color-gray-800) sm:flex dark:text-(--color-gray-300)">
 					<li className="ease transition duration-300 hover:opacity-75">
 						<Link href="/about">About</Link>
 					</li>
@@ -82,6 +99,19 @@ export default function NavBar({ session }: { session: SessionType }) {
 							</SignOut>
 						</li>
 					)}
+					<li className="ease transition duration-300 hover:opacity-75">
+						<button
+							onClick={handleLightDark}
+							className="hidden cursor-pointer sm:block"
+							aria-label="Toggle theme"
+						>
+							{resolvedTheme === "dark" ? (
+								<Moon className="h-5 w-5" />
+							) : (
+								<Sun className="h-5 w-5" />
+							)}
+						</button>
+					</li>
 				</ul>
 			</nav>
 		</header>

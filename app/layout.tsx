@@ -5,6 +5,7 @@ import {
 	Fira_Code,
 } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/ui/theme-provider";
 
 const atkinsonHyperlegibleNext = Atkinson_Hyperlegible_Next({
 	variable: "--font-atkinson-hyperlegible-next",
@@ -42,11 +43,25 @@ export default async function RootLayout({
 }>) {
 	return (
 		<html
+			suppressHydrationWarning
 			lang="en"
 			className={`${atkinsonHyperlegibleNext.variable} ${firaCode.variable} ${zalandoSansExpanded.variable} antialiased`}
 		>
+			<head>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+              (function() {
+                const theme = localStorage.getItem('theme') || 'system';
+                const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                document.documentElement.classList.add(isDark ? 'dark' : 'light');
+              })();
+            `,
+					}}
+				/>
+			</head>
 			<body className="flex min-h-dvh flex-col bg-(--color-white) dark:bg-(--color-black)">
-				{children}
+				<ThemeProvider>{children}</ThemeProvider>
 			</body>
 		</html>
 	);
