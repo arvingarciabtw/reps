@@ -18,7 +18,7 @@ export default function UpdateDeck({
 	return (
 		<Dialog.Root>
 			<Dialog.Trigger asChild>
-				<button className="cursor-pointer hover:text-(--color-primary)">
+				<button className="ease cursor-pointer rounded-full p-1.5 transition duration-300 hover:bg-(--color-gray-100) dark:hover:bg-(--color-gray-700)">
 					<Edit2 className="h-4 w-4" />
 				</button>
 			</Dialog.Trigger>
@@ -67,7 +67,7 @@ function SubmitButtons() {
 				<button
 					aria-label="Close"
 					disabled={pending}
-					className="ease cursor-pointer rounded-2xl bg-(--color-gray-800) px-5 py-2 text-(--color-white) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-(--color-gray-700) dark:text-(--color-gray-300)"
+					className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-200) bg-transparent px-5 py-2 text-(--color-gray-600) transition duration-300 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-(--color-gray-700) dark:bg-(--color-gray-700) dark:text-(--color-gray-300) hover:dark:bg-(--color-gray-700) dark:hover:opacity-75"
 				>
 					Cancel
 				</button>
@@ -75,7 +75,7 @@ function SubmitButtons() {
 			<button
 				type="submit"
 				disabled={pending}
-				className="ease cursor-pointer rounded-2xl bg-(--color-gray-800) px-5 py-2 text-(--color-white) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-(--color-gray-700) dark:text-(--color-gray-300)"
+				className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-200) bg-transparent px-5 py-2 text-(--color-gray-600) transition duration-300 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-(--color-gray-700) dark:bg-(--color-gray-700) dark:text-(--color-gray-300) hover:dark:bg-(--color-gray-700) dark:hover:opacity-75"
 			>
 				Edit deck
 			</button>

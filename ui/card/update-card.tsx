@@ -126,7 +126,7 @@ function SubmitButtons({ deckId }: { deckId: string }) {
 		<div className="mt-4 mb-6 flex items-center gap-4 self-center text-(--color-white) dark:text-(--color-gray-300)">
 			<Link href={`/deck/${deckId}/view`}>
 				<button
-					className="ease cursor-pointer rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) px-5 py-2 transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
+					className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-200) bg-transparent px-5 py-2 text-(--color-gray-600) transition duration-300 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-(--color-gray-700) dark:bg-(--color-gray-700) dark:text-(--color-gray-300) hover:dark:bg-(--color-gray-700) dark:hover:opacity-75"
 					disabled={pending}
 				>
 					View cards
@@ -135,7 +135,7 @@ function SubmitButtons({ deckId }: { deckId: string }) {
 			<button
 				type="submit"
 				disabled={pending}
-				className="ease cursor-pointer self-center rounded-2xl border border-(--color-primary) bg-(--color-primary) px-5 py-2 text-(--color-black) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
+				className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-200) bg-transparent px-5 py-2 text-(--color-gray-600) transition duration-300 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-(--color-gray-700) dark:bg-(--color-gray-700) dark:text-(--color-gray-300) hover:dark:bg-(--color-gray-700) dark:hover:opacity-75"
 			>
 				Update card
 			</button>

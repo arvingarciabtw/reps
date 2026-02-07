@@ -108,7 +108,7 @@ function Header({ id }: { id: string }) {
 			<p>Back</p>
 			<span></span>
 			<Link href={`/deck/${id}/create`}>
-				<Plus className="ease h-5 w-5 transition duration-300 hover:stroke-(--color-primary)" />
+				<Plus className="ease h-5 w-5 transition duration-300 hover:text-(--color-gray-300) dark:hover:text-(--color-primary)" />
 			</Link>
 		</div>
 	);
@@ -152,7 +152,7 @@ function CardsList({
 							href={`/deck/${id}/update/${card.id}`}
 							className="hidden xs:block"
 						>
-							<Edit2 className="ease h-4 w-4 transition duration-300 hover:stroke-(--color-primary)" />
+							<Edit2 className="ease h-4 w-4 transition duration-300 hover:stroke-(--color-gray-300) dark:hover:stroke-(--color-primary)" />
 						</Link>
 						<div className="hidden xs:grid xs:place-items-center">
 							<DeleteCard cardId={card.id} deckId={deck.id} />

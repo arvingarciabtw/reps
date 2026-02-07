@@ -44,7 +44,10 @@ export default function Pagination({
 
 			{visiblePages.map((page, index) =>
 				page === "..." ? (
-					<span key={`ellipsis-${index}`} className="px-2">
+					<span
+						key={`ellipsis-${index}`}
+						className="px-2 dark:text-(--color-gray-300)"
+					>
 						...
 					</span>
 				) : (

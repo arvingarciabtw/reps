@@ -36,7 +36,7 @@ export default function SignInPage() {
 			</p>
 			<div className="mt-4 flex gap-4 text-(--color-white) dark:text-(--color-gray-300)">
 				<button
-					className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) px-5 py-2 transition duration-300 hover:text-(--color-primary) disabled:cursor-not-allowed disabled:opacity-50"
+					className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-200) bg-transparent px-5 py-2 text-(--color-gray-600) transition duration-300 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-(--color-gray-700) dark:bg-(--color-gray-800) dark:text-(--color-gray-300) dark:hover:bg-(--color-gray-800) dark:hover:text-(--color-primary)"
 					onClick={handleGoogleSignIn}
 					disabled={isLoading}
 				>
@@ -51,7 +51,7 @@ export default function SignInPage() {
 					Google
 				</button>
 				<button
-					className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) px-5 py-2 transition duration-300 hover:text-(--color-primary) disabled:cursor-not-allowed disabled:opacity-50"
+					className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-200) bg-transparent px-5 py-2 text-(--color-gray-600) transition duration-300 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-(--color-gray-700) dark:bg-(--color-gray-800) dark:text-(--color-gray-300) dark:hover:bg-(--color-gray-800) dark:hover:text-(--color-primary)"
 					onClick={handleGithubSignIn}
 					disabled={isLoading}
 				>

@@ -13,13 +13,13 @@ export default function Deck({
 }) {
 	return (
 		<article
-			className="ease relative flex items-center justify-between gap-6 rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) p-4 pl-5 text-(--color-white) transition duration-300 dark:text-(--color-gray-300)"
+			className="relative flex items-center justify-between gap-6 rounded-2xl border border-(--color-gray-200) p-4 pl-5 text-(--color-gray-800) dark:border-(--color-gray-700) dark:bg-(--color-gray-800) dark:text-(--color-gray-300)"
 			key={deckName}
 		>
 			<Link href={`/deck/${deckId}`} className="w-full cursor-pointer">
 				<p>{deckName}</p>
 			</Link>
-			<div className="flex gap-2 text-(--color-white) dark:text-(--color-gray-300)">
+			<div className="flex gap-0 text-(--color-gray-800) dark:text-(--color-gray-300)">
 				<UpdateDeck deckId={deckId} deckName={deckName} />
 				<DeleteDeck deckId={deckId} />
 			</div>
