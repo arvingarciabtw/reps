@@ -119,7 +119,9 @@ function HeatmapDescription({
 	return (
 		<div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
 			<div className="flex flex-col gap-0">
-				<h2 className="mb-1 text-base">Review Activity</h2>
+				<h2 className="mb-1 text-base dark:text-(--color-white)">
+					Review Activity
+				</h2>
 				<div className="flex flex-wrap gap-4 gap-y-0 text-sm text-(--color-gray-400) dark:text-gray-500">
 					<span>
 						{initialStats.totalReviews.toLocaleString()} total reviews

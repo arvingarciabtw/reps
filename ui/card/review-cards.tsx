@@ -75,7 +75,7 @@ export default function ReviewCardsSection({
 				back={remainingCards[cardIndex].back}
 			/>
 			<div className="flex w-full max-w-104 flex-wrap items-center justify-between gap-2">
-				<p className="mr-auto text-(--color-gray-300)">
+				<p className="mr-auto text-(--color-gray-600) dark:text-(--color-gray-300)">
 					Cards left: <span className="font-sans">{remainingCards.length}</span>
 				</p>
 				<div className="flex gap-4">
