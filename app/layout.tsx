@@ -5,7 +5,7 @@ import {
 	Fira_Code,
 } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/ui/theme-provider";
+import { ThemeProvider } from "@/lib/theme-provider";
 
 const atkinsonHyperlegibleNext = Atkinson_Hyperlegible_Next({
 	variable: "--font-atkinson-hyperlegible-next",

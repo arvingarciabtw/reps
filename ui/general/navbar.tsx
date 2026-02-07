@@ -5,7 +5,7 @@ import Link from "next/link";
 import MobileMenu from "./mobile-menu";
 import SignOut from "../auth/sign-out";
 import { Sun, Moon } from "react-feather";
-import { useTheme } from "@/ui/theme-provider";
+import { useTheme } from "@/lib/theme-provider";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 

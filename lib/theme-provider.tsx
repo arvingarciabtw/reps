@@ -13,7 +13,6 @@ type ThemeContextType = {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-	// Use lazy initialization to read from localStorage only once
 	const [theme, setThemeState] = useState<Theme>(() => {
 		if (typeof window !== "undefined") {
 			const savedTheme = localStorage.getItem("theme") as Theme | null;
