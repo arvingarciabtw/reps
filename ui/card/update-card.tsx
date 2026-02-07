@@ -111,7 +111,7 @@ function Input({
 				name={type}
 				id={type}
 				draggable="false"
-				className="min-h-50 w-full resize-none overflow-y-auto rounded-lg bg-(--color-gray-100) p-4 font-mono text-sm text-(--color-gray-800) sm:min-h-25 dark:bg-(--color-gray-800) dark:text-(--color-gray-300)"
+				className="min-h-50 w-full resize-none overflow-y-auto rounded-lg bg-(--color-gray-light) p-4 font-mono text-sm text-(--color-gray-800) sm:min-h-25 dark:bg-(--color-gray-800) dark:text-(--color-gray-300)"
 				value={value}
 				onChange={handleChange}
 			></textarea>
@@ -126,7 +126,7 @@ function SubmitButtons({ deckId }: { deckId: string }) {
 		<div className="mt-4 mb-6 flex items-center gap-4 self-center text-(--color-white) dark:text-(--color-gray-300)">
 			<Link href={`/deck/${deckId}/view`}>
 				<button
-					className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-200) bg-transparent px-5 py-2 text-(--color-gray-600) transition duration-300 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-(--color-gray-700) dark:bg-(--color-gray-700) dark:text-(--color-gray-300) hover:dark:bg-(--color-gray-700) dark:hover:opacity-75"
+					className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-200) bg-transparent px-5 py-2 text-(--color-gray-600) transition duration-300 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-(--color-gray-700) dark:bg-(--color-gray-800) dark:text-(--color-gray-300) dark:hover:bg-(--color-gray-800) dark:hover:text-(--color-primary)"
 					disabled={pending}
 				>
 					View cards
@@ -135,7 +135,7 @@ function SubmitButtons({ deckId }: { deckId: string }) {
 			<button
 				type="submit"
 				disabled={pending}
-				className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-200) bg-transparent px-5 py-2 text-(--color-gray-600) transition duration-300 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-(--color-gray-700) dark:bg-(--color-gray-700) dark:text-(--color-gray-300) hover:dark:bg-(--color-gray-700) dark:hover:opacity-75"
+				className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-200) bg-transparent px-5 py-2 text-(--color-gray-600) transition duration-300 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-(--color-gray-700) dark:bg-(--color-gray-800) dark:text-(--color-gray-300) dark:hover:bg-(--color-gray-800) dark:hover:text-(--color-primary)"
 			>
 				Update card
 			</button>

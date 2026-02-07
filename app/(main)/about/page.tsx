@@ -53,7 +53,7 @@ function Content() {
 					my liking. <span className="text-(--color-primary)">[2]</span> It is
 					not convenient to type code lines or blocks inside flashcards, you
 					have to use the{" "}
-					<code className="rounded-lg bg-(--color-gray-100) px-1.5 py-0.5 text-sm text-(--color-gray-800) dark:bg-(--color-gray-700) dark:text-(--color-gray-300)">
+					<code className="rounded-lg bg-(--color-gray-100) px-1.5 py-0.5 text-sm text-(--color-gray-800) dark:bg-(--color-gray-700) dark:text-(--color-gray-100)">
 						code
 					</code>{" "}
 					tag. <span className="text-(--color-primary)">[3]</span> I only want

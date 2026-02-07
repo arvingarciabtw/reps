@@ -11,7 +11,7 @@ export default function Loading() {
 
 			<div className="flex w-full flex-col gap-4">
 				<div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-					<div className="flex flex-col gap-2">
+					<div className="flex flex-col gap-4">
 						<span className="h-5 w-30 animate-pulse rounded-md bg-(--color-gray-200) dark:bg-(--color-gray-700)"></span>
 						<div className="flex flex-wrap gap-4 text-sm text-gray-500">
 							<span className="h-4 w-30 animate-pulse rounded-sm bg-(--color-gray-200) dark:bg-(--color-gray-700)"></span>
