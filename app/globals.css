@@ -31,8 +31,14 @@ html {
 	scrollbar-width: thin;
 }
 
+}
+
+@layer components {
+	@import "highlight.js/styles/atom-one-light.css";
+}
+
 .dark {
-	* {
-		scrollbar-color: var(--color-gray-700) var(--color-gray-800);
+	@layer components {
+		@import "highlight.js/styles/atom-one-dark.css";
 	}
 }
