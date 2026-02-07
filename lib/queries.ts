@@ -77,12 +77,9 @@ export async function fetchCardsForReview(deckId: string) {
 					lte: now,
 				},
 			},
-			orderBy: {
-				dateToDisplay: "asc",
-			},
 		});
 
-		return cards;
+		return cards.sort(() => Math.random() - 0.5);
 	} catch (err) {
 		console.error("Database error:", err);
 		throw new Error("Failed to fetch cards for review.");
