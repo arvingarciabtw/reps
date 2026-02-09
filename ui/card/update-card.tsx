@@ -103,9 +103,12 @@ function Input({
 
 	return (
 		<section className="flex flex-col gap-2 sm:flex-1">
-			<h1 className="self-start text-(--color-gray-600) dark:text-(--color-white)">
+			<label
+				htmlFor={type}
+				className="self-start text-(--color-gray-600) dark:text-(--color-white)"
+			>
 				{heading}
-			</h1>
+			</label>
 			<textarea
 				required
 				name={type}

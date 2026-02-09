@@ -107,7 +107,10 @@ function Header({ id }: { id: string }) {
 			<p>Front</p>
 			<p>Back</p>
 			<span></span>
-			<Link href={`/deck/${id}/create`}>
+			<Link
+				aria-label="Redirect to create card page"
+				href={`/deck/${id}/create`}
+			>
 				<Plus className="ease h-5 w-5 transition duration-300 hover:text-(--color-gray-300) dark:hover:text-(--color-primary)" />
 			</Link>
 		</div>
@@ -139,7 +142,10 @@ function CardsList({
 						<div className="flex w-full justify-between xs:hidden">
 							<p>{globalIndex}</p>
 							<div className="flex items-center gap-3">
-								<Link href={`/deck/${id}/update/${card.id}`}>
+								<Link
+									aria-label="Redirect to update card page"
+									href={`/deck/${id}/update/${card.id}`}
+								>
 									<Edit2 className="ease h-4 w-4 transition duration-300 hover:stroke-(--color-primary)" />
 								</Link>
 								<DeleteCard cardId={card.id} deckId={deck.id} />
@@ -149,6 +155,7 @@ function CardsList({
 						<p>{card.front}</p>
 						<p>{card.back}</p>
 						<Link
+							aria-label="Redirect to update card page"
 							href={`/deck/${id}/update/${card.id}`}
 							className="hidden xs:block"
 						>

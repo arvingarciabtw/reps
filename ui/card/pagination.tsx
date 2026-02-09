@@ -36,6 +36,7 @@ export default function Pagination({
 	return (
 		<div className="mb-8 flex items-center justify-center gap-3">
 			<Link
+				aria-label="Redirect to previous page of cards"
 				href={`/deck/${deckId}/view?page=${currentPage - 1}`}
 				className={`dark:text-(--color-gray-300) ${currentPage === 1 ? "pointer-events-none opacity-25" : ""}`}
 			>
@@ -66,6 +67,7 @@ export default function Pagination({
 			)}
 
 			<Link
+				aria-label="Redirect to next page of cards"
 				href={`/deck/${deckId}/view?page=${currentPage + 1}`}
 				className={`dark:text-(--color-gray-300) ${currentPage === totalPages ? "pointer-events-none opacity-25" : ""}`}
 			>

@@ -18,7 +18,10 @@ export default function DeleteCard({
 	return (
 		<AlertDialog.Root>
 			<AlertDialog.Trigger asChild>
-				<button className="ease cursor-pointer transition duration-300 hover:text-(--color-gray-300) dark:hover:text-(--color-primary)">
+				<button
+					aria-label="Delete card button"
+					className="ease cursor-pointer transition duration-300 hover:text-(--color-gray-300) dark:hover:text-(--color-primary)"
+				>
 					<Trash2 className="h-4 w-4" />
 				</button>
 			</AlertDialog.Trigger>

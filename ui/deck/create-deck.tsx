@@ -12,7 +12,10 @@ export default function CreateDeck() {
 	return (
 		<Dialog.Root>
 			<Dialog.Trigger asChild>
-				<button className="ease absolute right-0 bottom-[-60] mr-6 mb-6 cursor-pointer rounded-[50%] border border-(--color-primary) bg-(--color-primary) p-2 ring-(--color-primary) transition duration-300 hover:opacity-75 focus:ring-1 focus:outline-none">
+				<button
+					aria-label="Create deck button"
+					className="ease absolute right-0 bottom-[-60] mr-6 mb-6 cursor-pointer rounded-[50%] border border-(--color-primary) bg-(--color-primary) p-2 ring-(--color-primary) transition duration-300 hover:opacity-75 focus:ring-1 focus:outline-none"
+				>
 					<Plus className="stroke-(--color-black)" />
 				</button>
 			</Dialog.Trigger>

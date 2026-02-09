@@ -18,7 +18,10 @@ export default function UpdateDeck({
 	return (
 		<Dialog.Root>
 			<Dialog.Trigger asChild>
-				<button className="ease cursor-pointer rounded-full p-1.5 transition duration-300 hover:bg-(--color-gray-100) dark:hover:bg-(--color-gray-700)">
+				<button
+					aria-label="Update deck button"
+					className="ease cursor-pointer rounded-full p-1.5 transition duration-300 hover:bg-(--color-gray-100) dark:hover:bg-(--color-gray-700)"
+				>
 					<Edit2 className="h-4 w-4" />
 				</button>
 			</Dialog.Trigger>

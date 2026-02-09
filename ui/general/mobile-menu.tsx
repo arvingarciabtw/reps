@@ -19,7 +19,10 @@ export default function MobileMenu({
 	return (
 		<Dialog.Root open={open} onOpenChange={setOpen}>
 			<Dialog.Trigger asChild>
-				<button className="ml-auto hover:cursor-pointer sm:hidden dark:text-(--color-gray-300)">
+				<button
+					aria-label="Mobile menu"
+					className="ml-auto hover:cursor-pointer sm:hidden dark:text-(--color-gray-300)"
+				>
 					<Menu />
 				</button>
 			</Dialog.Trigger>
