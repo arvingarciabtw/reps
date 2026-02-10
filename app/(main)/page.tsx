@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import Demo from "@/ui/general/demo";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
@@ -30,13 +30,12 @@ async function LandingSection() {
 					supports syntax highlighting. Write code examples with easily readable
 					lines, to retain programming concepts in your brain.
 				</p>
-				<div>
-					<Link href="/sign-in">
-						<button className="ease cursor-pointer rounded-2xl bg-(--color-primary) px-5 py-2 font-medium text-(--color-bg) transition duration-300 hover:opacity-75">
-							Sign in
-						</button>
-					</Link>
-				</div>
+				<Link href="/sign-in">
+					<button className="ease cursor-pointer rounded-2xl bg-(--color-primary) px-5 py-2 font-medium text-(--color-bg) transition duration-300 hover:opacity-75">
+						Sign in
+					</button>
+				</Link>
+				<Demo />
 			</div>
 		</div>
 	);
