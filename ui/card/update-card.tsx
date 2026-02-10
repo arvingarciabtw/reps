@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Card from "@/ui/card/card";
+import CardInputs from "@/ui/card/card-inputs";
 import { updateCard } from "@/actions/card-actions";
 import { useState, useActionState } from "react";
 import { useFormStatus } from "react-dom";
@@ -58,67 +58,18 @@ export default function UpdateCard({
 				{state.message && (
 					<p className="mt-1 text-sm text-red-500">{state.message}</p>
 				)}
-
-				<div className="flex flex-col gap-4 sm:flex-row">
-					<div className="flex flex-col gap-4 sm:flex-1">
-						<Input
-							heading={"Front"}
-							type={"front"}
-							value={frontValue}
-							onChange={setFrontValue}
-						/>
-						<Input
-							heading={"Back"}
-							type={"back"}
-							value={backValue}
-							onChange={setBackValue}
-						/>
-					</div>
-					<section className="flex w-full flex-1 flex-col gap-2 self-stretch">
-						<h1 className="self-start text-(--color-gray-600) dark:text-(--color-white)">
-							Output
-						</h1>
-						<Card front={frontValue} back={backValue} />
-					</section>
-				</div>
+				<CardInputs
+					front={{
+						value: frontValue,
+						setter: setFrontValue,
+					}}
+					back={{
+						value: backValue,
+						setter: setBackValue,
+					}}
+				/>
 			</form>
 		</div>
-	);
-}
-
-function Input({
-	heading,
-	type,
-	value,
-	onChange,
-}: {
-	heading: string;
-	type: string;
-	value: string;
-	onChange: (value: string) => void;
-}) {
-	function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
-		onChange(e.target.value);
-	}
-
-	return (
-		<section className="flex flex-col gap-2 sm:flex-1">
-			<label
-				htmlFor={type}
-				className="self-start text-(--color-gray-600) dark:text-(--color-white)"
-			>
-				{heading}
-			</label>
-			<textarea
-				required
-				name={type}
-				id={type}
-				draggable="false"
-				className="min-h-50 w-full resize-none overflow-y-auto rounded-lg bg-(--color-gray-light) p-4 font-mono text-sm text-(--color-gray-800) sm:min-h-25 dark:bg-(--color-gray-800) dark:text-(--color-gray-300)"
-				value={value}
-				onChange={handleChange}
-			></textarea>
-		</section>
 	);
 }
 
