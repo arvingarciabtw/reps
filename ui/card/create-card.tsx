@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import CardInputs from "@/ui/card/card-inputs";
+import { FRONT } from "@/lib/constants/card-inputs";
+import { BACK } from "@/lib/constants/card-inputs";
 import { createCard } from "@/actions/card-actions";
 import { useState, useActionState } from "react";
 import { useFormStatus } from "react-dom";
@@ -14,10 +16,8 @@ export default function CreateCard({
 	deckTitle: string;
 }) {
 	const [state, formAction] = useActionState(createCard, { message: null });
-	const [frontValue, setFrontValue] = useState(`\`\`\`javascript
-console.log(typeof + "21");
-\`\`\``);
-	const [backValue, setBackValue] = useState("number");
+	const [frontValue, setFrontValue] = useState(FRONT);
+	const [backValue, setBackValue] = useState(BACK);
 
 	return (
 		<div className="mx-auto my-auto flex w-full flex-col text-center text-(--color-gray-600) dark:text-(--color-gray-300)">
