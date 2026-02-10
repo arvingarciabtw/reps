@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import CardInputs from "@/ui/card/card-inputs";
+import CardInputsErrors from "@/ui/card/card-inputs-errors";
 import { FRONT } from "@/lib/constants/card-inputs";
 import { BACK } from "@/lib/constants/card-inputs";
 import { createCard } from "@/actions/card-actions";
@@ -43,15 +44,7 @@ export default function CreateCard({
 			<form className="flex flex-col" action={formAction}>
 				<input type="hidden" name="deckId" value={deckId} />
 				<SubmitButtons deckId={deckId} />
-				{state.errors?.front && (
-					<p className="mt-1 text-sm text-red-500">{state.errors.front[0]}</p>
-				)}
-				{state.errors?.back && (
-					<p className="mt-1 text-sm text-red-500">{state.errors.back[0]}</p>
-				)}
-				{state.message && (
-					<p className="mt-1 text-sm text-red-500">{state.message}</p>
-				)}
+				<CardInputsErrors state={state} />
 				<CardInputs
 					front={{
 						value: frontValue,

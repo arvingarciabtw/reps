@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import CardInputs from "@/ui/card/card-inputs";
+import CardInputsErrors from "@/ui/card/card-inputs-errors";
 import { updateCard } from "@/actions/card-actions";
 import { useState, useActionState } from "react";
 import { useFormStatus } from "react-dom";
@@ -49,15 +50,7 @@ export default function UpdateCard({
 				<input type="hidden" name="deckId" value={deckId} />
 				<input type="hidden" name="cardId" value={card.id} />
 				<SubmitButtons deckId={deckId} />
-				{state.errors?.front && (
-					<p className="mt-1 text-sm text-red-500">{state.errors.front[0]}</p>
-				)}
-				{state.errors?.back && (
-					<p className="mt-1 text-sm text-red-500">{state.errors.back[0]}</p>
-				)}
-				{state.message && (
-					<p className="mt-1 text-sm text-red-500">{state.message}</p>
-				)}
+				<CardInputsErrors state={state} />
 				<CardInputs
 					front={{
 						value: frontValue,
