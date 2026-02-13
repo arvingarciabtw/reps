@@ -80,16 +80,20 @@ export default function ReviewCardsSection({
 				</p>
 				<div className="flex gap-4">
 					<button
+						aria-label="Update card button"
 						className="ease grid h-6.5 w-6.5 cursor-pointer place-items-center gap-2 rounded-2xl bg-(--color-primary) p-1 text-(--color-black) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
 						disabled={isProcessing}
 					>
 						<Link
+							aria-label="Redirect to update card page"
+							className="grid h-full w-full place-items-center"
 							href={`/deck/${deckId}/update/${remainingCards[cardIndex].id}`}
 						>
 							<Edit2 className="h-3.75 w-3.75" />
 						</Link>
 					</button>
 					<button
+						aria-label="Mark card as correct button"
 						onClick={handleCorrect}
 						disabled={isProcessing}
 						className="ease flex cursor-pointer items-center gap-2 rounded-2xl bg-green-400 p-1 text-(--color-black) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
@@ -97,6 +101,7 @@ export default function ReviewCardsSection({
 						<Check className="h-4.5 w-4.5" />
 					</button>
 					<button
+						aria-label="Mark card as wrong button"
 						onClick={handleWrong}
 						disabled={isProcessing}
 						className="ease flex cursor-pointer items-center gap-2 rounded-2xl bg-red-400 p-1 text-(--color-black) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
