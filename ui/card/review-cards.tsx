@@ -1,7 +1,7 @@
 "use client";
 
 import Card from "@/ui/card/card";
-import { Check, X } from "react-feather";
+import { Check, X, Edit2 } from "react-feather";
 import type { CardType } from "@/lib/definitions";
 import Link from "next/link";
 import { useState } from "react";
@@ -79,6 +79,16 @@ export default function ReviewCardsSection({
 					Cards left: <span className="font-sans">{remainingCards.length}</span>
 				</p>
 				<div className="flex gap-4">
+					<button
+						className="ease grid h-6.5 w-6.5 cursor-pointer place-items-center gap-2 rounded-2xl bg-(--color-primary) p-1 text-(--color-black) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
+						disabled={isProcessing}
+					>
+						<Link
+							href={`/deck/${deckId}/update/${remainingCards[cardIndex].id}`}
+						>
+							<Edit2 className="h-3.75 w-3.75" />
+						</Link>
+					</button>
 					<button
 						onClick={handleCorrect}
 						disabled={isProcessing}
