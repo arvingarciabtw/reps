@@ -23,14 +23,7 @@ export default function CreateCard({
 	return (
 		<div className="mx-auto my-auto flex w-full flex-col text-center text-(--color-gray-600) dark:text-(--color-gray-300)">
 			<p className="max-w-120 self-center">
-				To add cards to your{" "}
-				<Link
-					href={`/deck/${deckId}`}
-					className="text-(--color-primary) underline hover:no-underline"
-				>
-					{deckTitle}
-				</Link>{" "}
-				deck, you can use{" "}
+				To add cards to your <span>{deckTitle}</span> deck, you can use{" "}
 				<Link
 					href="https://www.markdownguide.org/"
 					target="_blank"
