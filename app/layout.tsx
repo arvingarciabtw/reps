@@ -5,7 +5,8 @@ import {
 	Fira_Code,
 } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/lib/theme-provider";
+import { cookies } from "next/headers";
+import { LIGHT_COLORS, DARK_COLORS } from "@/lib/constants/colors";
 
 const atkinsonHyperlegibleNext = Atkinson_Hyperlegible_Next({
 	variable: "--font-atkinson-hyperlegible-next",
@@ -41,27 +42,22 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const savedTheme = (await cookies()).get("color-theme");
+	const theme = savedTheme?.value || "light";
+
+	const themeColors = (
+		theme === "light" ? LIGHT_COLORS : DARK_COLORS
+	) as React.CSSProperties;
+
 	return (
 		<html
-			suppressHydrationWarning
 			lang="en"
-			className={`${atkinsonHyperlegibleNext.variable} ${firaCode.variable} ${zalandoSansExpanded.variable} antialiased`}
+			className={`${atkinsonHyperlegibleNext.variable} ${firaCode.variable} ${zalandoSansExpanded.variable} antialiased ${theme === "dark" && "dark"}`}
+			data-color-theme={theme}
+			style={themeColors}
 		>
-			<head>
-				<script
-					dangerouslySetInnerHTML={{
-						__html: `
-              (function() {
-                const theme = localStorage.getItem('theme') || 'system';
-                const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-                document.documentElement.classList.add(isDark ? 'dark' : 'light');
-              })();
-            `,
-					}}
-				/>
-			</head>
 			<body className="flex min-h-dvh flex-col bg-(--color-white) dark:bg-(--color-black)">
-				<ThemeProvider>{children}</ThemeProvider>
+				{children}{" "}
 			</body>
 		</html>
 	);

@@ -1,0 +1,31 @@
+export const LIGHT_COLORS = {
+	"--color-black": "oklch(0.12 0.0224 261.75)",
+	"--color-white": "oklch(0.982 0.0041 91.45)",
+	"--color-primary": "oklch(0.7484 0.1551 233.2517)",
+	"--color-gray-800": "oklch(0.18 0.0224 261.75)",
+	"--color-gray-750": "oklch(0.25 0.0224 261.75)",
+	"--color-gray-700": "oklch(0.3 0.0224 261.75)",
+	"--color-gray-600": "oklch(0.4 0.0224 261.75)",
+	"--color-gray-500": "oklch(0.5 0.0224 261.75)",
+	"--color-gray-400": "oklch(0.6 0.0224 261.75)",
+	"--color-gray-300": "oklch(0.7 0.0224 261.75)",
+	"--color-gray-200": "oklch(0.8 0.0224 261.75)",
+	"--color-gray-100": "oklch(0.9 0.0224 261.75)",
+	"--color-gray-light": "oklch(0.949 0 0)",
+};
+
+export const DARK_COLORS = {
+	"--color-black": "oklch(0.12 0.0224 261.75)",
+	"--color-white": "oklch(0.982 0.0041 91.45)",
+	"--color-primary": "oklch(0.7484 0.1551 233.2517)",
+	"--color-gray-800": "oklch(0.18 0.0224 261.75)",
+	"--color-gray-750": "oklch(0.25 0.0224 261.75)",
+	"--color-gray-700": "oklch(0.3 0.0224 261.75)",
+	"--color-gray-600": "oklch(0.4 0.0224 261.75)",
+	"--color-gray-500": "oklch(0.5 0.0224 261.75)",
+	"--color-gray-400": "oklch(0.6 0.0224 261.75)",
+	"--color-gray-300": "oklch(0.7 0.0224 261.75)",
+	"--color-gray-200": "oklch(0.8 0.0224 261.75)",
+	"--color-gray-100": "oklch(0.9 0.0224 261.75)",
+	"--color-gray-light": "oklch(0.949 0 0)",
+};
