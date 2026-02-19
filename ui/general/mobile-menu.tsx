@@ -54,10 +54,10 @@ export default function MobileMenu({
 							)}
 							<li className="ease transition duration-300 hover:opacity-75">
 								<Link
-									href="/about"
+									href="/overview"
 									onClick={() => setTimeout(() => setOpen(false), 500)}
 								>
-									About
+									Overview
 								</Link>
 							</li>
 							{session === null && (

@@ -26,15 +26,22 @@ async function LandingSection() {
 					Spaced repetition, for <span>coders.</span>
 				</h1>
 				<p className="mb-6 max-w-lg text-(--color-gray-600) dark:text-(--color-gray-300)">
-					Reps is a clean, simple, and no-fluff spaced repetition app that
-					supports syntax highlighting. Write code examples with easily readable
-					lines, to retain programming concepts in your brain.
+					Reps is a spaced repetition app built for programmers who want a
+					cleaner UI, native syntax highlighting, and an algorithm that moves
+					through cards faster. No plugins, no config, no bloat.
 				</p>
-				<Link href="/sign-in">
-					<button className="ease cursor-pointer rounded-2xl bg-(--color-primary) px-5 py-2 font-medium text-(--color-bg) transition duration-300 hover:opacity-75">
-						Sign in
-					</button>
-				</Link>
+				<div className="mb-8">
+					<Link href="/sign-in">
+						<button className="ease cursor-pointer rounded-2xl bg-(--color-primary) px-5 py-2 font-medium text-(--color-bg) transition duration-300 hover:opacity-75">
+							Sign in
+						</button>
+					</Link>
+					<Link href="/about">
+						<button className="ease cursor-pointer rounded-2xl bg-transparent px-5 py-2 font-normal text-(--color-white) transition duration-300 hover:opacity-75">
+							Learn more
+						</button>
+					</Link>
+				</div>
 				<Demo />
 			</div>
 		</div>

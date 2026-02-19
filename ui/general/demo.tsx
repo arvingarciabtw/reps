@@ -9,7 +9,7 @@ export default function Demo() {
 	const [backValue, setBackValue] = useState("number");
 
 	return (
-		<section className="mt-12 text-(--color-gray-600)">
+		<section className="mt-4 text-(--color-gray-600)">
 			<CardInputs
 				front={{
 					value: frontValue,

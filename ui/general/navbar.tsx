@@ -40,7 +40,7 @@ export default function NavBar({
 
 	return (
 		<header>
-			<nav className="m-auto flex max-w-4xl items-center gap-3 p-6">
+			<nav className="m-auto flex max-w-4xl items-center gap-2 p-6">
 				<Link href={session !== null ? `/dashboard` : `/`}>
 					<Image
 						className="ease transition duration-300 hover:opacity-75"
@@ -57,7 +57,7 @@ export default function NavBar({
 				<div className="ml-auto flex gap-10">
 					<ul className="ml-auto hidden items-center gap-10 text-(--color-gray-800) sm:flex dark:text-(--color-gray-300)">
 						<li className="ease transition duration-300 hover:opacity-75">
-							<Link href="/about">About</Link>
+							<Link href="/overview">Overview</Link>
 						</li>
 						{session === null && (
 							<li className="ease transition duration-300 hover:opacity-75">
