@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import {
 	Atkinson_Hyperlegible_Next,
-	Zalando_Sans_Expanded,
 	Fira_Code,
+	Fira_Sans,
 } from "next/font/google";
 import "./globals.css";
 import { cookies } from "next/headers";
@@ -20,8 +20,9 @@ const firaCode = Fira_Code({
 	fallback: ["Arial", "sans-serif"],
 });
 
-const zalandoSansExpanded = Zalando_Sans_Expanded({
-	variable: "--font-zalando-sans-expanded",
+const firaSans = Fira_Sans({
+	weight: "700",
+	variable: "--font-fira-sans",
 	subsets: ["latin"],
 	fallback: ["Arial", "sans-serif"],
 });
@@ -52,7 +53,7 @@ export default async function RootLayout({
 	return (
 		<html
 			lang="en"
-			className={`${atkinsonHyperlegibleNext.variable} ${firaCode.variable} ${zalandoSansExpanded.variable} antialiased ${theme === "dark" && "dark"}`}
+			className={`${atkinsonHyperlegibleNext.variable} ${firaCode.variable} ${firaSans.variable} antialiased ${theme === "dark" && "dark"}`}
 			data-color-theme={theme}
 			style={themeColors}
 		>

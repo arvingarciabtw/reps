@@ -5,7 +5,7 @@
 @theme inline {
 	--font-sans: var(--font-atkinson-hyperlegible-next);
 	--font-mono: var(--font-fira-code);
-	--font-logo: var(--font-zalando-sans-expanded);
+	--font-logo: var(--font-fira-sans);
 
 	--color-black: oklch(0.12 0.0224 261.75);
 	--color-white: oklch(0.982 0.0041 91.45);
