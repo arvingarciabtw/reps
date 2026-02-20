@@ -36,7 +36,7 @@ async function LandingSection() {
 							Sign in
 						</button>
 					</Link>
-					<Link href="/about">
+					<Link href="/overview">
 						<button className="ease cursor-pointer rounded-2xl bg-transparent px-5 py-2 font-normal text-(--color-white) transition duration-300 hover:opacity-75">
 							Learn more
 						</button>
