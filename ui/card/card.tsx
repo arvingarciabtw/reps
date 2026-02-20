@@ -1,55 +1,193 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "motion/react";
+import React from "react";
 import Markdown from "react-markdown";
+import { motion } from "motion/react";
 import rehypeHighlight from "rehype-highlight";
+import styled from "styled-components";
 
 export default function Card({ front, back }: { front: string; back: string }) {
-	const [isFlipped, setIsFlipped] = useState(true);
-
-	function handleClick() {
-		setIsFlipped((prev) => !prev);
-	}
-
-	const proseClasses =
-		"prose w-full prose-headings:m-0 prose-headings:text-(--color-gray-600) dark:prose-headings:text-(--color-gray-300) prose-p:m-0 prose-p:text-(--color-gray-600) dark:prose-p:text-(--color-gray-300) dark:prose-strong:text-(--color-gray-300) prose-code:rounded-md prose-code:bg-(--color-gray-100) prose-code:px-1.5 prose-code:py-0.5 prose-code:font-normal prose-code:text-(--color-gray-800) prose-code:before:content-none prose-code:after:content-none dark:prose-code:bg-(--color-gray-750) dark:prose-code:text-(--color-gray-100) prose-pre:mx-0 prose-pre:my-4 prose-pre:min-w-full prose-pre:bg-(--color-white) prose-pre:px-4 prose-pre:text-left dark:prose-pre:bg-(--color-black) prose-ol:mt-2 prose-ol:text-left prose-ol:text-(--color-gray-600) prose-ol:marker:text-(--color-gray-600) dark:prose-ol:text-(--color-gray-300) dark:prose-ol:marker:text-(--color-gray-300) prose-ul:mt-2 prose-ul:text-left prose-ul:text-(--color-gray-600) prose-ul:marker:text-(--color-gray-600) dark:prose-ul:text-(--color-gray-300) dark:prose-ul:marker:text-(--color-gray-300) prose-li:m-0 [&_pre_code]:bg-(--color-white) [&_pre_code]:p-0 [&_pre_code]:text-(--color-gray-800) dark:[&_pre_code]:bg-(--color-black) dark:[&_pre_code]:text-(--color-gray-300)";
+	const [isFlipped, setIsFlipped] = React.useState(true);
 
 	return (
-		<motion.div
-			className="relative flex h-full min-h-50 w-full max-w-104 flex-1 cursor-pointer flex-col overflow-y-auto rounded-lg bg-(--color-gray-light) p-4 sm:flex-1 dark:bg-(--color-gray-800)"
+		<OuterCardWrapper
 			transition={{ duration: 0.5 }}
 			animate={{ rotateX: isFlipped ? 0 : 180 }}
-			onClick={handleClick}
+			onClick={() => setIsFlipped((prev) => !prev)}
 		>
-			<motion.div
-				className="relative flex-1"
+			<InnerCardWrapper
 				transition={{ duration: 0.5 }}
 				animate={{ rotateX: isFlipped ? 0 : 180 }}
 			>
-				{/* Front */}
-				<motion.div
-					className="absolute top-0 left-0 grid h-full w-full place-items-center overflow-y-auto p-2 text-center backface-hidden"
+				<FrontContentWrapper
 					transition={{ duration: 0.5 }}
 					animate={{ rotateX: isFlipped ? 0 : 180 }}
 				>
-					<div className={proseClasses}>
+					<Prose>
 						<Markdown rehypePlugins={[rehypeHighlight]}>{front}</Markdown>
-					</div>
-				</motion.div>
-
-				{/* Back */}
-				<motion.div
-					className="absolute top-0 left-0 grid h-full w-full place-items-center overflow-y-auto p-2 text-center backface-hidden"
+					</Prose>
+				</FrontContentWrapper>
+				<BackContentWrapper
 					initial={{ rotateX: 180 }}
 					transition={{ duration: 0.5 }}
 					animate={{ rotateX: isFlipped ? 180 : 0 }}
 				>
-					<div className={proseClasses}>
+					<Prose>
 						<Markdown rehypePlugins={[rehypeHighlight]}>{back}</Markdown>
-					</div>
-				</motion.div>
-			</motion.div>
-		</motion.div>
+					</Prose>
+				</BackContentWrapper>
+			</InnerCardWrapper>
+		</OuterCardWrapper>
 	);
 }
+
+const OuterCardWrapper = styled(motion.div)`
+	padding: 1rem;
+	width: 100%;
+	max-width: 26rem;
+	min-height: 12.5rem;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--color-gray-light);
+	border-radius: 0.5rem;
+	cursor: pointer;
+	overflow-y: auto;
+
+	html.dark & {
+		background-color: var(--color-gray-800);
+	}
+
+	@media (min-width: 640px) {
+		& {
+			flex: 1 1 0%;
+		}
+	}
+`;
+
+const InnerCardWrapper = styled(motion.div)`
+	position: relative;
+	flex: 1;
+`;
+
+const ContentWrapper = styled(motion.div)`
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: grid;
+	height: 100%;
+	width: 100%;
+	place-items: center;
+	overflow-y: auto;
+	padding: 0.5rem;
+	text-align: center;
+	backface-visibility: hidden;
+	overflow-x: auto;
+`;
+const FrontContentWrapper = styled(ContentWrapper)``;
+const BackContentWrapper = styled(ContentWrapper)``;
+
+const Prose = styled.div`
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	/* Headings */
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin: 0;
+		color: var(--color-gray-600);
+
+		.dark & {
+			color: var(--color-gray-300);
+		}
+	}
+
+	/* Paragraphs & Strong */
+	p {
+		margin: 0;
+		color: var(--color-gray-600);
+		max-width: 22rem;
+
+		.dark & {
+			color: var(--color-gray-300);
+		}
+	}
+
+	strong {
+		.dark & {
+			color: var(--color-gray-300);
+		}
+	}
+
+	/* Inline Code */
+	code {
+		border-radius: 0.375rem;
+		background-color: var(--color-gray-100);
+		padding: 0.125rem 0.375rem;
+		font-weight: 400;
+		color: var(--color-gray-800);
+
+		&::before,
+		&::after {
+			content: none;
+		}
+
+		.dark & {
+			background-color: var(--color-gray-750);
+			color: var(--color-gray-100);
+		}
+	}
+
+	/* Code Blocks (Pre) */
+	pre {
+		min-width: 100%;
+		max-width: 22rem;
+		background-color: var(--color-white);
+		padding: 1rem;
+		text-align: left;
+
+		.dark & {
+			background-color: var(--color-black);
+		}
+
+		/* Nested code inside pre blocks */
+		code {
+			background-color: var(--color-white);
+			padding: 0;
+			color: var(--color-gray-800);
+
+			.dark & {
+				background-color: var(--color-black);
+				color: var(--color-gray-300);
+			}
+		}
+	}
+
+	/* Lists */
+	ol,
+	ul {
+		margin-top: 0.5rem;
+		text-align: left;
+		color: var(--color-gray-600);
+
+		&::marker {
+			color: var(--color-gray-600);
+		}
+
+		.dark & {
+			color: var(--color-gray-300);
+			&::marker {
+				color: var(--color-gray-300);
+			}
+		}
+	}
+
+	li {
+		margin: 0;
+	}
+`;
