@@ -5,10 +5,12 @@ import DeleteDeck from "@/ui/deck/delete-deck";
 import { Layers } from "react-feather";
 import {
 	DeckWrapper,
+  Card,
 	ActionsWrapper,
 	ReviewDeckWrapper,
 	ViewDeckWrapper,
 } from "@/ui/deck/deck.style";
+
 
 export default function Deck({
 	deckName,
@@ -19,12 +21,20 @@ export default function Deck({
 }) {
 	return (
 		<DeckWrapper key={deckName}>
-			<ReviewDeck deckId={deckId} deckName={deckName} />
-			<ActionsWrapper>
-				<ViewDeck deckId={deckId} />
-				<UpdateDeck deckId={deckId} deckName={deckName} />
-				<DeleteDeck deckId={deckId} />
-			</ActionsWrapper>
+      <Card className="x1"></Card>
+      <Card className="x2"></Card>
+      <Card className="x3"></Card>
+      <Card className="x4"></Card>
+      <Card className="x5">
+        <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <ReviewDeck deckId={deckId} deckName={deckName} />
+          <ActionsWrapper>
+            <ViewDeck deckId={deckId} />
+            <UpdateDeck deckId={deckId} deckName={deckName} />
+            <DeleteDeck deckId={deckId} />
+          </ActionsWrapper>
+        </div>
+      </Card>
 		</DeckWrapper>
 	);
 }
