@@ -1,12 +1,12 @@
-import { fetchDeck, fetchCards } from "@/lib/queries";
-import type { CardType } from "@/lib/definitions";
-import type { DeckType } from "@/lib/definitions";
+import styled from "styled-components";
 import { Edit2, Plus } from "react-feather";
 import DeleteCard from "@/ui/card/delete-card";
 import Link from "next/link";
 import Pagination from "@/ui/card/pagination";
 import { Suspense } from "react";
 import Skeleton from "@/ui/skeletons/skeleton-view-cards";
+import { fetchDeck, fetchCards } from "@/lib/queries";
+import type { CardType, DeckType } from "@/lib/definitions";
 
 export default async function ViewCardsPage({
 	params,
@@ -25,7 +25,7 @@ export default async function ViewCardsPage({
 	const pageSize = 10;
 
 	return (
-		<div className="grid flex-1 place-items-center">
+		<PageWrapper>
 			<Suspense key={`${id}-${currentPage}`} fallback={<Skeleton />}>
 				<CardsContent
 					deckId={id}
@@ -34,7 +34,7 @@ export default async function ViewCardsPage({
 					pageSize={pageSize}
 				/>
 			</Suspense>
-		</div>
+		</PageWrapper>
 	);
 }
 
@@ -60,7 +60,7 @@ async function CardsContent({
 	return totalCount === 0 ? (
 		<NoCards deck={deck} />
 	) : (
-		<div className="h-full w-full self-start justify-self-start">
+		<ContentContainer>
 			<Pagination
 				currentPage={currentPage}
 				totalPages={totalPages}
@@ -74,46 +74,38 @@ async function CardsContent({
 				deck={deck}
 				id={deckId}
 			/>
-		</div>
+		</ContentContainer>
 	);
 }
 
 function NoCards({ deck }: { deck: { id: string; title: string } }) {
 	return (
-		<div className="flex flex-col items-center gap-4">
-			<p className="max-w-3xs text-center text-(--color-gray-600) dark:text-(--color-gray-300)">
-				No cards yet in your{" "}
-				<Link
-					href={`/deck/${deck.id}`}
-					className="text-(--color-primary) underline hover:no-underline"
-				>
-					{deck.title}
-				</Link>{" "}
+		<EmptyStateContainer>
+			<EmptyText>
+				No cards yet in your <Link href={`/deck/${deck.id}`}>{deck.title}</Link>{" "}
 				deck. Add some cards now!
-			</p>
+			</EmptyText>
 			<Link href={`/deck/${deck.id}/create`}>
-				<button className="ease cursor-pointer rounded-2xl border border-(--color-gray-700) bg-(--color-gray-800) px-5 py-2 text-(--color-white) transition duration-300 hover:opacity-75 dark:text-(--color-gray-300)">
-					Add cards
-				</button>
+				<AddButton>Add cards</AddButton>
 			</Link>
-		</div>
+		</EmptyStateContainer>
 	);
 }
 
 function Header({ id }: { id: string }) {
 	return (
-		<div className="mb-2 grid grid-cols-[20px_1fr_1fr_20px_20px] items-center gap-4 border-b border-dashed border-(--color-gray-700) pb-4 text-(--color-gray-600) dark:text-(--color-gray-300)">
+		<ListHeader>
 			<p>#</p>
 			<p>Front</p>
 			<p>Back</p>
-			<span></span>
+			<span />
 			<Link
 				aria-label="Redirect to create card page"
 				href={`/deck/${id}/create`}
 			>
-				<Plus className="ease h-5 w-5 transition duration-300 hover:text-(--color-gray-300) dark:hover:text-(--color-primary)" />
+				<Plus />
 			</Link>
-		</div>
+		</ListHeader>
 	);
 }
 
@@ -131,42 +123,206 @@ function CardsList({
 	id: string;
 }) {
 	return (
-		<div className="flex flex-col gap-8 pt-4 xs:gap-2">
+		<CardListWrapper>
 			{cards.map((card, index) => {
 				const globalIndex = (currentPage - 1) * pageSize + index + 1;
 				return (
-					<div
-						key={card.id}
-						className="flex grid-cols-[20px_1fr_1fr_20px_20px] flex-col items-center gap-4 border-b border-dashed border-(--color-gray-700) pb-4 text-(--color-gray-600) xs:grid dark:text-(--color-gray-300)"
-					>
-						<div className="flex w-full justify-between xs:hidden">
+					<CardRow key={card.id}>
+						<MobileHeader>
 							<p>{globalIndex}</p>
-							<div className="flex items-center gap-3">
-								<Link
-									aria-label="Redirect to update card page"
-									href={`/deck/${id}/update/${card.id}`}
-								>
-									<Edit2 className="ease h-4 w-4 transition duration-300 hover:stroke-(--color-primary)" />
+							<div
+								style={{
+									display: "flex",
+									alignItems: "center",
+									gap: "0.75rem",
+								}}
+							>
+								<Link href={`/deck/${id}/update/${card.id}`}>
+									<Edit2 className="edit-icon" />
 								</Link>
 								<DeleteCard cardId={card.id} deckId={deck.id} />
 							</div>
-						</div>
-						<p className="hidden xs:block">{globalIndex}</p>
+						</MobileHeader>
+
+						<DesktopOnly>
+							<p>{globalIndex}</p>
+						</DesktopOnly>
+
 						<p>{card.front}</p>
 						<p>{card.back}</p>
-						<Link
-							aria-label="Redirect to update card page"
-							href={`/deck/${id}/update/${card.id}`}
-							className="hidden xs:block"
-						>
-							<Edit2 className="ease h-4 w-4 transition duration-300 hover:stroke-(--color-gray-300) dark:hover:stroke-(--color-primary)" />
-						</Link>
-						<div className="hidden xs:grid xs:place-items-center">
+
+						<DesktopOnly>
+							<Link href={`/deck/${id}/update/${card.id}`}>
+								<Edit2 className="edit-icon" />
+							</Link>
+						</DesktopOnly>
+
+						<DesktopOnly style={{ display: "grid", placeItems: "center" }}>
 							<DeleteCard cardId={card.id} deckId={deck.id} />
-						</div>
-					</div>
+						</DesktopOnly>
+					</CardRow>
 				);
 			})}
-		</div>
+		</CardListWrapper>
 	);
 }
+
+const PageWrapper = styled.div`
+	display: grid;
+	flex: 1;
+	place-items: center;
+`;
+
+const ContentContainer = styled.div`
+	height: 100%;
+	width: 100%;
+	align-self: flex-start;
+	justify-self: flex-start;
+`;
+
+const EmptyStateContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+`;
+
+const EmptyText = styled.p`
+	max-width: 15rem; /* max-w-3xs */
+	text-align: center;
+	color: var(--color-gray-600);
+
+	html.dark & {
+		color: var(--color-gray-300);
+	}
+
+	a {
+		color: var(--color-primary);
+		text-decoration: underline;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+`;
+
+const GridBase = styled.div`
+	display: grid;
+	grid-template-columns: 20px 1fr 1fr 20px 20px;
+	align-items: center;
+	gap: 1rem;
+`;
+
+const ListHeader = styled(GridBase)`
+	margin-bottom: 0.5rem;
+	border-bottom: 1px dashed var(--color-gray-700);
+	padding-bottom: 1rem;
+	color: var(--color-gray-600);
+
+	html.dark & {
+		color: var(--color-gray-300);
+	}
+
+	svg {
+		cursor: pointer;
+		height: 1.25rem;
+		width: 1.25rem;
+    color: var(--color-gray-600);
+		transition: color 0.3s ease;
+
+		&:hover {
+			color: var(--color-gray-300);
+		}
+
+		html.dark &:hover {
+			color: var(--color-primary);
+		}
+
+    html.dark & {
+      color: var(--color-gray-300);
+    }
+	}
+`;
+
+const CardListWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 2rem; /* gap-8 */
+	padding-top: 1rem;
+
+  & svg {
+    color: var(--color-gray-600);
+  }
+
+  html.dark & svg {
+    color: var(--color-gray-300);
+  }
+
+	@media (min-width: 480px) {
+		gap: 0.5rem; /* xs:gap-2 */
+	}
+`;
+
+const CardRow = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	border-bottom: 1px dashed var(--color-gray-700);
+	padding-bottom: 1rem;
+	color: var(--color-gray-600);
+
+	@media (min-width: 480px) {
+		display: grid;
+		grid-template-columns: 20px 1fr 1fr 20px 20px;
+	}
+
+	html.dark & {
+		color: var(--color-gray-300);
+	}
+
+	svg.edit-icon {
+		height: 1rem;
+		width: 1rem;
+		transition: stroke 0.3s ease;
+		&:hover {
+			stroke: var(--color-gray-300);
+		}
+		html.dark &:hover {
+			stroke: var(--color-primary);
+		}
+	}
+`;
+
+const MobileHeader = styled.div`
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	@media (min-width: 480px) {
+		display: none;
+	}
+`;
+
+const DesktopOnly = styled.div`
+	display: none;
+	@media (min-width: 480px) {
+		display: block;
+	}
+`;
+
+const AddButton = styled.button`
+	cursor: pointer;
+	border-radius: 1rem;
+	border: 1px solid var(--color-gray-700);
+	background-color: var(--color-gray-800);
+	padding: 0.5rem 1.25rem;
+	color: var(--color-white);
+	transition: opacity 0.3s ease;
+
+	&:hover {
+		opacity: 0.75;
+	}
+
+	html.dark & {
+		color: var(--color-gray-300);
+	}
+`;

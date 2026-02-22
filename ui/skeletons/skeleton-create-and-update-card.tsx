@@ -1,42 +1,137 @@
+import styled, { keyframes } from "styled-components";
+
+const pulse = keyframes`
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+`;
+
+const OuterWrapper = styled.div`
+	margin: auto;
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	text-align: center;
+	color: var(--color-gray-300);
+`;
+
+const InnerWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
+
+const SkeletonBase = styled.div`
+	animation: ${pulse} 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	background-color: var(--color-gray-200);
+	border-radius: 0.375rem;
+
+	html.dark & {
+		background-color: var(--color-gray-700);
+	}
+`;
+
+const HeaderContainer = styled.div`
+	display: flex;
+	width: 100%;
+	max-width: 30rem;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.75rem;
+	align-self: center;
+`;
+
+const ButtonContainer = styled.div`
+	margin-top: 1rem;
+	margin-bottom: 1.5rem;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	align-self: center;
+`;
+
+const ContentGrid = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	@media (min-width: 640px) {
+		flex-direction: row;
+	}
+`;
+
+const InputColumn = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	@media (min-width: 640px) {
+		flex: 1;
+	}
+`;
+
+const Section = styled.section`
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+
+	@media (min-width: 640px) {
+		flex: 1;
+	}
+`;
+
+const OutputSection = styled(Section)`
+	width: 100%;
+	align-self: stretch;
+`;
+
+const TextAreaSkeleton = styled(SkeletonBase)`
+	min-height: 12.5rem;
+	width: 100%;
+	border-radius: 0.5rem;
+
+	@media (min-width: 640px) {
+		min-height: 6.25rem;
+	}
+`;
+
+const BigCardSkeleton = styled(SkeletonBase)`
+	min-height: 12.5rem;
+	flex: 1;
+	border-radius: 0.5rem;
+`;
+
 export default function CreateAndUpdateCardSkeleton() {
 	return (
-		<div className="mx-auto my-auto flex w-full flex-col text-center text-(--color-gray-300)">
-			{/* Header text skeleton */}
-			<div className="flex w-full max-w-120 flex-col items-center gap-3 self-center">
-				<div className="h-5 w-full animate-pulse rounded-md bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-				<div className="mx-auto h-5 w-3/4 animate-pulse rounded-md bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-			</div>
-
-			<div className="flex flex-col">
-				{/* Buttons skeleton */}
-				<div className="mt-4 mb-6 flex items-center gap-4 self-center">
-					<div className="h-10 w-28 animate-pulse rounded-lg bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-					<div className="h-10 w-28 animate-pulse rounded-lg bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-				</div>
-
-				<div className="flex flex-col gap-4 sm:flex-row">
-					{/* Input section skeleton */}
-					<div className="flex flex-col gap-4 sm:flex-1">
-						{/* Front input skeleton */}
-						<section className="flex flex-col gap-3 sm:flex-1">
-							<div className="h-5 w-16 animate-pulse self-start rounded-md bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-							<div className="min-h-50 w-full animate-pulse rounded-lg bg-(--color-gray-200) sm:min-h-25 dark:bg-(--color-gray-700)" />
-						</section>
-
-						{/* Back input skeleton */}
-						<section className="flex flex-col gap-3 sm:flex-1">
-							<div className="h-5 w-16 animate-pulse self-start rounded-md bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-							<div className="min-h-50 w-full animate-pulse rounded-lg bg-(--color-gray-200) sm:min-h-25 dark:bg-(--color-gray-700)" />
-						</section>
-					</div>
-
-					{/* Output/Card section skeleton */}
-					<section className="flex w-full flex-1 flex-col gap-3 self-stretch">
-						<div className="h-5 w-20 animate-pulse self-start rounded-md bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-						<div className="min-h-50 flex-1 animate-pulse rounded-lg bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-					</section>
-				</div>
-			</div>
-		</div>
+		<OuterWrapper>
+			<HeaderContainer>
+				<SkeletonBase style={{ height: "1.25rem", width: "100%" }} />
+				<SkeletonBase style={{ height: "1.25rem", width: "75%" }} />
+			</HeaderContainer>
+			<InnerWrapper>
+				<ButtonContainer>
+					<SkeletonBase
+						style={{ height: "2.5rem", width: "7rem", borderRadius: "0.5rem" }}
+					/>
+					<SkeletonBase
+						style={{ height: "2.5rem", width: "7rem", borderRadius: "0.5rem" }}
+					/>
+				</ButtonContainer>
+				<ContentGrid>
+					<InputColumn>
+						<Section>
+							<SkeletonBase style={{ height: "1.25rem", width: "4rem" }} />
+							<TextAreaSkeleton />
+						</Section>
+						<Section>
+							<SkeletonBase style={{ height: "1.25rem", width: "4rem" }} />
+							<TextAreaSkeleton />
+						</Section>
+					</InputColumn>
+					<OutputSection>
+						<SkeletonBase style={{ height: "1.25rem", width: "5rem" }} />
+						<BigCardSkeleton />
+					</OutputSection>
+				</ContentGrid>
+			</InnerWrapper>
+		</OuterWrapper>
 	);
 }

@@ -1,5 +1,11 @@
-import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "react-feather";
+import {
+	PaginationContainer,
+	NavLink,
+	PageLink,
+	Ellipsis,
+	StyledChevronLeft,
+	StyledChevronRight,
+} from "@/ui/card/card.style";
 
 export default function Pagination({
 	currentPage,
@@ -34,45 +40,36 @@ export default function Pagination({
 	const visiblePages = getVisiblePages();
 
 	return (
-		<div className="mb-8 flex items-center justify-center gap-3">
-			<Link
+		<PaginationContainer>
+			<NavLink
 				aria-label="Redirect to previous page of cards"
 				href={`/deck/${deckId}/view?page=${currentPage - 1}`}
-				className={`dark:text-(--color-gray-300) ${currentPage === 1 ? "pointer-events-none opacity-25" : ""}`}
+				$isDisabled={currentPage === 1}
 			>
-				<ChevronLeft className="h-5 w-5" />
-			</Link>
+				<StyledChevronLeft />
+			</NavLink>
 
 			{visiblePages.map((page, index) =>
 				page === "..." ? (
-					<span
-						key={`ellipsis-${index}`}
-						className="px-2 dark:text-(--color-gray-300)"
-					>
-						...
-					</span>
+					<Ellipsis key={`ellipsis-${index}`}>...</Ellipsis>
 				) : (
-					<Link
+					<PageLink
 						key={page}
 						href={`/deck/${deckId}/view?page=${page}`}
-						className={`rounded-md px-2.5 py-px ${
-							currentPage === page
-								? "bg-(--color-primary) text-(--color-black) dark:text-(--color-black)"
-								: "ease transition duration-300 hover:bg-(--color-gray-100) dark:text-(--color-gray-300) dark:hover:bg-(--color-gray-700)"
-						}`}
+						$isActive={currentPage === page}
 					>
 						{page}
-					</Link>
+					</PageLink>
 				),
 			)}
 
-			<Link
+			<NavLink
 				aria-label="Redirect to next page of cards"
 				href={`/deck/${deckId}/view?page=${currentPage + 1}`}
-				className={`dark:text-(--color-gray-300) ${currentPage === totalPages ? "pointer-events-none opacity-25" : ""}`}
+				$isDisabled={currentPage === totalPages}
 			>
-				<ChevronRight className="h-5 w-5" />
-			</Link>
-		</div>
+				<StyledChevronRight />
+			</NavLink>
+		</PaginationContainer>
 	);
 }

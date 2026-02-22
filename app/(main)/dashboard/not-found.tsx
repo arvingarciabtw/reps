@@ -1,15 +1,59 @@
+import styled from "styled-components";
 import Link from "next/link";
 
 export default function NotFound() {
 	return (
-		<main className="grid h-svh place-items-center">
-			<div className="flex flex-col items-center gap-1">
-				<h1 className="text-6xl font-bold">404</h1>
-				<p className="text-(--color-gray-1)">Oops! Page not found.</p>
-				<button className="ease mt-4 cursor-pointer rounded-2xl bg-(--color-primary) px-5 py-2 font-medium text-(--color-bg) transition duration-300 hover:opacity-75">
+		<Main>
+			<Content>
+				<Title>404</Title>
+				<Message>Oops! Page not found.</Message>
+				<DashboardButton>
 					<Link href="/dashboard">Go to dashboard</Link>
-				</button>
-			</div>
-		</main>
+				</DashboardButton>
+			</Content>
+		</Main>
 	);
 }
+
+const Main = styled.main`
+	display: grid;
+	height: 100svh;
+	place-items: center;
+`;
+
+const Content = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.25rem;
+`;
+
+const Title = styled.h1`
+	font-size: 3.75rem; /* text-6xl */
+	font-weight: 700;
+`;
+
+const Message = styled.p`
+	color: var(--color-gray-1);
+`;
+
+const DashboardButton = styled.button`
+	margin-top: 1rem;
+	cursor: pointer;
+	border-radius: 1rem; /* rounded-2xl */
+	border: none;
+	background-color: var(--color-primary);
+	padding: 0.5rem 1.25rem; /* py-2 px-5 */
+	font-weight: 500;
+	color: var(--color-bg);
+	transition: opacity 0.3s ease;
+
+	&:hover {
+		opacity: 0.75;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+`;

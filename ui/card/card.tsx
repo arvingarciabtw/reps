@@ -2,9 +2,10 @@
 
 import React from "react";
 import Markdown from "react-markdown";
-import { motion } from "motion/react";
 import rehypeHighlight from "rehype-highlight";
+import { motion } from "motion/react";
 import styled from "styled-components";
+import { Prose } from "@/ui/card/card.style";
 
 export default function Card({ front, back }: { front: string; back: string }) {
 	const [isFlipped, setIsFlipped] = React.useState(true);
@@ -85,109 +86,3 @@ const ContentWrapper = styled(motion.div)`
 `;
 const FrontContentWrapper = styled(ContentWrapper)``;
 const BackContentWrapper = styled(ContentWrapper)``;
-
-const Prose = styled.div`
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-
-	/* Headings */
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		margin: 0;
-		color: var(--color-gray-600);
-
-		.dark & {
-			color: var(--color-gray-300);
-		}
-	}
-
-	/* Paragraphs & Strong */
-	p {
-		margin: 0;
-		color: var(--color-gray-600);
-		max-width: 22rem;
-
-		.dark & {
-			color: var(--color-gray-300);
-		}
-	}
-
-	strong {
-		.dark & {
-			color: var(--color-gray-300);
-		}
-	}
-
-	/* Inline Code */
-	code {
-		border-radius: 0.375rem;
-		background-color: var(--color-gray-100);
-		padding: 0.125rem 0.375rem;
-		font-weight: 400;
-		color: var(--color-gray-800);
-
-		&::before,
-		&::after {
-			content: none;
-		}
-
-		.dark & {
-			background-color: var(--color-gray-750);
-			color: var(--color-gray-100);
-		}
-	}
-
-	/* Code Blocks (Pre) */
-	pre {
-		min-width: 100%;
-		max-width: 22rem;
-		background-color: var(--color-white);
-		padding: 1rem;
-		text-align: left;
-
-		.dark & {
-			background-color: var(--color-black);
-		}
-
-		/* Nested code inside pre blocks */
-		code {
-			background-color: var(--color-white);
-			padding: 0;
-			color: var(--color-gray-800);
-
-			.dark & {
-				background-color: var(--color-black);
-				color: var(--color-gray-300);
-			}
-		}
-	}
-
-	/* Lists */
-	ol,
-	ul {
-		margin-top: 0.5rem;
-		text-align: left;
-		color: var(--color-gray-600);
-
-		&::marker {
-			color: var(--color-gray-600);
-		}
-
-		.dark & {
-			color: var(--color-gray-300);
-			&::marker {
-				color: var(--color-gray-300);
-			}
-		}
-	}
-
-	li {
-		margin: 0;
-	}
-`;

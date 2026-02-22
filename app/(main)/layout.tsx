@@ -3,6 +3,7 @@ import Footer from "@/ui/general/footer";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { cookies } from "next/headers";
+import styled from "styled-components";
 
 export default async function MainLayout({
 	children,
@@ -19,10 +20,20 @@ export default async function MainLayout({
 	return (
 		<>
 			<NavBar session={session} theme={theme} />
-			<main className="relative mx-auto flex w-full max-w-4xl flex-1 flex-col p-6">
-				{children}
-			</main>
+			<MainContent>{children}</MainContent>
 			<Footer />
 		</>
 	);
 }
+
+const MainContent = styled.main`
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	width: 100%;
+	max-width: 56rem;
+	flex: 1;
+	flex-direction: column;
+	padding: 1.5rem;
+`;

@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import Image from "next/image";
 import Heatmap from "@/ui/profile/heatmap";
 import { auth } from "@/lib/auth";
@@ -9,10 +10,10 @@ export default function ProfilePage({
 	searchParams: { year?: string };
 }) {
 	return (
-		<div className="flex flex-col gap-8">
+		<PageContainer>
 			<ProfileDescription />
 			<HeatmapSection searchParams={searchParams} />
-		</div>
+		</PageContainer>
 	);
 }
 
@@ -24,23 +25,18 @@ async function ProfileDescription() {
 	if (!session) return null;
 
 	return (
-		<section className="flex items-center gap-4">
-			<Image
+		<ProfileSection>
+			<ProfileImage
 				src={session.user.image || "/images/logo.svg"}
 				alt="Profile picture"
-				width={40}
-				height={40}
-				className="w-full max-w-20 rounded-full"
+				width={80} // Set to 80 to match max-w-20 (5rem) logic
+				height={80}
 			/>
-			<div className="flex flex-col gap-0.5">
-				<h1 className="text-4xl dark:text-(--color-white)">
-					{session.user.name}
-				</h1>
-				<p className="text-(--color-gray-600) dark:text-(--color-gray-300)">
-					{session.user.email}
-				</p>
-			</div>
-		</section>
+			<TextContainer>
+				<UserName>{session.user.name}</UserName>
+				<UserEmail>{session.user.email}</UserEmail>
+			</TextContainer>
+		</ProfileSection>
 	);
 }
 
@@ -53,3 +49,43 @@ async function HeatmapSection({
 
 	return <Heatmap year={year} />;
 }
+
+const PageContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+`;
+
+const ProfileSection = styled.section`
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+`;
+
+const ProfileImage = styled(Image)`
+	width: 100%;
+	max-width: 5rem; /* max-w-20 */
+	height: auto;
+	border-radius: 9999px;
+`;
+
+const TextContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
+
+const UserName = styled.h1`
+	font-size: 2.25rem; /* text-4xl */
+
+	html.dark & {
+		color: var(--color-white);
+	}
+`;
+
+const UserEmail = styled.p`
+	color: var(--color-gray-600);
+
+	html.dark & {
+		color: var(--color-gray-300);
+	}
+`;

@@ -1,14 +1,59 @@
+import styled, { keyframes } from "styled-components";
+
+const pulse = keyframes`
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+`;
+
+const Container = styled.div`
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	color: var(--color-gray-300);
+`;
+
+const SkeletonBase = styled.span`
+	animation: ${pulse} 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	background-color: var(--color-gray-200);
+	border-radius: 0.375rem;
+
+	html.dark & {
+		background-color: var(--color-gray-700);
+	}
+`;
+
+const TextGroup = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.75rem;
+`;
+
+const ButtonGroup = styled.div`
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+`;
+
+const LargeButtonSkeleton = styled(SkeletonBase)`
+	height: 2.625rem;
+	border-radius: 0.5rem;
+`;
+
 export default function ViewDeckSkeleton() {
 	return (
-		<div className="flex flex-1 flex-col items-center justify-center gap-4 text-(--color-gray-300)">
-			<div className="flex flex-col items-center gap-3">
-				<span className="h-5 w-80 animate-pulse rounded-md bg-(--color-gray-200) dark:bg-(--color-gray-700)"></span>
-				<span className="h-5 w-70 animate-pulse rounded-md bg-(--color-gray-200) dark:bg-(--color-gray-700)"></span>
-			</div>
-			<div className="flex justify-center gap-4">
-				<span className="h-10.5 w-29.5 animate-pulse rounded-lg bg-(--color-gray-200) dark:bg-(--color-gray-700)"></span>
-				<span className="h-10.5 w-23 animate-pulse rounded-lg bg-(--color-gray-200) dark:bg-(--color-gray-700)"></span>
-			</div>
-		</div>
+		<Container>
+			<TextGroup>
+				<SkeletonBase style={{ height: "1.25rem", width: "20rem" }} />
+				<SkeletonBase style={{ height: "1.25rem", width: "17.5rem" }} />
+			</TextGroup>
+			<ButtonGroup>
+				<LargeButtonSkeleton style={{ width: "7.375rem" }} />
+				<LargeButtonSkeleton style={{ width: "5.75rem" }} />
+			</ButtonGroup>
+		</Container>
 	);
 }

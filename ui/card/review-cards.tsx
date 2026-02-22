@@ -6,6 +6,18 @@ import type { CardType } from "@/lib/definitions";
 import Link from "next/link";
 import { useState } from "react";
 import { markCardCorrect, markCardWrong } from "@/actions/card-actions";
+import {
+	EmptyStateContainer,
+	DashboardButton,
+	MainWrapper,
+	ControlsWrapper,
+	CardCount,
+	ActionGroup,
+	EditButton,
+	CorrectButton,
+	WrongButton,
+	StyledLink,
+} from "@/ui/card/card.style";
 
 export default function ReviewCardsSection({
 	cards,
@@ -56,60 +68,51 @@ export default function ReviewCardsSection({
 
 	if (remainingCards.length === 0) {
 		return (
-			<div className="my-auto flex flex-col items-center gap-4 self-center text-(--color-gray-600) dark:text-(--color-gray-300)">
+			<EmptyStateContainer>
 				<p>No more cards to be reviewed.</p>
 				<Link href="/dashboard">
-					<button className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-200) bg-transparent px-5 py-2 text-(--color-gray-600) transition duration-300 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-(--color-gray-700) dark:bg-(--color-gray-800) dark:text-(--color-gray-300) dark:hover:bg-(--color-gray-800) dark:hover:text-(--color-primary)">
-						Back to dashboard
-					</button>
+					<DashboardButton>Back to dashboard</DashboardButton>
 				</Link>
-			</div>
+			</EmptyStateContainer>
 		);
 	}
 
 	return (
-		<div className="my-auto flex h-50 w-full flex-col items-center gap-4 self-center sm:w-104">
+		<MainWrapper>
 			<Card
 				key={remainingCards[cardIndex].id}
 				front={remainingCards[cardIndex].front}
 				back={remainingCards[cardIndex].back}
 			/>
-			<div className="flex w-full max-w-104 flex-wrap items-center justify-between gap-2">
-				<p className="mr-auto text-(--color-gray-600) dark:text-(--color-gray-300)">
-					Cards left: <span className="font-sans">{remainingCards.length}</span>
-				</p>
-				<div className="flex gap-4">
-					<button
-						aria-label="Update card button"
-						className="ease grid h-6.5 w-6.5 cursor-pointer place-items-center gap-2 rounded-2xl bg-(--color-primary) p-1 text-(--color-black) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
-						disabled={isProcessing}
-					>
-						<Link
+			<ControlsWrapper>
+				<CardCount>
+					Cards left: <span>{remainingCards.length}</span>
+				</CardCount>
+				<ActionGroup>
+					<EditButton aria-label="Update card button" disabled={isProcessing}>
+						<StyledLink
 							aria-label="Redirect to update card page"
-							className="grid h-full w-full place-items-center"
 							href={`/deck/${deckId}/update/${remainingCards[cardIndex].id}`}
 						>
-							<Edit2 className="h-3.75 w-3.75" />
-						</Link>
-					</button>
-					<button
+							<Edit2 style={{ width: "0.9375rem", height: "0.9375rem" }} />
+						</StyledLink>
+					</EditButton>
+					<CorrectButton
 						aria-label="Mark card as correct button"
 						onClick={handleCorrect}
 						disabled={isProcessing}
-						className="ease flex cursor-pointer items-center gap-2 rounded-2xl bg-green-400 p-1 text-(--color-black) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
 					>
-						<Check className="h-4.5 w-4.5" />
-					</button>
-					<button
+						<Check style={{ width: "1.125rem", height: "1.125rem" }} />
+					</CorrectButton>
+					<WrongButton
 						aria-label="Mark card as wrong button"
 						onClick={handleWrong}
 						disabled={isProcessing}
-						className="ease flex cursor-pointer items-center gap-2 rounded-2xl bg-red-400 p-1 text-(--color-black) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
 					>
-						<X className="h-4.5 w-4.5" />
-					</button>
-				</div>
-			</div>
-		</div>
+						<X style={{ width: "1.125rem", height: "1.125rem" }} />
+					</WrongButton>
+				</ActionGroup>
+			</ControlsWrapper>
+		</MainWrapper>
 	);
 }

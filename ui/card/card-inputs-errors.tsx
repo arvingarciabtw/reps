@@ -1,3 +1,5 @@
+import { Error } from "@/ui/card/card.style";
+
 export default function CardInputsErrors({
 	state,
 }: {
@@ -13,15 +15,9 @@ export default function CardInputsErrors({
 }) {
 	return (
 		<>
-			{state.errors?.front && (
-				<p className="mt-1 text-sm text-red-500">{state.errors.front[0]}</p>
-			)}
-			{state.errors?.back && (
-				<p className="mt-1 text-sm text-red-500">{state.errors.back[0]}</p>
-			)}
-			{state.message && (
-				<p className="mt-1 text-sm text-red-500">{state.message}</p>
-			)}
+			{state.errors?.front && <Error>{state.errors.front[0]}</Error>}
+			{state.errors?.back && <Error>{state.errors.back[0]}</Error>}
+			{state.message && <Error>{state.message}</Error>}
 		</>
 	);
 }

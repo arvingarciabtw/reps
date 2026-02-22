@@ -1,14 +1,102 @@
+import styled, { keyframes } from "styled-components";
+
+const pulse = keyframes`
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+`;
+
+const Container = styled.div`
+	margin-top: auto;
+	margin-bottom: auto;
+	display: flex;
+	height: 12.5rem;
+	width: 100%;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	align-self: center;
+
+	@media (min-width: 640px) {
+		width: 26rem;
+	}
+`;
+
+const MainCardSkeleton = styled.div`
+	position: relative;
+	display: flex;
+	height: 100%;
+	min-height: 12.5rem;
+	width: 100%;
+	max-width: 26rem;
+	flex: 1;
+	flex-direction: column;
+	overflow-y: auto;
+	border-radius: 0.5rem;
+	background-color: var(--color-gray-200);
+	padding: 1rem;
+	animation: ${pulse} 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+	@media (min-width: 640px) {
+		flex: 1;
+	}
+
+	html.dark & {
+		background-color: var(--color-gray-700);
+	}
+`;
+
+const ControlsWrapper = styled.div`
+	display: flex;
+	width: 100%;
+	max-width: 26rem;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem;
+`;
+
+const TextSkeleton = styled.p`
+	margin-right: auto;
+	height: 1.5rem;
+	width: 5.5rem;
+	border-radius: 0.375rem;
+	background-color: var(--color-gray-200);
+	animation: ${pulse} 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+	html.dark & {
+		background-color: var(--color-gray-700);
+	}
+`;
+
+const ActionGroup = styled.div`
+	display: flex;
+	gap: 1rem;
+`;
+
+const CircleButtonSkeleton = styled.button`
+	height: 1.625rem;
+	width: 1.625rem;
+	border-radius: 9999px;
+	border: none;
+	background-color: var(--color-gray-200);
+	animation: ${pulse} 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+	html.dark & {
+		background-color: var(--color-gray-700);
+	}
+`;
+
 export default function ReviewCardSkeleton() {
 	return (
-		<div className="my-auto flex h-50 w-full flex-col items-center gap-4 self-center sm:w-104">
-			<div className="relative flex h-full min-h-50 w-full max-w-104 flex-1 animate-pulse cursor-pointer flex-col overflow-y-auto rounded-lg bg-(--color-gray-200) p-4 sm:flex-1 dark:bg-(--color-gray-700)"></div>
-			<div className="flex w-full max-w-104 flex-wrap items-center justify-between gap-2">
-				<p className="mr-auto h-6 w-22 animate-pulse rounded-md bg-(--color-gray-200) dark:bg-(--color-gray-700)"></p>
-				<div className="flex gap-4">
-					<button className="h-6.5 w-6.5 animate-pulse rounded-full bg-(--color-gray-200) dark:bg-(--color-gray-700)"></button>
-					<button className="h-6.5 w-6.5 animate-pulse rounded-full bg-(--color-gray-200) dark:bg-(--color-gray-700)"></button>
-				</div>
-			</div>
-		</div>
+		<Container>
+			<MainCardSkeleton />
+			<ControlsWrapper>
+				<TextSkeleton />
+				<ActionGroup>
+					<CircleButtonSkeleton />
+					<CircleButtonSkeleton />
+				</ActionGroup>
+			</ControlsWrapper>
+		</Container>
 	);
 }

@@ -1,21 +1,80 @@
+import styled, { keyframes } from "styled-components";
+
+const pulse = keyframes`
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+`;
+
+const SkeletonBase = styled.div`
+	animation: ${pulse} 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	background-color: var(--color-gray-200);
+	border-radius: 0.375rem;
+
+	html.dark & {
+		background-color: var(--color-gray-700);
+	}
+`;
+
+const TitleSkeleton = styled(SkeletonBase)`
+	height: 2.5rem;
+	width: 8rem;
+`;
+
+const DescriptionWrapper = styled.div`
+	margin-top: 1rem;
+	margin-bottom: 2.5rem;
+	display: flex;
+	max-width: 32rem;
+	flex-direction: column;
+	gap: 0.75rem;
+`;
+
+const DescriptionLine = styled(SkeletonBase)<{ $width: string }>`
+	height: 1.25rem;
+	width: ${(props) => props.$width || "100%"};
+`;
+
+const DeckGrid = styled.section`
+	display: grid;
+	grid-template-columns: repeat(1, minmax(0, 1fr));
+	gap: 1rem;
+
+	@media (min-width: 480px) {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	@media (min-width: 768px) {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+`;
+
+const DeckCardSkeleton = styled(SkeletonBase)`
+	display: flex;
+	height: 3.625rem;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1.5rem;
+	border-radius: 0.75rem;
+	padding: 1rem;
+	padding-left: 1.25rem;
+`;
+
 export default function ViewAllDecksSkeleton() {
 	return (
 		<>
-			<div className="h-10 w-32 animate-pulse rounded-md bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
+			<TitleSkeleton />
 
-			<div className="mt-4 mb-10 flex max-w-lg flex-col gap-3">
-				<div className="h-5 w-full animate-pulse rounded-md bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-				<div className="h-5 w-4/5 animate-pulse rounded-md bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-			</div>
+			<DescriptionWrapper>
+				<DescriptionLine $width="" />
+				<DescriptionLine $width="80%" />
+				<DescriptionLine $width="30%" />
+			</DescriptionWrapper>
 
-			<section className="grid grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-3">
+			<DeckGrid>
 				{[...Array(6)].map((_, index) => (
-					<article
-						key={index}
-						className="flex h-14.5 animate-pulse items-center justify-between gap-6 rounded-xl bg-(--color-gray-200) p-4 pl-5 dark:bg-(--color-gray-700)"
-					></article>
+					<DeckCardSkeleton key={index} as="article" />
 				))}
-			</section>
+			</DeckGrid>
 		</>
 	);
 }

@@ -1,12 +1,14 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import {
 	Atkinson_Hyperlegible_Next,
 	Fira_Code,
 	Fira_Sans,
 } from "next/font/google";
-import "./globals.css";
 import { cookies } from "next/headers";
 import { LIGHT_COLORS, DARK_COLORS } from "@/lib/constants/colors";
+import StyledComponentsRegistry from "@/lib/registry";
+import styled from "styled-components";
 
 const atkinsonHyperlegibleNext = Atkinson_Hyperlegible_Next({
 	variable: "--font-atkinson-hyperlegible-next",
@@ -57,9 +59,20 @@ export default async function RootLayout({
 			data-color-theme={theme}
 			style={themeColors}
 		>
-			<body className="flex min-h-dvh flex-col bg-(--color-white) dark:bg-(--color-black)">
-				{children}{" "}
-			</body>
+			<StyledComponentsRegistry>
+				<StyledBody>{children}</StyledBody>
+			</StyledComponentsRegistry>
 		</html>
 	);
 }
+
+const StyledBody = styled.body`
+	display: flex;
+	min-height: 100dvh;
+	flex-direction: column;
+	background-color: var(--color-white);
+
+	html.dark & {
+		background-color: var(--color-black);
+	}
+`;

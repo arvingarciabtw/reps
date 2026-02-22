@@ -3,7 +3,7 @@
 import React from "react";
 import { Sun, Moon } from "react-feather";
 import Cookie from "js-cookie";
-
+import styled from "styled-components";
 import { LIGHT_COLORS, DARK_COLORS } from "@/lib/constants/colors";
 
 function DarkLightToggle({ initialTheme }: { initialTheme: string }) {
@@ -21,7 +21,6 @@ function DarkLightToggle({ initialTheme }: { initialTheme: string }) {
 		const root = document.documentElement;
 		const colors = nextTheme === "light" ? LIGHT_COLORS : DARK_COLORS;
 
-		root.setAttribute("data-color-theme", nextTheme);
 		if (root.classList.contains("dark")) {
 			root.classList.remove("dark");
 		} else {
@@ -34,14 +33,21 @@ function DarkLightToggle({ initialTheme }: { initialTheme: string }) {
 	}
 
 	return (
-		<button className="cursor-pointer" onClick={handleClick}>
-			{theme === "light" ? (
-				<Sun size="1.5rem" className="h-5 w-5" />
-			) : (
-				<Moon size="1.5rem" className="h-5 w-5 text-(--color-gray-300)" />
-			)}
-		</button>
+		<ThemeToggleWrapper onClick={handleClick}>
+			{theme === "light" ? <Sun size="22" /> : <Moon size="22" />}
+		</ThemeToggleWrapper>
 	);
 }
+
+const ThemeToggleWrapper = styled.button`
+	cursor: pointer;
+	color: var(--color-gray-800);
+  background-color: transparent;
+  border: none;
+
+	html.dark & {
+		color: var(--color-gray-300);
+	}
+`;
 
 export default DarkLightToggle;

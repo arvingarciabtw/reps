@@ -5,6 +5,16 @@ import { Trash2 } from "react-feather";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { deleteCard } from "@/actions/card-actions";
+import {
+	IconButton,
+	Overlay,
+	ModalContent,
+	ModalTitle,
+	ModalDescription,
+	ActionButton,
+	DangerButton,
+	Error,
+} from "@/ui/card/card.style";
 
 export default function DeleteCard({
 	cardId,
@@ -18,42 +28,29 @@ export default function DeleteCard({
 	return (
 		<AlertDialog.Root>
 			<AlertDialog.Trigger asChild>
-				<button
-					aria-label="Delete card button"
-					className="ease cursor-pointer transition duration-300 hover:text-(--color-gray-300) dark:hover:text-(--color-primary)"
-				>
-					<Trash2 className="h-4 w-4" />
-				</button>
+				<IconButton aria-label="Delete card button">
+					<Trash2 style={{ width: "1rem", height: "1rem" }} />
+				</IconButton>
 			</AlertDialog.Trigger>
 			<AlertDialog.Portal>
-				<AlertDialog.Overlay className="fixed inset-0 bg-(--color-black) opacity-75" />
-				<AlertDialog.Content className="fixed top-[50%] left-[50%] flex w-full max-w-80 translate-x-[-50%] translate-y-[-50%] flex-col items-center rounded-2xl border border-(--color-gray-700) bg-(--color-white) p-6 text-(--color-gray-300) outline-none dark:bg-(--color-gray-800)">
-					<AlertDialog.Title className="mb-2 text-2xl font-medium text-(--color-gray-800) dark:text-(--color-white)">
-						Are you absolutely sure?
-					</AlertDialog.Title>
-					<AlertDialog.Description className="mb-4 text-center text-(--color-gray-600) dark:text-(--color-gray-300)">
+				<Overlay />
+				<ModalContent>
+					<ModalTitle>Are you absolutely sure?</ModalTitle>
+					<ModalDescription>
 						This action cannot be undone. This will permanently delete your
 						card.
-					</AlertDialog.Description>
-					<form action={formAction} className="flex gap-4">
+					</ModalDescription>
+					<form action={formAction} style={{ display: "flex", gap: "1rem" }}>
 						<input type="hidden" name="cardId" value={cardId} />
 						<input type="hidden" name="deckId" value={deckId} />
-						{state.errors?.front && (
-							<p className="mt-1 text-sm text-red-500">
-								{state.errors.front[0]}
-							</p>
-						)}
-						{state.errors?.back && (
-							<p className="mt-1 text-sm text-red-500">
-								{state.errors.back[0]}
-							</p>
-						)}
-						{state.message && (
-							<p className="mt-1 text-sm text-red-500">{state.message}</p>
-						)}
+
+						{state.errors?.front && <Error>{state.errors.front[0]}</Error>}
+						{state.errors?.back && <Error>{state.errors.back[0]}</Error>}
+						{state.message && <Error>{state.message}</Error>}
+
 						<SubmitButtons />
 					</form>
-				</AlertDialog.Content>
+				</ModalContent>
 			</AlertDialog.Portal>
 		</AlertDialog.Root>
 	);
@@ -65,20 +62,13 @@ function SubmitButtons() {
 	return (
 		<>
 			<AlertDialog.Cancel asChild>
-				<button
-					className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-200) bg-transparent px-5 py-2 text-(--color-gray-600) transition duration-300 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-(--color-gray-700) dark:bg-(--color-gray-700) dark:text-(--color-gray-300) hover:dark:bg-(--color-gray-700) dark:hover:opacity-75"
-					disabled={pending}
-				>
+				<ActionButton type="button" disabled={pending}>
 					Cancel
-				</button>
+				</ActionButton>
 			</AlertDialog.Cancel>
-			<button
-				type="submit"
-				disabled={pending}
-				className="ease cursor-pointer rounded-2xl bg-red-500 px-5 py-2 text-(--color-white) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
-			>
+			<DangerButton type="submit" disabled={pending}>
 				Delete card
-			</button>
+			</DangerButton>
 		</>
 	);
 }

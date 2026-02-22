@@ -1,17 +1,43 @@
+import styled from "styled-components";
+
 export default function Footer() {
 	return (
-		<footer className="m-auto p-6 text-(--color-gray-800) dark:text-(--color-gray-300)">
-			<p>
+		<FooterWrapper>
+			<FooterContent>
 				Made by{" "}
-				<a
+				<Developer
 					href="https://github.com/arvingarciabtw"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="underline hover:no-underline"
 				>
 					@arvingarciabtw
-				</a>
-			</p>
-		</footer>
+				</Developer>
+			</FooterContent>
+		</FooterWrapper>
 	);
 }
+
+const FooterWrapper = styled.footer`
+	padding: 1.5rem;
+	margin: auto;
+	color: var(--color-gray-800);
+
+	html.dark & {
+		color: var(--color-gray-300);
+	}
+`;
+
+const FooterContent = styled.p``;
+
+const Developer = styled.a`
+	text-decoration: underline;
+  color: var(--color-black);
+
+	&:hover {
+		text-decoration: none;
+	}
+
+	html.dark & {
+    color: var(--color-white);
+	}
+`;

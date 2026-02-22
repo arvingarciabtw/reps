@@ -1,4 +1,4 @@
-import HeatmapClient from "@/ui/profile/heatmap-client";
+import HeatmapClient from "@/ui/profile/heatmap/heatmap-client";
 import {
 	fetchReviewHeatmapData,
 	fetchAvailableYears,

@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import Link from "next/link";
 import Demo from "@/ui/general/demo";
 import { auth } from "@/lib/auth";
@@ -20,30 +21,106 @@ async function LandingSection() {
 	if (session) redirect("/dashboard");
 
 	return (
-		<div className="my-auto">
-			<div className="mb-4">
-				<h1 className="mb-4 w-full text-6xl font-semibold sm:max-w-xl dark:text-(--color-white)">
+		<Container>
+			<ContentWrapper>
+				<Title>
 					Spaced repetition, for <span>coders.</span>
-				</h1>
-				<p className="mb-6 max-w-lg text-(--color-gray-600) dark:text-(--color-gray-300)">
+				</Title>
+				<Description>
 					Reps is a spaced repetition app built for programmers who want a
 					cleaner UI, native syntax highlighting, and an algorithm that moves
 					through cards faster. No plugins, no config, no bloat.
-				</p>
-				<div className="mb-8">
+				</Description>
+				<ButtonGroup>
 					<Link href="/sign-in">
-						<button className="ease cursor-pointer rounded-2xl bg-(--color-primary) px-5 py-2 font-medium text-(--color-bg) transition duration-300 hover:opacity-75">
-							Sign in
-						</button>
+						<PrimaryButton>Sign in</PrimaryButton>
 					</Link>
 					<Link href="/overview">
-						<button className="ease cursor-pointer rounded-2xl bg-transparent px-5 py-2 font-normal text-(--color-white) transition duration-300 hover:opacity-75">
-							Learn more
-						</button>
+						<GhostButton>Learn more</GhostButton>
 					</Link>
-				</div>
+				</ButtonGroup>
 				<Demo />
-			</div>
-		</div>
+			</ContentWrapper>
+		</Container>
 	);
 }
+
+const Container = styled.div`
+	margin-top: auto;
+	margin-bottom: auto;
+`;
+
+const ContentWrapper = styled.div`
+	margin-bottom: 1rem;
+`;
+
+const Title = styled.h1`
+	margin-bottom: 1rem;
+	width: 100%;
+	font-size: 3.75rem; /* 6xl */
+	font-weight: 800;
+  line-height: 1.125;
+
+	@media (min-width: 640px) {
+		max-width: 36rem; /* sm:max-w-xl */
+	}
+
+	html.dark & {
+		color: var(--color-white);
+	}
+`;
+
+const Description = styled.p`
+	margin-bottom: 1.5rem;
+	max-width: 32rem; /* max-w-lg */
+	color: var(--color-gray-600);
+
+	html.dark & {
+		color: var(--color-gray-300);
+	}
+`;
+
+const ButtonGroup = styled.div`
+	margin-bottom: 2rem;
+	display: flex;
+	gap: 0.5rem;
+
+  & a { 
+    text-decoration: none;
+    color: var(--black);
+  }
+`;
+
+const PrimaryButton = styled.button`
+	cursor: pointer;
+	border-radius: 1rem;
+	background-color: var(--color-primary);
+	padding: 0.5rem 1.25rem;
+	font-weight: 500;
+	color: var(--color-bg);
+	transition: opacity 0.3s ease;
+	border: none;
+
+	&:hover {
+		opacity: 0.75;
+	}
+`;
+
+const GhostButton = styled.button`
+	cursor: pointer;
+	border-radius: 1rem;
+	background-color: transparent;
+	padding: 0.5rem 1.25rem;
+	font-weight: 400;
+	color: var(--color-black);
+	transition: opacity 0.3s ease;
+	border: none;
+
+	&:hover {
+		opacity: 0.75;
+	}
+
+	html.dark & {
+		color: var(--color-white);
+	}
+`;

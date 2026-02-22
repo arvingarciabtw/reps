@@ -1,5 +1,14 @@
 import { Dispatch, SetStateAction } from "react";
 import Card from "@/ui/card/card";
+import {
+	Container,
+	InputGroup,
+	StyledSection,
+	OutputSection,
+	Label,
+	Heading,
+	TextArea,
+} from "@/ui/card/card.style";
 
 export default function CardInputs({
 	front,
@@ -15,8 +24,8 @@ export default function CardInputs({
 	};
 }) {
 	return (
-		<div className="flex flex-col gap-4 sm:flex-row">
-			<div className="flex flex-col gap-4 sm:flex-1">
+		<Container>
+			<InputGroup>
 				<Input
 					heading={"Front"}
 					type={"front"}
@@ -29,9 +38,9 @@ export default function CardInputs({
 					value={back.value}
 					onChange={back.setter}
 				/>
-			</div>
+			</InputGroup>
 			<Output front={front.value} back={back.value} />
-		</div>
+		</Container>
 	);
 }
 
@@ -51,33 +60,25 @@ function Input({
 	}
 
 	return (
-		<section className="flex flex-col gap-2 sm:flex-1">
-			<label
-				htmlFor={type}
-				className="self-start text-(--color-gray-600) dark:text-(--color-gray-300)"
-			>
-				{heading}
-			</label>
-			<textarea
+		<StyledSection>
+			<Label htmlFor={type}>{heading}</Label>
+			<TextArea
 				required
 				name={type}
 				id={type}
-				draggable="false"
-				className="min-h-50 w-full resize-none overflow-y-auto rounded-lg bg-(--color-gray-light) p-4 font-mono text-sm text-(--color-gray-800) focus:outline-1 focus:outline-(--color-gray-100) sm:min-h-25 dark:bg-(--color-gray-800) dark:text-(--color-gray-300) dark:focus:outline-(--color-gray-700)"
+				spellCheck="false"
 				value={value}
 				onChange={handleChange}
-			></textarea>
-		</section>
+			/>
+		</StyledSection>
 	);
 }
 
 function Output({ front, back }: { front: string; back: string }) {
 	return (
-		<section className="flex w-full flex-1 flex-col gap-2 self-stretch">
-			<h1 className="self-start text-(--color-gray-600) dark:text-(--color-gray-300)">
-				Output
-			</h1>
+		<OutputSection>
+			<Heading>Output</Heading>
 			<Card front={front} back={back} />
-		</section>
+		</OutputSection>
 	);
 }

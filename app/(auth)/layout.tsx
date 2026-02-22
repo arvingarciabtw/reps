@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import styled from "styled-components";
 
 export default async function AuthLayout({
 	children,
@@ -22,10 +23,19 @@ export default async function AuthLayout({
 	return (
 		<>
 			<NavBar session={session} theme={theme} />
-			<main className="mx-auto grid w-full max-w-4xl flex-1 place-items-center p-6">
-				{children}
-			</main>
+			<MainContent>{children}</MainContent>
 			<Footer />
 		</>
 	);
 }
+
+const MainContent = styled.main`
+	margin-left: auto;
+	margin-right: auto;
+	display: grid;
+	width: 100%;
+	max-width: 56rem; /* max-w-4xl */
+	flex: 1;
+	place-items: center;
+	padding: 1.5rem; /* p-6 */
+`;

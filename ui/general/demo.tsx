@@ -1,15 +1,16 @@
 "use client";
 
+import React from "react";
 import CardInputs from "@/ui/card/card-inputs";
+import styled from "styled-components";
 import { DEMO_FRONT } from "@/lib/constants/card-inputs";
-import { useState } from "react";
 
 export default function Demo() {
-	const [frontValue, setFrontValue] = useState(DEMO_FRONT);
-	const [backValue, setBackValue] = useState("number");
+	const [frontValue, setFrontValue] = React.useState(DEMO_FRONT);
+	const [backValue, setBackValue] = React.useState("number");
 
 	return (
-		<section className="mt-4 text-(--color-gray-600)">
+		<DemoWrapper>
 			<CardInputs
 				front={{
 					value: frontValue,
@@ -20,6 +21,11 @@ export default function Demo() {
 					setter: setBackValue,
 				}}
 			/>
-		</section>
+		</DemoWrapper>
 	);
 }
+
+const DemoWrapper = styled.div`
+	margin-top: 1rem;
+	color: var(--color-gray-600);
+`;

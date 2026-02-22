@@ -3,11 +3,18 @@
 import Link from "next/link";
 import CardInputs from "@/ui/card/card-inputs";
 import CardInputsErrors from "@/ui/card/card-inputs-errors";
-import { FRONT } from "@/lib/constants/card-inputs";
-import { BACK } from "@/lib/constants/card-inputs";
+import { FRONT, BACK } from "@/lib/constants/card-inputs";
 import { createCard } from "@/actions/card-actions";
 import { useState, useActionState } from "react";
 import { useFormStatus } from "react-dom";
+import {
+	PageWrapper,
+	Description,
+	PrimaryLink,
+	Form,
+	ButtonGroup,
+	ActionButton,
+} from "@/ui/card/card.style";
 
 export default function CreateCard({
 	deckId,
@@ -21,20 +28,19 @@ export default function CreateCard({
 	const [backValue, setBackValue] = useState(BACK);
 
 	return (
-		<div className="mx-auto my-auto flex w-full flex-col text-center text-(--color-gray-600) dark:text-(--color-gray-300)">
-			<p className="max-w-120 self-center">
+		<PageWrapper>
+			<Description>
 				To add cards to your <span>{deckTitle}</span> deck, you can use{" "}
-				<Link
+				<PrimaryLink
 					href="https://www.markdownguide.org/"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-(--color-primary) underline hover:no-underline"
 				>
 					Markdown
-				</Link>{" "}
+				</PrimaryLink>{" "}
 				syntax. You can flip the output below to see what it looks like.
-			</p>
-			<form className="flex flex-col" action={formAction}>
+			</Description>
+			<Form action={formAction}>
 				<input type="hidden" name="deckId" value={deckId} />
 				<SubmitButtons deckId={deckId} />
 				<CardInputsErrors state={state} />
@@ -48,8 +54,8 @@ export default function CreateCard({
 						setter: setBackValue,
 					}}
 				/>
-			</form>
-		</div>
+			</Form>
+		</PageWrapper>
 	);
 }
 
@@ -57,22 +63,13 @@ function SubmitButtons({ deckId }: { deckId: string }) {
 	const { pending } = useFormStatus();
 
 	return (
-		<div className="mt-4 mb-6 flex items-center gap-4 self-center text-(--color-white) dark:text-(--color-gray-300)">
+		<ButtonGroup>
 			<Link href={`/deck/${deckId}/view`}>
-				<button
-					className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-200) bg-transparent px-5 py-2 text-(--color-gray-600) transition duration-300 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-(--color-gray-700) dark:bg-(--color-gray-800) dark:text-(--color-gray-300) dark:hover:bg-(--color-gray-800) dark:hover:text-(--color-primary)"
-					disabled={pending}
-				>
-					View cards
-				</button>
+				<ActionButton disabled={pending}>View cards</ActionButton>
 			</Link>
-			<button
-				type="submit"
-				disabled={pending}
-				className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-200) bg-transparent px-5 py-2 text-(--color-gray-600) transition duration-300 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-(--color-gray-700) dark:bg-(--color-gray-800) dark:text-(--color-gray-300) dark:hover:bg-(--color-gray-800) dark:hover:text-(--color-primary)"
-			>
+			<ActionButton type="submit" disabled={pending}>
 				Create card
-			</button>
-		</div>
+			</ActionButton>
+		</ButtonGroup>
 	);
 }

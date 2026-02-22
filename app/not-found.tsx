@@ -1,15 +1,68 @@
+import styled from "styled-components";
 import Link from "next/link";
 
 export default function NotFound() {
 	return (
-		<main className="grid h-svh place-items-center">
-			<div className="flex flex-col items-center gap-1 text-(--color-black) dark:text-(--color-white)">
-				<h1 className="text-6xl font-bold">404</h1>
-				<p className="text-(--color-gray-1)">Oops! Page not found.</p>
-				<button className="ease mt-4 cursor-pointer rounded-2xl bg-(--color-primary) px-5 py-2 font-medium text-(--color-bg) transition duration-300 hover:opacity-75 dark:text-(--color-black)">
+		<Main>
+			<Content>
+				<Title>404</Title>
+				<Message>Oops! Page not found.</Message>
+				<HomeButton>
 					<Link href="/">Go to home</Link>
-				</button>
-			</div>
-		</main>
+				</HomeButton>
+			</Content>
+		</Main>
 	);
 }
+
+const Main = styled.main`
+	display: grid;
+	height: 100svh;
+	place-items: center;
+`;
+
+const Content = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.25rem;
+	color: var(--color-black);
+
+	html.dark & {
+		color: var(--color-white);
+	}
+`;
+
+const Title = styled.h1`
+	font-size: 3.75rem; /* text-6xl */
+	font-weight: 700;
+`;
+
+const Message = styled.p`
+	color: var(--color-gray-1);
+`;
+
+const HomeButton = styled.button`
+	margin-top: 1rem;
+	cursor: pointer;
+	border-radius: 1rem;
+	background-color: var(--color-primary);
+	padding: 0.5rem 1.25rem;
+	font-weight: 500;
+	color: var(--color-bg);
+	transition: opacity 0.3s ease;
+	border: none;
+
+	&:hover {
+		opacity: 0.75;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	html.dark & {
+		color: var(--color-black);
+	}
+`;

@@ -3,6 +3,17 @@ import { Trash2 } from "react-feather";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { deleteDeck } from "@/actions/deck-actions";
+import {
+	CancelButton,
+	DeleteButton,
+	DeleteDeckButton,
+	StyledAlertDialogOverlay,
+	StyledAlertDialogContent,
+	StyledAlertDialogTitle,
+	StyledAlertDialogDescription,
+	DeleteForm,
+	Error,
+} from "@/ui/deck/deck.style";
 
 function DeleteButtons() {
 	const { pending } = useFormStatus();
@@ -10,20 +21,11 @@ function DeleteButtons() {
 	return (
 		<>
 			<AlertDialog.Cancel asChild>
-				<button
-					className="ease flex cursor-pointer items-center gap-2 rounded-2xl border border-(--color-gray-200) bg-transparent px-5 py-2 text-(--color-gray-600) transition duration-300 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-(--color-gray-700) dark:bg-(--color-gray-700) dark:text-(--color-gray-300) hover:dark:bg-(--color-gray-700) dark:hover:opacity-75"
-					disabled={pending}
-				>
-					Cancel
-				</button>
+				<CancelButton disabled={pending}>Cancel</CancelButton>
 			</AlertDialog.Cancel>
-			<button
-				type="submit"
-				disabled={pending}
-				className="ease cursor-pointer rounded-2xl bg-red-500 px-5 py-2 text-(--color-white) transition duration-300 hover:opacity-75 disabled:cursor-not-allowed disabled:opacity-50"
-			>
+			<DeleteButton type="submit" disabled={pending}>
 				Delete deck
-			</button>
+			</DeleteButton>
 		</>
 	);
 }
@@ -34,36 +36,27 @@ export default function DeleteDeckModal({ deckId }: { deckId: string }) {
 	return (
 		<AlertDialog.Root>
 			<AlertDialog.Trigger asChild>
-				<button
-					aria-label="Delete deck button"
-					className="ease cursor-pointer rounded-full p-1.5 transition duration-300 hover:bg-(--color-gray-100) dark:hover:bg-(--color-gray-700)"
-				>
-					<Trash2 className="h-4 w-4" />
-				</button>
+				<DeleteDeckButton aria-label="Delete deck button">
+					<Trash2 style={{ width: "1rem", height: "1rem" }} />
+				</DeleteDeckButton>
 			</AlertDialog.Trigger>
 			<AlertDialog.Portal>
-				<AlertDialog.Overlay className="fixed inset-0 bg-(--color-black) opacity-75" />
-				<AlertDialog.Content className="fixed top-[50%] left-[50%] flex w-full max-w-80 translate-x-[-50%] translate-y-[-50%] flex-col items-center rounded-2xl border border-(--color-gray-700) bg-(--color-white) p-6 text-(--color-gray-300) outline-none dark:bg-(--color-gray-800)">
-					<AlertDialog.Title className="mb-2 text-2xl font-medium text-(--color-gray-800) dark:text-(--color-white)">
+				<StyledAlertDialogOverlay />
+				<StyledAlertDialogContent>
+					<StyledAlertDialogTitle>
 						Are you absolutely sure?
-					</AlertDialog.Title>
-					<AlertDialog.Description className="mb-4 text-center text-(--color-gray-600) dark:text-(--color-gray-300)">
+					</StyledAlertDialogTitle>
+					<StyledAlertDialogDescription>
 						This action cannot be undone. This will permanently delete your
 						deck.
-					</AlertDialog.Description>
-					<form action={formAction} className="flex gap-4">
+					</StyledAlertDialogDescription>
+					<DeleteForm action={formAction}>
 						<input type="hidden" name="deckId" value={deckId} />
-						{state.errors?.title && (
-							<p className="mt-1 text-sm text-red-500">
-								{state.errors.title[0]}
-							</p>
-						)}
-						{state.message && (
-							<p className="mt-1 text-sm text-red-500">{state.message}</p>
-						)}
+						{state.errors?.title && <Error>{state.errors.title[0]}</Error>}
+						{state.message && <Error>{state.message}</Error>}
 						<DeleteButtons />
-					</form>
-				</AlertDialog.Content>
+					</DeleteForm>
+				</StyledAlertDialogContent>
 			</AlertDialog.Portal>
 		</AlertDialog.Root>
 	);

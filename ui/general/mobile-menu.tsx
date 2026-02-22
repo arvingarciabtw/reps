@@ -3,7 +3,101 @@ import { Menu, ArrowLeft } from "react-feather";
 import { Dialog, VisuallyHidden } from "radix-ui";
 import SignOut from "../auth/sign-out";
 import Link from "next/link";
-import { useState } from "react";
+import React from "react";
+import styled from "styled-components";
+
+const MobileMenuButton = styled.button`
+	margin-left: auto;
+	cursor: pointer;
+  background-color: transparent;
+  border: none;
+
+	html.dark & {
+		color: var(--color-gray-300);
+	}
+
+	@media (min-width: 40rem) {
+		display: none;
+	}
+`;
+
+const StyledDialogOverlay = styled(Dialog.Overlay)`
+	position: fixed;
+	inset: 0;
+	background-color: var(--color-black);
+	opacity: 0.75;
+`;
+
+const StyledDialogContent = styled(Dialog.Content)`
+	padding: 1.5rem;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	display: grid;
+	place-items: center;
+	background-color: var(--color-white);
+	color: var(--color-gray-800);
+	border: 1px solid var(--color-gray-700);
+	outline: none;
+
+	html.dark & {
+		background-color: var(--color-black);
+		color: var(--color-gray-300);
+	}
+`;
+
+const StyledDialogClose = styled(Dialog.Close)`
+	position: absolute;
+	top: 1.5rem;
+	left: 1.5rem;
+`;
+
+const NavigationList = styled.ul`
+  padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	font-size: 1.5rem;
+  list-style-type: none;
+`;
+
+const NavigationItem = styled.li`
+	transition: opacity 0.3s ease;
+
+	&:hover {
+		opacity: 0.75;
+	}
+
+  & a {
+    text-decoration: none;
+    color: var(--color-black);
+  }
+
+  html.dark & a {
+    color: var(--color-gray-300);
+  }
+`;
+
+const SignOutButton = styled.button`
+	cursor: pointer;
+  background: transparent;
+  border: none;
+
+  html.dark & {
+    color: var(--color-gray-300);
+  }
+`;
+
+const BackButton = styled.button`
+	cursor: pointer;
+  background: transparent;
+  border: none;
+
+  html.dark & {
+    color: var(--color-gray-300);
+  }
+`;
 
 export default function MobileMenu({
 	session,
@@ -14,87 +108,89 @@ export default function MobileMenu({
 	onSignOut: () => void;
 	isSigningOut?: boolean;
 }) {
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = React.useState(false);
 
 	return (
 		<Dialog.Root open={open} onOpenChange={setOpen}>
 			<Dialog.Trigger asChild>
-				<button
-					aria-label="Mobile menu"
-					className="ml-auto hover:cursor-pointer sm:hidden dark:text-(--color-gray-300)"
-				>
+				<MobileMenuButton aria-label="Mobile menu">
 					<Menu />
-				</button>
+				</MobileMenuButton>
 			</Dialog.Trigger>
 			<Dialog.Portal>
-				<Dialog.Overlay className="fixed inset-0 bg-(--color-black) opacity-75" />
-				<Dialog.Content className="fixed grid h-full w-full place-items-center border border-(--color-gray-700) bg-(--color-white) p-6 text-(--color-gray-800) outline-none dark:bg-(--color-black) dark:text-(--color-gray-300)">
+				<StyledDialogOverlay />
+				<StyledDialogContent>
 					<VisuallyHidden.Root>
 						<Dialog.Title>Mobile Menu</Dialog.Title>
 					</VisuallyHidden.Root>
 					<VisuallyHidden.Root>
 						<Dialog.Description>Menu for navigation</Dialog.Description>
 					</VisuallyHidden.Root>
-					<Dialog.Close asChild className="absolute top-6 left-6">
-						<button aria-label="Close">
+					<StyledDialogClose asChild>
+						<BackButton aria-label="Close">
 							<ArrowLeft />
-						</button>
-					</Dialog.Close>
+						</BackButton>
+					</StyledDialogClose>
 					<nav>
-						<ul className="flex flex-col items-center gap-4 text-2xl">
+						<NavigationList>
 							{session !== null && (
-								<li className="ease transition duration-300 hover:opacity-75">
+								<NavigationItem>
 									<Link
 										href="/dashboard"
 										onClick={() => setTimeout(() => setOpen(false), 500)}
 									>
 										Dashboard
 									</Link>
-								</li>
+								</NavigationItem>
 							)}
-							<li className="ease transition duration-300 hover:opacity-75">
+							{session === null && (
+								<NavigationItem>
+									<Link
+										href="/"
+										onClick={() => setTimeout(() => setOpen(false), 500)}
+									>
+									  Home	
+									</Link>
+								</NavigationItem>
+							)}
+							<NavigationItem>
 								<Link
 									href="/overview"
 									onClick={() => setTimeout(() => setOpen(false), 500)}
 								>
 									Overview
 								</Link>
-							</li>
+							</NavigationItem>
 							{session === null && (
-								<li className="ease transition duration-300 hover:opacity-75">
+								<NavigationItem>
 									<Link
 										href="/dashboard"
 										onClick={() => setTimeout(() => setOpen(false), 500)}
 									>
 										Sign in
 									</Link>
-								</li>
+								</NavigationItem>
 							)}
 							{session && (
-								<li className="ease transition duration-300 hover:opacity-75">
+								<NavigationItem>
 									<Link
 										href="/profile"
 										onClick={() => setTimeout(() => setOpen(false), 500)}
 									>
 										Profile
 									</Link>
-								</li>
+								</NavigationItem>
 							)}
 							{session && (
-								<li className="ease transition duration-300 hover:opacity-75">
+								<NavigationItem>
 									<SignOut onSignOut={onSignOut} isSigningOut={isSigningOut}>
-										<button
-											className="cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
-											disabled={isSigningOut}
-										>
-											Sign out
-										</button>
+										<SignOutButton>Sign out</SignOutButton>
 									</SignOut>
-								</li>
+								</NavigationItem>
 							)}
-						</ul>
+						</NavigationList>
 					</nav>
-				</Dialog.Content>
+				</StyledDialogContent>
 			</Dialog.Portal>
 		</Dialog.Root>
 	);

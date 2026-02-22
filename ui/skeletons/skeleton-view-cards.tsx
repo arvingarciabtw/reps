@@ -1,30 +1,83 @@
+import styled, { keyframes } from "styled-components";
 import SkeletonPagination from "./skeleton-pagination";
+
+const pulse = keyframes`
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+`;
+
+const Wrapper = styled.div`
+	height: 100%;
+	width: 100%;
+	align-self: flex-start;
+	justify-self: flex-start;
+`;
+
+const SkeletonBase = styled.div`
+	animation: ${pulse} 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	background-color: var(--color-gray-200);
+
+	html.dark & {
+		background-color: var(--color-gray-700);
+	}
+`;
+
+const CircleSkeleton = styled(SkeletonBase)`
+	height: 1.25rem;
+	width: 1.25rem;
+	border-radius: 9999px;
+`;
+
+const TextLineSkeleton = styled(SkeletonBase)`
+	height: 1.25rem;
+	width: 100%;
+	border-radius: 0.375rem;
+`;
+
+const GridRow = styled.div`
+	display: grid;
+	grid-template-columns: 20px 1fr 1fr 20px 20px;
+	align-items: center;
+	gap: 1rem;
+`;
+
+const HeaderRow = styled(GridRow)`
+	margin-bottom: 0.5rem;
+	border-bottom: 1px dashed var(--color-gray-700);
+	padding-bottom: 1rem;
+`;
+
+const TableBody = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	padding-top: 1rem;
+`;
 
 export default function ViewCardsSkeleton() {
 	return (
-		<div className="h-full w-full self-start justify-self-start">
+		<Wrapper>
 			<SkeletonPagination />
-			<div className="mb-2 grid grid-cols-[20px_1fr_1fr_20px_20px] items-center gap-4 border-b border-dashed border-(--color-gray-700) pb-4">
-				<div className="h-5 w-5 animate-pulse rounded-full bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-				<div className="h-5 w-full animate-pulse rounded-md bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-				<div className="h-5 w-full animate-pulse rounded-md bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-				<span></span>
-				<div className="h-5 w-5 animate-pulse rounded-full bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-			</div>
-			<div className="flex flex-col gap-6 pt-4">
+
+			<HeaderRow>
+				<CircleSkeleton />
+				<TextLineSkeleton />
+				<TextLineSkeleton />
+				<span /> {/* Spacer */}
+				<CircleSkeleton />
+			</HeaderRow>
+
+			<TableBody>
 				{[...Array(15)].map((_, index) => (
-					<div
-						key={index}
-						className="grid grid-cols-[20px_1fr_1fr_20px_20px] items-center gap-4 rounded-lg"
-					>
-						<div className="h-5 w-5 animate-pulse rounded-full bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-						<div className="h-5 w-full animate-pulse rounded-md bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-						<div className="h-5 w-full animate-pulse rounded-md bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-						<div className="h-5 w-5 animate-pulse rounded-full bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-						<div className="h-5 w-5 animate-pulse rounded-full bg-(--color-gray-200) dark:bg-(--color-gray-700)" />
-					</div>
+					<GridRow key={index}>
+						<CircleSkeleton />
+						<TextLineSkeleton />
+						<TextLineSkeleton />
+						<CircleSkeleton />
+						<CircleSkeleton />
+					</GridRow>
 				))}
-			</div>
-		</div>
+			</TableBody>
+		</Wrapper>
 	);
 }
