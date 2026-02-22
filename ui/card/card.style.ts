@@ -438,6 +438,7 @@ const StyledLink = styled(Link)`
 	height: 100%;
 	width: 100%;
 	place-items: center;
+  color: var(--color-black);
 `;
 
 const PageWrapper = styled.div`
