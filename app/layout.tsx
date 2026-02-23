@@ -8,6 +8,7 @@ import {
 import { cookies } from "next/headers";
 import { LIGHT_COLORS, DARK_COLORS } from "@/lib/constants/colors";
 import StyledComponentsRegistry from "@/lib/registry";
+import HljsTheme from '@/ui/HljsTheme'
 import styled from "styled-components";
 
 const atkinsonHyperlegibleNext = Atkinson_Hyperlegible_Next({
@@ -58,9 +59,25 @@ export default async function RootLayout({
 			className={`${atkinsonHyperlegibleNext.variable} ${firaCode.variable} ${firaSans.variable} antialiased ${theme === "dark" && "dark"}`}
 			data-color-theme={theme}
 			style={themeColors}
+
 		>
+      <head>
+      <link
+        id="hljs-light"
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css"
+      />
+      <link
+        id="hljs-dark"
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
+      />
+      </head>
 			<StyledComponentsRegistry>
-				<StyledBody>{children}</StyledBody>
+				<StyledBody>
+          <HljsTheme />
+          {children}
+        </StyledBody>
 			</StyledComponentsRegistry>
 		</html>
 	);

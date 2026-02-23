@@ -1,7 +1,4 @@
-@import "highlight.js/styles/atom-one-light.css";
-
 html.dark {
-  @import "highlight.js/styles/atom-one-dark.css";
 	scrollbar-color: var(--color-gray-600) var(--color-gray-800);
 }
 
