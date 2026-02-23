@@ -168,20 +168,26 @@ const OutputSection = styled.section`
 
 const Label = styled.label`
 	align-self: flex-start;
-	color: var(--color-gray-600);
+	color: var(--color-black);
+  font-weight: bold;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
 
 	html.dark & {
-		color: var(--color-gray-300);
+		color: var(--color-primary);
 	}
 `;
 
 const Heading = styled.h1`
 	align-self: flex-start;
 	font-size: 1rem; /* Adjust as needed per your h1 defaults */
-	color: var(--color-gray-600);
+  font-weight: bold;
+	color: var(--color-black);
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
 
 	html.dark & {
-		color: var(--color-gray-300);
+		color: var(--color-primary);
 	}
 `;
 
@@ -469,12 +475,16 @@ const Description = styled.p`
 
 // Typography & Links
 const PrimaryLink = styled(Link)`
-	color: var(--color-primary);
+	color: var(--color-black);
 	text-decoration: underline;
 
 	&:hover {
 		text-decoration: none;
 	}
+
+  html.dark & {
+    color: var(--color-white);
+  }
 `;
 
 const ButtonGroup = styled.div`
