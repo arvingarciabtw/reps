@@ -6,7 +6,10 @@ import {
 	Fira_Sans,
 } from "next/font/google";
 import { cookies } from "next/headers";
-import { LIGHT_COLORS, DARK_COLORS } from "@/lib/constants/colors";
+import {
+	LIGHT_COLORS,
+	DARK_COLORS,
+} from "@/components/ThemeToggle/ThemeToggle.constants";
 import StyledComponentsRegistry from "@/lib/registry";
 import HljsTheme from "@/components/HljsTheme";
 import Header from "@/components/Header";

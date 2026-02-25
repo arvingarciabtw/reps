@@ -3,7 +3,10 @@
 import Link from "next/link";
 import CardInputs from "@/components/CardPlayground";
 import CardErrors from "@/components/CardErrors";
-import { FRONT, BACK } from "@/lib/constants/card-inputs";
+import {
+	FRONT,
+	BACK,
+} from "@/components/CardPlayground/CardPlayground.constants";
 import { createCard } from "@/actions/card-actions";
 import { useState, useActionState } from "react";
 import { useFormStatus } from "react-dom";

@@ -1,4 +1,4 @@
-import * as CONSTANTS from "@/lib/constants/heatmap";
+import * as CONSTANTS from "@/components/Heatmap/Heatmap.constants";
 import { format } from "date-fns";
 import { Tooltip } from "radix-ui";
 import {

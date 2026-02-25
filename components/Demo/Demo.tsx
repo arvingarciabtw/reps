@@ -1,6 +1,6 @@
 "use client";
 
-import { DEMO_FRONT, DEMO_BACK } from "@/lib/constants/card-inputs";
+import { DEMO_FRONT, DEMO_BACK } from "@/components/Demo/Demo.constants";
 import React from "react";
 import CardPlayground from "@/components/CardPlayground";
 import { DemoWrapper } from "@/components/Demo/Demo.style";

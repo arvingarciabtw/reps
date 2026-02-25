@@ -4,7 +4,10 @@ import React from "react";
 import Cookie from "js-cookie";
 import { Sun, Moon } from "react-feather";
 import { ThemeToggleWrapper } from "@/components/ThemeToggle/ThemeToggle.style";
-import { LIGHT_COLORS, DARK_COLORS } from "@/lib/constants/colors";
+import {
+	LIGHT_COLORS,
+	DARK_COLORS,
+} from "@/components/ThemeToggle/ThemeToggle.constants";
 
 function DarkLightToggle({ initialTheme }: { initialTheme: string }) {
 	const [theme, setTheme] = React.useState(initialTheme);
