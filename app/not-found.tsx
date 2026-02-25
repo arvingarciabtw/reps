@@ -3,28 +3,24 @@ import Link from "next/link";
 
 export default function NotFound() {
 	return (
-		<Main>
-			<Content>
-				<Title>404</Title>
-				<Message>Oops! Page not found.</Message>
-				<HomeButton>
-					<Link href="/">Go to home</Link>
-				</HomeButton>
-			</Content>
-		</Main>
+		<Content>
+			<Title>404</Title>
+			<Message>Oops! Page not found.</Message>
+			<HomeButton>
+				<Link href="/">Go to home</Link>
+			</HomeButton>
+		</Content>
 	);
 }
 
-const Main = styled.main`
-	display: grid;
-	height: 100svh;
-	place-items: center;
-`;
-
 const Content = styled.div`
+	flex: 1;
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
+	align-self: center;
+	justify-self: center;
 	gap: 0.25rem;
 	color: var(--color-black);
 

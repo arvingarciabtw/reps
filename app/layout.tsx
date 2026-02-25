@@ -9,6 +9,10 @@ import { cookies } from "next/headers";
 import { LIGHT_COLORS, DARK_COLORS } from "@/lib/constants/colors";
 import StyledComponentsRegistry from "@/lib/registry";
 import HljsTheme from "@/components/HljsTheme";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import styled from "styled-components";
 
 const atkinsonHyperlegibleNext = Atkinson_Hyperlegible_Next({
@@ -46,9 +50,12 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const session = await auth.api.getSession({
+		headers: await headers(),
+	});
+
 	const savedTheme = (await cookies()).get("color-theme");
 	const theme = savedTheme?.value || "light";
-
 	const themeColors = (
 		theme === "light" ? LIGHT_COLORS : DARK_COLORS
 	) as React.CSSProperties;
@@ -75,7 +82,9 @@ export default async function RootLayout({
 			<StyledComponentsRegistry>
 				<StyledBody>
 					<HljsTheme />
-					{children}
+					<Header session={session} theme={theme} />
+					<MainContent>{children}</MainContent>
+					<Footer />
 				</StyledBody>
 			</StyledComponentsRegistry>
 		</html>
@@ -91,4 +100,16 @@ const StyledBody = styled.body`
 	html.dark & {
 		background-color: var(--color-black);
 	}
+`;
+
+const MainContent = styled.main`
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	width: 100%;
+	max-width: 56rem;
+	flex: 1;
+	flex-direction: column;
+	padding: 1.5rem;
 `;
