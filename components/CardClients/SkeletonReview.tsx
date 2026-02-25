@@ -1,9 +1,4 @@
-import styled, { keyframes } from "styled-components";
-
-const pulse = keyframes`
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-`;
+import styled from "styled-components";
 
 const Container = styled.div`
 	margin-top: auto;
@@ -34,7 +29,7 @@ const MainCardSkeleton = styled.div`
 	border-radius: 0.5rem;
 	background-color: var(--color-gray-200);
 	padding: 1rem;
-	animation: ${pulse} 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
 	@media (min-width: 640px) {
 		flex: 1;
@@ -61,7 +56,7 @@ const TextSkeleton = styled.p`
 	width: 5.5rem;
 	border-radius: 0.375rem;
 	background-color: var(--color-gray-200);
-	animation: ${pulse} 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
 	html.dark & {
 		background-color: var(--color-gray-700);
@@ -79,7 +74,7 @@ const CircleButtonSkeleton = styled.button`
 	border-radius: 9999px;
 	border: none;
 	background-color: var(--color-gray-200);
-	animation: ${pulse} 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
 	html.dark & {
 		background-color: var(--color-gray-700);

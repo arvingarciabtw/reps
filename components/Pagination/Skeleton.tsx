@@ -1,9 +1,4 @@
-import styled, { keyframes } from "styled-components";
-
-const pulse = keyframes`
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-`;
+import styled from "styled-components";
 
 const PaginationWrapper = styled.div`
 	margin-bottom: 2rem;
@@ -14,11 +9,12 @@ const PaginationWrapper = styled.div`
 `;
 
 const SkeletonBox = styled.span`
+	display: inline-block;
 	height: 1.625rem;
 	width: 1.625rem;
 	border-radius: 0.375rem;
-	animation: ${pulse} 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 	background-color: var(--color-gray-200);
+	animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
 	html.dark & {
 		background-color: var(--color-gray-700);

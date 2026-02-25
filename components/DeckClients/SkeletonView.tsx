@@ -1,12 +1,7 @@
-import styled, { keyframes } from "styled-components";
-
-const pulse = keyframes`
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-`;
+import styled from "styled-components";
 
 const SkeletonBase = styled.div`
-	animation: ${pulse} 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 	background-color: var(--color-gray-200);
 	border-radius: 0.375rem;
 

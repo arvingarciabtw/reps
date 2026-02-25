@@ -1,10 +1,5 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import SkeletonPagination from "@/components/Pagination/Skeleton";
-
-const pulse = keyframes`
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-`;
 
 const Wrapper = styled.div`
 	height: 100%;
@@ -14,7 +9,7 @@ const Wrapper = styled.div`
 `;
 
 const SkeletonBase = styled.div`
-	animation: ${pulse} 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 	background-color: var(--color-gray-200);
 
 	html.dark & {
