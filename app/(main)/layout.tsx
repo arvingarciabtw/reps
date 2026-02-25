@@ -1,5 +1,5 @@
-import NavBar from "@/ui/general/navbar";
-import Footer from "@/ui/general/footer";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { cookies } from "next/headers";
@@ -19,7 +19,7 @@ export default async function MainLayout({
 
 	return (
 		<>
-			<NavBar session={session} theme={theme} />
+			<Header session={session} theme={theme} />
 			<MainContent>{children}</MainContent>
 			<Footer />
 		</>

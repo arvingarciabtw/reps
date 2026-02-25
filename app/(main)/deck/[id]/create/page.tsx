@@ -1,5 +1,5 @@
 import { fetchDeck } from "@/lib/queries";
-import CreateCard from "@/ui/card/create-card";
+import CreateCard from "@/components/CardClients/CreateCard";
 
 export default async function CreateCardPage({
 	params,

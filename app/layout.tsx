@@ -8,7 +8,7 @@ import {
 import { cookies } from "next/headers";
 import { LIGHT_COLORS, DARK_COLORS } from "@/lib/constants/colors";
 import StyledComponentsRegistry from "@/lib/registry";
-import HljsTheme from '@/ui/HljsTheme'
+import HljsTheme from "@/components/HljsTheme";
 import styled from "styled-components";
 
 const atkinsonHyperlegibleNext = Atkinson_Hyperlegible_Next({
@@ -24,7 +24,7 @@ const firaCode = Fira_Code({
 });
 
 const firaSans = Fira_Sans({
-	weight: "700",
+	weight: "600",
 	variable: "--font-fira-sans",
 	subsets: ["latin"],
 	fallback: ["Arial", "sans-serif"],
@@ -59,25 +59,24 @@ export default async function RootLayout({
 			className={`${atkinsonHyperlegibleNext.variable} ${firaCode.variable} ${firaSans.variable} antialiased ${theme === "dark" && "dark"}`}
 			data-color-theme={theme}
 			style={themeColors}
-
 		>
-      <head>
-      <link
-        id="hljs-light"
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css"
-      />
-      <link
-        id="hljs-dark"
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
-      />
-      </head>
+			<head>
+				<link
+					id="hljs-light"
+					rel="stylesheet"
+					href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css"
+				/>
+				<link
+					id="hljs-dark"
+					rel="stylesheet"
+					href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
+				/>
+			</head>
 			<StyledComponentsRegistry>
 				<StyledBody>
-          <HljsTheme />
-          {children}
-        </StyledBody>
+					<HljsTheme />
+					{children}
+				</StyledBody>
 			</StyledComponentsRegistry>
 		</html>
 	);

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Layers } from "react-feather";
-import Deck from "@/ui/deck/deck";
-import CreateDeck from "@/ui/deck/create-deck";
+import Deck from "@/components/Deck";
+import CreateDeck from "@/components/DeckClients/CreateDeck";
 import { fetchDecks } from "@/lib/queries";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";

@@ -1,5 +1,5 @@
-import NavBar from "@/ui/general/navbar";
-import Footer from "@/ui/general/footer";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
@@ -22,7 +22,7 @@ export default async function AuthLayout({
 
 	return (
 		<>
-			<NavBar session={session} theme={theme} />
+			<Header session={session} theme={theme} />
 			<MainContent>{children}</MainContent>
 			<Footer />
 		</>

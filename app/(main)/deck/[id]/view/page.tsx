@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { Edit2, Plus } from "react-feather";
-import DeleteCard from "@/ui/card/delete-card";
+import DeleteCard from "@/components/CardClients/DeleteCard";
 import Link from "next/link";
-import Pagination from "@/ui/card/pagination";
+import Pagination from "@/components/Pagination";
 import { Suspense } from "react";
-import Skeleton from "@/ui/skeletons/skeleton-view-cards";
+import Skeleton from "@/components/CardClients/SkeletonView";
 import { fetchDeck, fetchCards } from "@/lib/queries";
 import type { CardType, DeckType } from "@/lib/definitions";
 
@@ -226,7 +226,7 @@ const ListHeader = styled(GridBase)`
 		cursor: pointer;
 		height: 1.25rem;
 		width: 1.25rem;
-    color: var(--color-gray-600);
+		color: var(--color-gray-600);
 		transition: color 0.3s ease;
 
 		&:hover {
@@ -237,9 +237,9 @@ const ListHeader = styled(GridBase)`
 			color: var(--color-primary);
 		}
 
-    html.dark & {
-      color: var(--color-gray-300);
-    }
+		html.dark & {
+			color: var(--color-gray-300);
+		}
 	}
 `;
 
@@ -249,13 +249,13 @@ const CardListWrapper = styled.div`
 	gap: 2rem; /* gap-8 */
 	padding-top: 1rem;
 
-  & svg {
-    color: var(--color-gray-600);
-  }
+	& svg {
+		color: var(--color-gray-600);
+	}
 
-  html.dark & svg {
-    color: var(--color-gray-300);
-  }
+	html.dark & svg {
+		color: var(--color-gray-300);
+	}
 
 	@media (min-width: 480px) {
 		gap: 0.5rem; /* xs:gap-2 */

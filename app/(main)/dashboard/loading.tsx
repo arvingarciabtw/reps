@@ -1,4 +1,4 @@
-import Skeleton from "@/ui/skeletons/skeleton-view-all-decks";
+import Skeleton from "@/components/DeckClients/SkeletonView";
 
 export default function Loading() {
 	return <Skeleton />;

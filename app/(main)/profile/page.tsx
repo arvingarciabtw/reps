@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
-import Heatmap from "@/ui/profile/heatmap";
+import Heatmap from "@/components/Heatmap";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 

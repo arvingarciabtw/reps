@@ -1,9 +1,11 @@
-import styled from "styled-components";
 import Link from "next/link";
-import Demo from "@/ui/general/demo";
+import Demo from "@/components/Demo";
+import Button from "@/components/Button";
+import { ArrowRight } from "react-feather";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import styled from "styled-components";
 
 export default async function App() {
 	return (
@@ -21,8 +23,8 @@ async function LandingSection() {
 	if (session) redirect("/dashboard");
 
 	return (
-		<Container>
-			<ContentWrapper>
+		<OuterWrapper>
+			<InnerWrapper>
 				<Title>
 					Spaced repetition, for <span>coders.</span>
 				</Title>
@@ -33,36 +35,39 @@ async function LandingSection() {
 				</Description>
 				<ButtonGroup>
 					<Link href="/sign-in">
-						<PrimaryButton>Sign in</PrimaryButton>
+						<Button variant="cta">Sign in</Button>
 					</Link>
 					<Link href="/overview">
-						<GhostButton>Learn more</GhostButton>
+						<Button variant="ghost">
+							Learn more
+							<ArrowRight size={18} />
+						</Button>
 					</Link>
 				</ButtonGroup>
 				<Demo />
-			</ContentWrapper>
-		</Container>
+			</InnerWrapper>
+		</OuterWrapper>
 	);
 }
 
-const Container = styled.div`
+const OuterWrapper = styled.div`
 	margin-top: auto;
 	margin-bottom: auto;
 `;
 
-const ContentWrapper = styled.div`
+const InnerWrapper = styled.div`
 	margin-bottom: 1rem;
 `;
 
 const Title = styled.h1`
 	margin-bottom: 1rem;
 	width: 100%;
-	font-size: 3.75rem; /* 6xl */
-	font-weight: 800;
-  line-height: 1.125;
+	font-size: 3.75rem;
+	font-weight: 700;
+	line-height: 1.125;
 
 	@media (min-width: 640px) {
-		max-width: 36rem; /* sm:max-w-xl */
+		max-width: 36rem;
 	}
 
 	html.dark & {
@@ -72,7 +77,7 @@ const Title = styled.h1`
 
 const Description = styled.p`
 	margin-bottom: 1.5rem;
-	max-width: 32rem; /* max-w-lg */
+	max-width: 32rem;
 	color: var(--color-gray-600);
 
 	html.dark & {
@@ -85,42 +90,8 @@ const ButtonGroup = styled.div`
 	display: flex;
 	gap: 0.5rem;
 
-  & a { 
-    text-decoration: none;
-    color: var(--black);
-  }
-`;
-
-const PrimaryButton = styled.button`
-	cursor: pointer;
-	border-radius: 1rem;
-	background-color: var(--color-primary);
-	padding: 0.5rem 1.25rem;
-	font-weight: 500;
-	color: var(--color-bg);
-	transition: opacity 0.3s ease;
-	border: none;
-
-	&:hover {
-		opacity: 0.75;
-	}
-`;
-
-const GhostButton = styled.button`
-	cursor: pointer;
-	border-radius: 1rem;
-	background-color: transparent;
-	padding: 0.5rem 1.25rem;
-	font-weight: 400;
-	color: var(--color-black);
-	transition: opacity 0.3s ease;
-	border: none;
-
-	&:hover {
-		opacity: 0.75;
-	}
-
-	html.dark & {
-		color: var(--color-white);
+	& a {
+		text-decoration: none;
+		color: var(--black);
 	}
 `;

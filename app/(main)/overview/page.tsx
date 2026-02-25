@@ -1,5 +1,5 @@
+import Demo from "@/components/Demo";
 import styled from "styled-components";
-import Demo from "@/ui/general/demo";
 
 export default function About() {
 	return (
@@ -46,23 +46,18 @@ function Content() {
 					programming fundamentals, but I had a few pain points with it:
 				</Text>
 				<List>
-					<ListItem>
-						<span>[1]</span> The UI is not to my liking.
-					</ListItem>
+					<ListItem>The UI is not to my liking.</ListItem>
 					<ListItem $maxWidth="42rem">
 						{" "}
-						{/* max-w-2xl */}
-						<span>[2]</span> It is not convenient to type code inside flashcards
-						since you have to use the <InlineCode>code</InlineCode> tag. It also
-						doesn&apos;t come with syntax highlighting.
+						It is not convenient to type code inside flashcards since you have
+						to use the <InlineCode>code</InlineCode> tag. It also doesn&apos;t
+						come with syntax highlighting.
 					</ListItem>
 					<ListItem $maxWidth="48rem">
 						{" "}
-						{/* max-w-3xl */}
-						<span>[3]</span> Anki utilizes a much more complex algorithm for
-						determining when to show flashcards, which involves cards often
-						being repeated in one session. I want to go through my cards
-						quicker.
+						Anki utilizes a much more complex algorithm for determining when to
+						show flashcards, which involves cards often being repeated in one
+						session. I want to go through my cards quicker.
 					</ListItem>
 				</List>
 
@@ -143,7 +138,7 @@ const Title = styled.h1`
 	font-weight: 700;
 
 	html.dark & {
-		color: var(--color-primary);
+		color: var(--color-white);
 	}
 `;
 
@@ -169,7 +164,7 @@ const ExternalLink = styled.a`
 `;
 
 const List = styled.ol`
-  padding-left: 0;
+	padding-left: 0;
 	margin-left: 1rem;
 	display: flex;
 	flex-direction: column;

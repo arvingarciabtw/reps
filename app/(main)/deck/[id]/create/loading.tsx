@@ -1,4 +1,4 @@
-import Skeleton from "@/ui/skeletons/skeleton-create-and-update-card";
+import Skeleton from "@/components/CardClients/SkeletonCreateUpdate";
 
 export default function Loading() {
 	return <Skeleton />;

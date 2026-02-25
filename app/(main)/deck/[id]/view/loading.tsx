@@ -1,4 +1,4 @@
-import Skeleton from "@/ui/skeletons/skeleton-view-cards";
+import Skeleton from "@/components/CardClients/SkeletonView";
 
 export default function Loading() {
 	return <Skeleton />;

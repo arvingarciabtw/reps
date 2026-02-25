@@ -1,0 +1,105 @@
+import styled from "styled-components";
+
+const CardPlaygroundWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	@media (min-width: 640px) {
+		flex-direction: row;
+	}
+`;
+
+const CardInputsGroup = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	@media (min-width: 640px) {
+		flex: 1;
+	}
+`;
+
+const CardBaseWrapper = styled.section`
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+`
+const CardInputWrapper = styled(CardBaseWrapper)`
+	@media (min-width: 640px) {
+		flex: 1;
+	}
+`;
+const CardOutputWrapper = styled(CardBaseWrapper)`
+	width: 100%;
+	flex: 1;
+	align-self: stretch;
+`;
+
+const CardInputHeading = styled.label`
+	align-self: flex-start;
+	color: var(--color-black);
+  font-weight: bold;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+
+	html.dark & {
+		color: var(--color-white);
+	}
+`;
+const CardOutputHeading = styled.h1`
+	align-self: flex-start;
+	font-size: 1rem; /* Adjust as needed per your h1 defaults */
+  font-weight: bold;
+	color: var(--color-black);
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+
+	html.dark & {
+		color: var(--color-white);
+	}
+`;
+
+const TextArea = styled.textarea`
+	min-height: 12.5rem;
+	width: 100%;
+	resize: none;
+	overflow-y: auto;
+	border-radius: 0.5rem;
+	background-color: var(--color-gray-light);
+	padding: 1rem;
+	font-family:
+		ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+		"Courier New", monospace;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	color: var(--color-gray-800);
+	border: none;
+
+	&:focus {
+		outline: 1px solid var(--color-gray-100);
+	}
+
+	@media (min-width: 640px) {
+		min-height: 6.25rem;
+	}
+
+	html.dark & {
+		background-color: var(--color-gray-800);
+		color: var(--color-gray-300);
+
+		&:focus {
+			outline-color: var(--color-gray-700);
+		}
+	}
+`;
+
+export {
+	CardPlaygroundWrapper,
+	CardInputsGroup,
+	CardInputWrapper,
+	CardOutputWrapper,
+	CardInputHeading,
+	CardOutputHeading,
+	TextArea,
+};

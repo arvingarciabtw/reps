@@ -1,5 +1,5 @@
 import { fetchCardsForReview } from "@/lib/queries";
-import ReviewCards from "@/ui/card/review-cards";
+import ReviewCards from "@/components/CardClients/ReviewCards";
 
 export default async function ReviewPage({
 	params,

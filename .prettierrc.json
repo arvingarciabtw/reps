@@ -4,7 +4,5 @@
 	"semi": true,
 	"singleQuote": false,
 	"trailingComma": "all",
-	"useTabs": true,
-	"plugins": ["prettier-plugin-tailwindcss"],
-	"tailwindStylesheet": "./app/globals.css"
+	"useTabs": true
 }

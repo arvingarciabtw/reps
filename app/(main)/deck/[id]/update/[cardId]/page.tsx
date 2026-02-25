@@ -1,5 +1,5 @@
 import { fetchDeck, fetchCard } from "@/lib/queries";
-import UpdateCard from "@/ui/card/update-card";
+import UpdateCard from "@/components/CardClients/UpdateCard";
 
 export default async function CreateCardPage({
 	params,
