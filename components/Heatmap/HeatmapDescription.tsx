@@ -1,4 +1,4 @@
-import type { ReviewStats } from "@/lib/definitions";
+import type { ReviewStats } from "@/components/Heatmap/Heatmap.types";
 import { ChevronDown } from "react-feather";
 import { Select } from "radix-ui";
 import {

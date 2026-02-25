@@ -2,7 +2,10 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import type { HeatmapData, ReviewStats } from "@/lib/definitions";
+import type {
+	HeatmapData,
+	ReviewStats,
+} from "@/components/Heatmap/Heatmap.types";
 import { HeatmapClientWrapper } from "@/components/Heatmap/Heatmap.style";
 import HeatmapDescription from "@/components/Heatmap/HeatmapDescription";
 import HeatmapLegends from "@/components/Heatmap/HeatmapLegends";

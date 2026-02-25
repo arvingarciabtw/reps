@@ -19,28 +19,3 @@ export type SessionType = {
 		updatedAt: Date;
 	};
 } | null;
-
-export type DeckType = {
-	id: string;
-	title: string;
-	createdAt: Date;
-	userId: string;
-};
-
-export type CardType = {
-	id: string;
-	front: string;
-	back: string;
-	deckId: string;
-};
-
-export type HeatmapData = {
-	date: string;
-	count: number;
-};
-
-export type ReviewStats = {
-	totalReviews: number;
-	yearReviews: number;
-	dayReviews: number;
-};

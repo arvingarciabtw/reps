@@ -1,9 +1,9 @@
 "use client";
 
+import type { CardType } from "@/components/Card/Card.types";
 import Card from "@/components/Card";
-import { Check, X, Edit2 } from "react-feather";
-import type { CardType } from "@/lib/definitions";
 import Link from "next/link";
+import { Check, X, Edit2 } from "react-feather";
 import { useState } from "react";
 import { markCardCorrect, markCardWrong } from "@/actions/card-actions";
 import {

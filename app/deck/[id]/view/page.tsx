@@ -6,7 +6,8 @@ import Pagination from "@/components/Pagination";
 import { Suspense } from "react";
 import Skeleton from "@/components/CardClients/SkeletonView";
 import { fetchDeck, fetchCards } from "@/lib/queries";
-import type { CardType, DeckType } from "@/lib/definitions";
+import type { DeckType } from "@/components/Deck/Deck.types";
+import type { CardType } from "@/components/Card/Card.types";
 
 export default async function ViewCardsPage({
 	params,

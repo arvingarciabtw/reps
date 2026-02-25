@@ -1,6 +1,9 @@
 "use server";
 
-import type { HeatmapData, ReviewStats } from "@/lib/definitions";
+import type {
+	HeatmapData,
+	ReviewStats,
+} from "@/components/Heatmap/Heatmap.types";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import prisma from "@/lib/prisma";

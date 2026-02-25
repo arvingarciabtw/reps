@@ -1,11 +1,11 @@
-import styled from "styled-components";
-import { Layers } from "react-feather";
+import type { DeckType } from "@/components/Deck/Deck.types";
 import Deck from "@/components/Deck";
 import CreateDeck from "@/components/DeckClients/CreateDeck";
+import { Layers } from "react-feather";
 import { fetchDecks } from "@/lib/queries";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import type { DeckType } from "@/lib/definitions";
+import styled from "styled-components";
 
 export default function Home() {
 	return (
