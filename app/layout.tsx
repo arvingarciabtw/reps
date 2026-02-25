@@ -10,7 +10,7 @@ import {
 	LIGHT_COLORS,
 	DARK_COLORS,
 } from "@/components/ThemeToggle/ThemeToggle.constants";
-import StyledComponentsRegistry from "@/lib/registry";
+import StyledComponentsRegistry from "@/components/Registry";
 import HljsTheme from "@/components/HljsTheme";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
