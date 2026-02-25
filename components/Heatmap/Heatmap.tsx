@@ -2,7 +2,7 @@ import HeatmapClient from "@/components/Heatmap/HeatmapClient";
 import {
 	fetchReviewHeatmapData,
 	fetchAvailableYears,
-} from "@/actions/review-history-actions";
+} from "@/actions/heatmap-actions";
 
 export default async function Heatmap({ year }: { year?: number }) {
 	const currentYear = year || new Date().getFullYear();
