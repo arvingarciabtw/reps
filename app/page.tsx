@@ -34,7 +34,7 @@ async function LandingSection() {
 					through cards faster. No plugins, no config, no bloat.
 				</Description>
 				<ButtonGroup>
-					<Link href="/sign-in">
+					<Link href="/auth">
 						<Button variant="cta">Sign in</Button>
 					</Link>
 					<Link href="/overview">

@@ -10,6 +10,6 @@ export const signInWithGithub = async () => {
 	await authClient.signIn.social({
 		provider: "github",
 		callbackURL: "/dashboard",
-		errorCallbackURL: "/sign-in",
+		errorCallbackURL: "/auth",
 	});
 };
