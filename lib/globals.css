@@ -107,6 +107,10 @@ html {
 html.dark {
 	scrollbar-color: var(--color-gray-600) var(--color-gray-800);
 }
+::selection {
+	background-color: var(--color-primary);
+	color: var(--color-black);
+}
 a {
 	text-decoration: none;
 }
@@ -114,6 +118,9 @@ code,
 pre {
 	font-family: var(--font-mono);
 	font-size: 0.875rem;
+}
+pre {
+	border-radius: 0.75rem;
 }
 
 /*
