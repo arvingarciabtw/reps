@@ -4,20 +4,17 @@ import type {
 	HeatmapData,
 	ReviewStats,
 } from "@/components/Heatmap/Heatmap.types";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
+import { getSession } from "@/utils/session";
 import prisma from "@/lib/prisma";
 
 export async function fetchReviewHeatmapData(year: number): Promise<{
 	heatmapData: HeatmapData[];
 	stats: ReviewStats;
 }> {
-	const session = await auth.api.getSession({
-		headers: await headers(),
-	});
+	const session = await getSession();
 
-	if (!session?.user?.id) {
-		throw new Error("Unauthorized");
+	if (!session) {
+		throw new Error("User not authenticated");
 	}
 
 	const userId = session.user.id;
@@ -78,12 +75,10 @@ export async function fetchReviewHeatmapData(year: number): Promise<{
 }
 
 export async function fetchAvailableYears(): Promise<number[]> {
-	const session = await auth.api.getSession({
-		headers: await headers(),
-	});
+	const session = await getSession();
 
-	if (!session?.user?.id) {
-		throw new Error("Unauthorized");
+	if (!session) {
+		throw new Error("User not authenticated");
 	}
 
 	const userId = session.user.id;

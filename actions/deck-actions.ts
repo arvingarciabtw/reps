@@ -3,8 +3,7 @@
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
+import { getSession } from "@/utils/session";
 import prisma from "@/lib/prisma";
 
 export type State = {
@@ -27,14 +26,10 @@ export async function createDeck(
 	prevState: State,
 	formData: FormData,
 ): Promise<State> {
-	const session = await auth.api.getSession({
-		headers: await headers(),
-	});
+	const session = await getSession();
 
 	if (!session) {
-		return {
-			message: "Unauthorized. Please sign in.",
-		};
+		throw new Error("User not authenticated");
 	}
 
 	const validatedFields = CreateDeck.safeParse({
@@ -73,14 +68,10 @@ export async function updateDeck(
 	prevState: State,
 	formData: FormData,
 ): Promise<State> {
-	const session = await auth.api.getSession({
-		headers: await headers(),
-	});
+	const session = await getSession();
 
 	if (!session) {
-		return {
-			message: "Unauthorized. Please sign in.",
-		};
+		throw new Error("User not authenticated");
 	}
 
 	const validatedFields = FormSchema.safeParse({
@@ -117,14 +108,10 @@ export async function deleteDeck(
 	prevState: State,
 	formData: FormData,
 ): Promise<State> {
-	const session = await auth.api.getSession({
-		headers: await headers(),
-	});
+	const session = await getSession();
 
 	if (!session) {
-		return {
-			message: "Unauthorized. Please sign in.",
-		};
+		throw new Error("User not authenticated");
 	}
 
 	const validatedFields = DeleteDeck.safeParse({

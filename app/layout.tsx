@@ -10,12 +10,11 @@ import {
 	LIGHT_COLORS,
 	DARK_COLORS,
 } from "@/components/ThemeToggle/ThemeToggle.constants";
+import { getSession } from "@/utils/session";
 import StyledComponentsRegistry from "@/components/Registry";
 import HljsTheme from "@/components/HljsTheme";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
 import styled from "styled-components";
 
 const atkinsonHyperlegibleNext = Atkinson_Hyperlegible_Next({
@@ -53,9 +52,7 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const session = await auth.api.getSession({
-		headers: await headers(),
-	});
+	const session = await getSession();
 
 	const savedTheme = (await cookies()).get("color-theme");
 	const theme = savedTheme?.value || "light";

@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 import Heatmap from "@/components/Heatmap";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
+import { getSession } from "@/utils/session";
 
 export default function ProfilePage({
 	searchParams,
@@ -18,9 +17,7 @@ export default function ProfilePage({
 }
 
 async function ProfileDescription() {
-	const session = await auth.api.getSession({
-		headers: await headers(),
-	});
+	const session = await getSession();
 
 	if (!session) return null;
 
@@ -29,7 +26,7 @@ async function ProfileDescription() {
 			<ProfileImage
 				src={session.user.image || "/images/logo.svg"}
 				alt="Profile picture"
-				width={80} // Set to 80 to match max-w-20 (5rem) logic
+				width={80}
 				height={80}
 			/>
 			<TextContainer>
@@ -75,7 +72,8 @@ const TextContainer = styled.div`
 `;
 
 const UserName = styled.h1`
-	font-size: 2.25rem; /* text-4xl */
+	font-size: 2rem;
+	font-weight: 700;
 
 	html.dark & {
 		color: var(--color-white);

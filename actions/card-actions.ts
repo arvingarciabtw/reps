@@ -3,8 +3,7 @@
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { headers } from "next/headers";
-import { auth } from "@/lib/auth";
+import { getSession } from "@/utils/session";
 import prisma from "@/lib/prisma";
 
 export type State = {
@@ -34,6 +33,12 @@ export async function createCard(
 	prevState: State,
 	formData: FormData,
 ): Promise<State> {
+	const session = await getSession();
+
+	if (!session) {
+		throw new Error("User not authenticated");
+	}
+
 	const validatedFields = CreateCard.safeParse({
 		front: formData.get("front"),
 		back: formData.get("back"),
@@ -77,6 +82,12 @@ export async function updateCard(
 	prevState: State,
 	formData: FormData,
 ): Promise<State> {
+	const session = await getSession();
+
+	if (!session) {
+		throw new Error("User not authenticated");
+	}
+
 	const validatedFields = FormSchema.safeParse({
 		id: formData.get("cardId"),
 		front: formData.get("front"),
@@ -118,6 +129,12 @@ export async function deleteCard(
 	prevState: State,
 	formData: FormData,
 ): Promise<State> {
+	const session = await getSession();
+
+	if (!session) {
+		throw new Error("User not authenticated");
+	}
+
 	const validatedFields = DeleteCard.safeParse({
 		id: formData.get("cardId"),
 		deckId: formData.get("deckId"),
@@ -151,9 +168,7 @@ export async function deleteCard(
 }
 
 export async function markCardCorrect(cardId: string, deckId: string) {
-	const session = await auth.api.getSession({
-		headers: await headers(),
-	});
+	const session = await getSession();
 
 	if (!session) {
 		throw new Error("User not authenticated");
@@ -209,9 +224,7 @@ export async function markCardCorrect(cardId: string, deckId: string) {
 }
 
 export async function markCardWrong(cardId: string, deckId: string) {
-	const session = await auth.api.getSession({
-		headers: await headers(),
-	});
+	const session = await getSession();
 
 	if (!session) {
 		throw new Error("User not authenticated");

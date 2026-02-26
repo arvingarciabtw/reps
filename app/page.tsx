@@ -2,8 +2,7 @@ import Link from "next/link";
 import Demo from "@/components/Demo";
 import Button from "@/components/Button";
 import { ArrowRight } from "react-feather";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
+import { getSession } from "@/utils/session";
 import { redirect } from "next/navigation";
 import styled from "styled-components";
 
@@ -16,9 +15,7 @@ export default async function App() {
 }
 
 async function LandingSection() {
-	const session = await auth.api.getSession({
-		headers: await headers(),
-	});
+	const session = await getSession();
 
 	if (session) redirect("/dashboard");
 

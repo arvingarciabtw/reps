@@ -1,10 +1,8 @@
 import type { DeckType } from "@/components/Deck/Deck.types";
 import Deck from "@/components/Deck";
 import CreateDeck from "@/components/DeckClients/CreateDeck";
-import { Layers } from "react-feather";
 import { fetchDecks } from "@/lib/queries";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
+import { getSession } from "@/utils/session";
 import styled from "styled-components";
 
 export default function Home() {
@@ -25,9 +23,7 @@ function Dashboard() {
 }
 
 async function Decks() {
-	const session = await auth.api.getSession({
-		headers: await headers(),
-	});
+	const session = await getSession();
 
 	if (!session) return <ErrorText>Unauthorized.</ErrorText>;
 
@@ -38,8 +34,7 @@ async function Decks() {
 			<Title>Decks</Title>
 			<Description>
 				All of your decks are below. Click on a deck to start reviewing. Click
-				on the add button on the bottom right to create a deck. View your cards
-				by clicking on the <InlineIcon /> icon.
+				on the add button on the bottom right to create a deck.
 			</Description>
 			<DeckGrid>
 				{decks.map((deck: DeckType) => (
@@ -51,8 +46,8 @@ async function Decks() {
 }
 
 const Title = styled.h1`
-	font-size: 2.25rem; /* text-4xl */
-	font-weight: 500;
+	font-size: 2rem;
+	font-weight: 700;
 
 	html.dark & {
 		color: var(--color-white);
@@ -60,6 +55,9 @@ const Title = styled.h1`
 `;
 
 const Description = styled.p`
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	margin-top: 1rem;
 	margin-bottom: 2.5rem; /* mb-10 */
 	max-width: 32rem; /* max-w-lg */
@@ -68,14 +66,6 @@ const Description = styled.p`
 	html.dark & {
 		color: var(--color-gray-300);
 	}
-`;
-
-const InlineIcon = styled(Layers)`
-	margin-left: 0.25rem;
-	margin-right: 0.25rem;
-	display: inline;
-	height: 1.125rem; /* h-4.5 */
-	width: 1.125rem;
 `;
 
 const DeckGrid = styled.section`
