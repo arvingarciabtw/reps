@@ -3,9 +3,10 @@ import { Edit2, Plus } from "react-feather";
 import DeleteCard from "@/components/CardClients/DeleteCard";
 import Link from "next/link";
 import Pagination from "@/components/Pagination";
+import Search from "@/components/Search";
 import { Suspense } from "react";
 import Skeleton from "@/components/CardClients/SkeletonView";
-import { fetchDeck, fetchCards } from "@/lib/queries";
+import { fetchDeck, fetchFilteredCards } from "@/lib/queries";
 import type { DeckType } from "@/components/Deck/Deck.types";
 import type { CardType } from "@/components/Card/Card.types";
 
@@ -14,10 +15,10 @@ export default async function ViewCardsPage({
 	searchParams,
 }: {
 	params: Promise<{ id: string }>;
-	searchParams: Promise<{ page?: string }>;
+	searchParams: Promise<{ page?: string; search?: string }>;
 }) {
 	const { id } = await params;
-	const { page } = await searchParams;
+	const { page, search } = await searchParams;
 
 	const deck = await fetchDeck(id);
 	if (!deck) return <p>Deck not found.</p>;
@@ -27,12 +28,13 @@ export default async function ViewCardsPage({
 
 	return (
 		<PageWrapper>
-			<Suspense key={`${id}-${currentPage}`} fallback={<Skeleton />}>
+			<Suspense key={`${id}-${currentPage}-${search}`} fallback={<Skeleton />}>
 				<CardsContent
 					deckId={id}
 					deck={deck}
 					currentPage={currentPage}
 					pageSize={pageSize}
+					search={search ?? ""}
 				/>
 			</Suspense>
 		</PageWrapper>
@@ -44,16 +46,19 @@ async function CardsContent({
 	deck,
 	currentPage,
 	pageSize,
+	search,
 }: {
 	deckId: string;
 	deck: DeckType;
 	currentPage: number;
 	pageSize: number;
+	search: string;
 }) {
-	const { cards, totalCount, totalPages } = await fetchCards(
+	const { cards, totalCount, totalPages } = await fetchFilteredCards(
 		deckId,
 		currentPage,
 		pageSize,
+		search,
 	);
 
 	if (!cards) return <p>Cards not found.</p>;
@@ -67,6 +72,7 @@ async function CardsContent({
 				totalPages={totalPages}
 				deckId={deckId}
 			/>
+			<Search />
 			<Header id={deckId} />
 			<CardsList
 				cards={cards}

@@ -53,6 +53,40 @@ export async function fetchCards(
 	}
 }
 
+export async function fetchFilteredCards(
+	deckId: string,
+	page: number = 1,
+	pageSize: number = 10,
+	substring: string,
+) {
+	try {
+		const skip = (page - 1) * pageSize;
+
+		const filter = {
+			deckId,
+			OR: [
+				{ front: { contains: substring, mode: "insensitive" as const } },
+				{ back: { contains: substring, mode: "insensitive" as const } },
+			],
+		};
+
+		const [cards, totalCount] = await Promise.all([
+			prisma.card.findMany({ where: filter, skip, take: pageSize }),
+			prisma.card.count({ where: filter }),
+		]);
+
+		return {
+			cards,
+			totalCount,
+			totalPages: Math.ceil(totalCount / pageSize),
+			currentPage: page,
+		};
+	} catch (err) {
+		console.error("Database error:", err);
+		throw new Error("Failed to fetch cards.");
+	}
+}
+
 export async function fetchCard(cardId: string) {
 	try {
 		const card = await prisma.card.findUnique({
