@@ -1,10 +1,15 @@
+"use client";
+
+import React from "react";
 import { Dispatch, SetStateAction } from "react";
 import Card from "@/components/Card";
+import Button from "@/components/Button";
+import { RefreshCw } from "react-feather";
 import {
 	CardPlaygroundWrapper,
-	CardInputsGroup,
 	CardInputWrapper,
 	CardOutputWrapper,
+	CardInputTopWrapper,
 	CardInputHeading,
 	CardOutputHeading,
 	TextArea,
@@ -25,49 +30,59 @@ export default function CardInputs({
 }) {
 	return (
 		<CardPlaygroundWrapper>
-			<CardInputsGroup>
-				<CardInput
-					heading={"Front"}
-					type={"front"}
-					value={front.value}
-					onChange={front.setter}
-				/>
-				<CardInput
-					heading={"Back"}
-					type={"back"}
-					value={back.value}
-					onChange={back.setter}
-				/>
-			</CardInputsGroup>
+			<CardInput front={front} back={back} />
 			<CardOutput front={front.value} back={back.value} />
 		</CardPlaygroundWrapper>
 	);
 }
 
 function CardInput({
-	heading,
-	type,
-	value,
-	onChange,
+	front,
+	back,
 }: {
-	heading: string;
-	type: string;
-	value: string;
-	onChange: (value: string) => void;
+	front: {
+		value: string;
+		setter: Dispatch<SetStateAction<string>>;
+	};
+	back: {
+		value: string;
+		setter: Dispatch<SetStateAction<string>>;
+	};
 }) {
+	const [isFront, setIsFront] = React.useState(true);
+
 	function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
-		onChange(e.target.value);
+		if (isFront) {
+			front.setter(e.target.value);
+		} else {
+			back.setter(e.target.value);
+		}
+	}
+
+	function toggleCardInput() {
+		if (isFront) {
+			setIsFront(false);
+		} else {
+			setIsFront(true);
+		}
 	}
 
 	return (
 		<CardInputWrapper>
-			<CardInputHeading htmlFor={type}>{heading}</CardInputHeading>
+			<CardInputTopWrapper>
+				<CardInputHeading htmlFor="cardInput">
+					{isFront ? "Front" : "Back"}
+				</CardInputHeading>
+				<Button variant="icon" type="button" onClick={toggleCardInput}>
+					<RefreshCw size={16} />
+				</Button>
+			</CardInputTopWrapper>
 			<TextArea
 				required
-				name={type}
-				id={type}
+				name="cardInput"
+				id="cardInput"
 				spellCheck="false"
-				value={value}
+				value={isFront ? front.value : back.value}
 				onChange={handleChange}
 			/>
 		</CardInputWrapper>

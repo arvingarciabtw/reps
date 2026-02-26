@@ -24,11 +24,10 @@ const CardBaseWrapper = styled.section`
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
-`
+	min-height: 18rem;
+`;
 const CardInputWrapper = styled(CardBaseWrapper)`
-	@media (min-width: 640px) {
-		flex: 1;
-	}
+	flex: 1;
 `;
 const CardOutputWrapper = styled(CardBaseWrapper)`
 	width: 100%;
@@ -36,12 +35,18 @@ const CardOutputWrapper = styled(CardBaseWrapper)`
 	align-self: stretch;
 `;
 
+const CardInputTopWrapper = styled.div`
+	display: grid;
+	grid-template-columns: 72px 18px;
+	align-items: center;
+`;
+
 const CardInputHeading = styled.label`
 	align-self: flex-start;
 	color: var(--color-black);
-  font-weight: bold;
-  letter-spacing: 0.05rem;
-  text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 0.05rem;
+	text-transform: uppercase;
 
 	html.dark & {
 		color: var(--color-white);
@@ -50,10 +55,10 @@ const CardInputHeading = styled.label`
 const CardOutputHeading = styled.h1`
 	align-self: flex-start;
 	font-size: 1rem; /* Adjust as needed per your h1 defaults */
-  font-weight: bold;
+	font-weight: bold;
 	color: var(--color-black);
-  text-transform: uppercase;
-  letter-spacing: 0.05rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05rem;
 
 	html.dark & {
 		color: var(--color-white);
@@ -61,7 +66,7 @@ const CardOutputHeading = styled.h1`
 `;
 
 const TextArea = styled.textarea`
-	min-height: 12.5rem;
+	flex: 1;
 	width: 100%;
 	resize: none;
 	overflow-y: auto;
@@ -99,6 +104,7 @@ export {
 	CardInputsGroup,
 	CardInputWrapper,
 	CardOutputWrapper,
+	CardInputTopWrapper,
 	CardInputHeading,
 	CardOutputHeading,
 	TextArea,

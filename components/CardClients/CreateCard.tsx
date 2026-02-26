@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import CardInputs from "@/components/CardPlayground";
+import CardPlayground from "@/components/CardPlayground";
 import CardErrors from "@/components/CardErrors";
 import {
 	FRONT,
@@ -44,10 +44,10 @@ export default function CreateCard({
 				syntax. You can flip the output below to see what it looks like.
 			</Description>
 			<Form action={formAction}>
-				<input type="hidden" name="deckId" value={deckId} />
+				<FormInputs deckId={deckId} front={frontValue} back={backValue} />
 				<SubmitButtons deckId={deckId} />
 				<CardErrors state={state} />
-				<CardInputs
+				<CardPlayground
 					front={{
 						value: frontValue,
 						setter: setFrontValue,
@@ -59,6 +59,24 @@ export default function CreateCard({
 				/>
 			</Form>
 		</PageWrapper>
+	);
+}
+
+function FormInputs({
+	deckId,
+	front,
+	back,
+}: {
+	deckId: string;
+	front: string;
+	back: string;
+}) {
+	return (
+		<>
+			<input type="hidden" name="deckId" value={deckId} />
+			<input type="hidden" name="front" value={front} />
+			<input type="hidden" name="back" value={back} />
+		</>
 	);
 }
 

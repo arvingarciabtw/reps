@@ -47,8 +47,12 @@ export default function UpdateCard({
 				syntax. You can flip the output below to see what it looks like.
 			</Description>
 			<Form action={formAction}>
-				<input type="hidden" name="deckId" value={deckId} />
-				<input type="hidden" name="cardId" value={card.id} />
+				<FormInputs
+					deckId={deckId}
+					cardId={card.id}
+					front={frontValue}
+					back={backValue}
+				/>
 				<SubmitButtons deckId={deckId} />
 				<CardErrors state={state} />
 				<CardInputs
@@ -63,6 +67,27 @@ export default function UpdateCard({
 				/>
 			</Form>
 		</PageWrapper>
+	);
+}
+
+function FormInputs({
+	deckId,
+	cardId,
+	front,
+	back,
+}: {
+	deckId: string;
+	cardId: string;
+	front: string;
+	back: string;
+}) {
+	return (
+		<>
+			<input type="hidden" name="deckId" value={deckId} />
+			<input type="hidden" name="cardId" value={cardId} />
+			<input type="hidden" name="front" value={front} />
+			<input type="hidden" name="back" value={back} />
+		</>
 	);
 }
 
