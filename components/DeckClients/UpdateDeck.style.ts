@@ -1,27 +1,6 @@
 import styled from "styled-components";
 import { Dialog } from "radix-ui";
 
-const UpdateButton = styled.button`
-	cursor: pointer;
-	border-radius: 50%;
-	padding: 0.375rem;
-	transition-property: all;
-	transition-timing-function: ease;
-	transition-duration: 300ms;
-	background-color: transparent;
-	border: none;
-
-	&:hover {
-		background-color: var(--color-gray-100);
-	}
-
-	html.dark & {
-		&:hover {
-			background-color: var(--color-gray-700);
-		}
-	}
-`;
-
 const HiddenLabel = styled.label`
 	position: absolute;
 	width: 1px;
@@ -32,41 +11,6 @@ const HiddenLabel = styled.label`
 	clip: rect(0, 0, 0, 0);
 	white-space: nowrap;
 	border-width: 0;
-`;
-
-const CancelButton = styled.button`
-	display: flex;
-	cursor: pointer;
-	align-items: center;
-	gap: 0.5rem;
-	border-radius: 1rem;
-	border: 1px solid var(--color-gray-200);
-	background-color: transparent;
-	padding: 0.5rem 1.25rem;
-	color: var(--color-gray-600);
-	transition-property: all;
-	transition-timing-function: ease;
-	transition-duration: 300ms;
-
-	&:hover {
-		background-color: #f3f4f6;
-	}
-
-	&:disabled {
-		cursor: not-allowed;
-		opacity: 0.5;
-	}
-
-	html.dark & {
-		border-color: var(--color-gray-700);
-		background-color: var(--color-gray-700);
-		color: var(--color-gray-300);
-
-		&:hover {
-			background-color: var(--color-gray-700);
-			opacity: 0.75;
-		}
-	}
 `;
 
 const StyledDialogOverlay = styled(Dialog.Overlay)`
@@ -164,45 +108,8 @@ const SubmitButtonsWrapper = styled.div`
 	align-self: flex-end;
 `;
 
-const SubmitButton = styled.button`
-	display: flex;
-	cursor: pointer;
-	align-items: center;
-	gap: 0.5rem;
-	border-radius: 1rem;
-	border: 1px solid var(--color-gray-200);
-	background-color: transparent;
-	padding: 0.5rem 1.25rem;
-	color: var(--color-gray-600);
-	transition-property: all;
-	transition-timing-function: ease;
-	transition-duration: 300ms;
-
-	&:hover {
-		background-color: #f3f4f6;
-	}
-
-	&:disabled {
-		cursor: not-allowed;
-		opacity: 0.5;
-	}
-
-	html.dark & {
-		border-color: var(--color-gray-700);
-		background-color: var(--color-gray-700);
-		color: var(--color-gray-300);
-
-		&:hover {
-			background-color: var(--color-gray-700);
-			opacity: 0.75;
-		}
-	}
-`;
-
 export {
-	UpdateButton,
 	HiddenLabel,
-	CancelButton,
 	StyledDialogOverlay,
 	StyledDialogContent,
 	StyledDialogTitle,
@@ -210,5 +117,4 @@ export {
 	Fieldset,
 	Input,
 	SubmitButtonsWrapper,
-	SubmitButton,
 };

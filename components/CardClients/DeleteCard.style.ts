@@ -1,74 +1,6 @@
 import styled from "styled-components";
 import { AlertDialog } from "radix-ui";
 
-const ActionButton = styled.button`
-	display: flex;
-	cursor: pointer;
-	align-items: center;
-	gap: 0.5rem;
-	border-radius: 1rem;
-	border: 1px solid var(--color-gray-200);
-	background-color: transparent;
-	padding: 0.5rem 1.25rem;
-	color: var(--color-gray-600);
-	transition: all 0.3s ease;
-
-	&:hover {
-		background-color: #f3f4f6;
-	}
-
-	&:disabled {
-		cursor: not-allowed;
-		opacity: 0.5;
-	}
-
-	html.dark & {
-		border-color: var(--color-gray-700);
-		background-color: var(--color-gray-800);
-		color: var(--color-gray-300);
-
-		&:hover {
-			background-color: var(--color-gray-800);
-			color: var(--color-primary);
-		}
-	}
-`;
-
-const DangerButton = styled.button`
-	cursor: pointer;
-	border-radius: 1rem;
-	background-color: #ef4444;
-	padding: 0.5rem 1.25rem;
-	color: var(--color-white);
-	transition: all 0.3s ease;
-	border: none;
-
-	&:hover {
-		opacity: 0.75;
-	}
-
-	&:disabled {
-		cursor: not-allowed;
-		opacity: 0.5;
-	}
-`;
-
-const IconButton = styled.button`
-	cursor: pointer;
-	background: none;
-	border: none;
-	padding: 0;
-	transition: all 0.3s ease;
-
-	&:hover {
-		color: var(--color-gray-300);
-	}
-
-	html.dark &:hover & svg {
-		color: var(--color-primary);
-	}
-`;
-
 const Overlay = styled(AlertDialog.Overlay)`
 	position: fixed;
 	inset: 0;
@@ -119,12 +51,4 @@ const ModalDescription = styled(AlertDialog.Description)`
 	}
 `;
 
-export {
-	ActionButton,
-	DangerButton,
-	IconButton,
-	Overlay,
-	ModalContent,
-	ModalTitle,
-	ModalDescription,
-};
+export { Overlay, ModalContent, ModalTitle, ModalDescription };

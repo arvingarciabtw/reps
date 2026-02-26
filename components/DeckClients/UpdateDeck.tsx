@@ -6,9 +6,8 @@ import { updateDeck } from "@/actions/deck-actions";
 import { Edit2 } from "react-feather";
 import { Dialog } from "radix-ui";
 import DeckErrors from "@/components/DeckErrors";
+import Button from "@/components/Button";
 import {
-	CancelButton,
-	UpdateButton,
 	StyledDialogOverlay,
 	StyledDialogContent,
 	StyledDialogTitle,
@@ -16,7 +15,6 @@ import {
 	Fieldset,
 	Input,
 	SubmitButtonsWrapper,
-	SubmitButton,
 	HiddenLabel,
 } from "@/components/DeckClients/UpdateDeck.style";
 
@@ -32,9 +30,9 @@ export default function UpdateDeck({
 	return (
 		<Dialog.Root>
 			<Dialog.Trigger asChild>
-				<UpdateButton aria-label="Update deck button">
+				<Button variant="icon" aria-label="Update deck button">
 					<Edit2 style={{ width: "1rem", height: "1rem" }} />
-				</UpdateButton>
+				</Button>
 			</Dialog.Trigger>
 			<Dialog.Portal>
 				<StyledDialogOverlay />
@@ -61,13 +59,13 @@ function SubmitButtons() {
 	return (
 		<SubmitButtonsWrapper>
 			<Dialog.Close asChild style={{ alignSelf: "end" }}>
-				<CancelButton aria-label="Close" disabled={pending}>
+				<Button variant="regular" aria-label="Close" disabled={pending}>
 					Cancel
-				</CancelButton>
+				</Button>
 			</Dialog.Close>
-			<SubmitButton type="submit" disabled={pending}>
+			<Button variant="regular" type="submit" disabled={pending}>
 				Edit deck
-			</SubmitButton>
+			</Button>
 		</SubmitButtonsWrapper>
 	);
 }

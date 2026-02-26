@@ -4,8 +4,8 @@ const ButtonWrapper = styled.button`
 	padding: 0.5rem 1.25rem;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	gap: 0.5rem;
-	border: 1px solid transparent;
 	border-radius: 1rem;
 	cursor: pointer;
 	transition: all 0.3s ease;
@@ -19,7 +19,7 @@ const ButtonWrapper = styled.button`
 const CTA = styled(ButtonWrapper)`
 	background-color: var(--color-primary);
 	color: var(--color-black);
-	border-color: var(--color-primary);
+	border: 1px solid var(--color-primary);
 	font-weight: 500;
 
 	&:hover {
@@ -48,7 +48,7 @@ const Ghost = styled(ButtonWrapper)`
 const Regular = styled(ButtonWrapper)`
 	background-color: transparent;
 	color: var(--color-gray-600);
-	border-color: var(--color-gray-200);
+	border: 1px solid var(--color-gray-200);
 
 	&:hover {
 		background-color: var(--color-gray-light);
@@ -60,7 +60,7 @@ const Regular = styled(ButtonWrapper)`
 		border-color: var(--color-gray-700);
 
 		&:hover {
-			background-color: var(--color-gray-750);
+			background-color: var(--color-gray-700);
 		}
 	}
 `;
@@ -68,7 +68,7 @@ const Regular = styled(ButtonWrapper)`
 const Danger = styled(ButtonWrapper)`
 	background-color: #ef4444;
 	color: var(--color-white);
-	border-color: #ef4444;
+	border: 1px solid #ef4444;
 
 	&:hover {
 		opacity: 0.75;
@@ -79,6 +79,7 @@ const Icon = styled(ButtonWrapper)`
 	padding: 0;
 	background-color: transparent;
 	color: var(--color-black);
+	border: none;
 
 	&:hover {
 		opacity: 0.75;

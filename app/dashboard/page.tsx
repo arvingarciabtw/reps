@@ -59,8 +59,8 @@ const Description = styled.p`
 	align-items: center;
 	justify-content: center;
 	margin-top: 1rem;
-	margin-bottom: 2.5rem; /* mb-10 */
-	max-width: 32rem; /* max-w-lg */
+	margin-bottom: 2.5rem;
+	max-width: 32rem;
 	color: var(--color-gray-600);
 
 	html.dark & {
@@ -74,12 +74,10 @@ const DeckGrid = styled.section`
 	gap: 1rem;
 
 	@media (min-width: 480px) {
-		/* xs:grid-cols-2 */
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
 	@media (min-width: 768px) {
-		/* md:grid-cols-3 */
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 `;

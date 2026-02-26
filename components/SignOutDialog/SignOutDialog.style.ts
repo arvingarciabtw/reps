@@ -57,46 +57,10 @@ const ButtonGroup = styled.div`
 	gap: 1rem;
 `;
 
-const ActionButton = styled.button`
-	display: flex;
-	cursor: pointer;
-	align-items: center;
-	gap: 0.5rem;
-	border-radius: 1rem;
-	border: 1px solid var(--color-gray-200);
-	background-color: transparent;
-	padding: 0.5rem 1.25rem;
-	color: var(--color-gray-600);
-	transition-property: all;
-	transition-timing-function: ease;
-	transition-duration: 300ms;
-
-	&:hover {
-		background-color: #f3f4f6;
-	}
-
-	&:disabled {
-		cursor: not-allowed;
-		opacity: 0.5;
-	}
-
-	html.dark & {
-		border-color: var(--color-gray-700);
-		background-color: var(--color-gray-700);
-		color: var(--color-gray-300);
-
-		&:hover {
-			background-color: var(--color-gray-700);
-			opacity: 0.75;
-		}
-	}
-`;
-
 export {
 	StyledOverlay,
 	StyledContent,
 	StyledTitle,
 	StyledDescription,
 	ButtonGroup,
-	ActionButton,
 };

@@ -13,66 +13,6 @@ const HiddenLabel = styled.label`
 	border-width: 0;
 `;
 
-const CreateButton = styled.button`
-	position: absolute;
-	right: 0;
-	bottom: -3.75rem;
-	margin-right: 1.5rem;
-	margin-bottom: 1.5rem;
-	cursor: pointer;
-	border-radius: 50%;
-	border: 1px solid var(--color-primary);
-	background-color: var(--color-primary);
-	padding: 0.5rem;
-	transition-property: all;
-	transition-timing-function: ease;
-	transition-duration: 300ms;
-
-	&:hover {
-		opacity: 0.75;
-	}
-
-	&:focus {
-		outline: none;
-		box-shadow: 0 0 0 1px var(--color-primary);
-	}
-`;
-
-const CancelButton = styled.button`
-	display: flex;
-	cursor: pointer;
-	align-items: center;
-	gap: 0.5rem;
-	border-radius: 1rem;
-	border: 1px solid var(--color-gray-200);
-	background-color: transparent;
-	padding: 0.5rem 1.25rem;
-	color: var(--color-gray-600);
-	transition-property: all;
-	transition-timing-function: ease;
-	transition-duration: 300ms;
-
-	&:hover {
-		background-color: #f3f4f6;
-	}
-
-	&:disabled {
-		cursor: not-allowed;
-		opacity: 0.5;
-	}
-
-	html.dark & {
-		border-color: var(--color-gray-700);
-		background-color: var(--color-gray-700);
-		color: var(--color-gray-300);
-
-		&:hover {
-			background-color: var(--color-gray-700);
-			opacity: 0.75;
-		}
-	}
-`;
-
 const StyledDialogOverlay = styled(Dialog.Overlay)`
 	position: fixed;
 	inset: 0;
@@ -168,44 +108,8 @@ const SubmitButtonsWrapper = styled.div`
 	align-self: flex-end;
 `;
 
-const SubmitButton = styled.button`
-	display: flex;
-	cursor: pointer;
-	align-items: center;
-	gap: 0.5rem;
-	border-radius: 1rem;
-	border: 1px solid var(--color-gray-200);
-	background-color: transparent;
-	padding: 0.5rem 1.25rem;
-	color: var(--color-gray-600);
-	transition-property: all;
-	transition-timing-function: ease;
-	transition-duration: 300ms;
-
-	&:hover {
-		background-color: #f3f4f6;
-	}
-
-	&:disabled {
-		cursor: not-allowed;
-		opacity: 0.5;
-	}
-
-	html.dark & {
-		border-color: var(--color-gray-700);
-		background-color: var(--color-gray-700);
-		color: var(--color-gray-300);
-
-		&:hover {
-			background-color: var(--color-gray-700);
-			opacity: 0.75;
-		}
-	}
-`;
-
 export {
 	HiddenLabel,
-	CancelButton,
 	StyledDialogOverlay,
 	StyledDialogContent,
 	StyledDialogTitle,
@@ -213,6 +117,4 @@ export {
 	Fieldset,
 	Input,
 	SubmitButtonsWrapper,
-	SubmitButton,
-	CreateButton,
 };

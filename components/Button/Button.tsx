@@ -6,26 +6,39 @@ import {
 	Icon,
 } from "@/components/Button/Button.style";
 
-function Button({
-	children,
-	variant,
-	...delegated
-}: {
+type BaseProps = {
 	children: React.ReactNode;
 	variant: string;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>) {
+};
+
+type ButtonProps = BaseProps & {
+	as?: never;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+type AnchorProps = BaseProps & {
+	as: "a";
+} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+type CustomProps = BaseProps & { as: React.ElementType } & Record<
+		string,
+		unknown
+	>;
+
+type Props = ButtonProps | AnchorProps | CustomProps;
+
+function Button({ children, variant, as, ...delegated }: Props) {
+	const props = { as, ...delegated };
+
 	return (
 		<>
 			{variant === "cta" ? (
-				<CTA {...delegated}>{children}</CTA>
+				<CTA {...props}>{children}</CTA>
 			) : variant === "ghost" ? (
-				<Ghost {...delegated}>{children}</Ghost>
+				<Ghost {...props}>{children}</Ghost>
 			) : variant === "danger" ? (
-				<Danger {...delegated}>{children}</Danger>
+				<Danger {...props}>{children}</Danger>
 			) : variant === "icon" ? (
-				<Icon {...delegated}>{children}</Icon>
+				<Icon {...props}>{children}</Icon>
 			) : (
-				<Regular {...delegated}>{children}</Regular>
+				<Regular {...props}>{children}</Regular>
 			)}
 		</>
 	);

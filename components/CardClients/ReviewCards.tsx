@@ -2,20 +2,17 @@
 
 import type { CardType } from "@/components/Card/Card.types";
 import Card from "@/components/Card";
+import Button from "@/components/Button";
 import Link from "next/link";
 import { Check, X, Edit2 } from "react-feather";
 import { useState } from "react";
 import { markCardCorrect, markCardWrong } from "@/actions/card-actions";
 import {
 	EmptyStateContainer,
-	DashboardButton,
 	MainWrapper,
 	ControlsWrapper,
 	CardCount,
 	ActionGroup,
-	EditButton,
-	CorrectButton,
-	WrongButton,
 	StyledLink,
 } from "@/components/CardClients/ReviewCards.style";
 
@@ -71,7 +68,7 @@ export default function ReviewCardsSection({
 			<EmptyStateContainer>
 				<p>No more cards to be reviewed.</p>
 				<Link href="/dashboard">
-					<DashboardButton>Back to dashboard</DashboardButton>
+					<Button variant="regular">Back to dashboard</Button>
 				</Link>
 			</EmptyStateContainer>
 		);
@@ -89,28 +86,48 @@ export default function ReviewCardsSection({
 					Cards left: <span>{remainingCards.length}</span>
 				</CardCount>
 				<ActionGroup>
-					<EditButton aria-label="Update card button" disabled={isProcessing}>
+					<Button
+						variant="icon"
+						aria-label="Update card button"
+						disabled={isProcessing}
+						style={{
+							padding: "0.25rem",
+							backgroundColor: "var(--color-primary)",
+						}}
+					>
 						<StyledLink
 							aria-label="Redirect to update card page"
 							href={`/deck/${deckId}/update/${remainingCards[cardIndex].id}`}
 						>
 							<Edit2 style={{ width: "0.9375rem", height: "0.9375rem" }} />
 						</StyledLink>
-					</EditButton>
-					<CorrectButton
+					</Button>
+					<Button
+						variant="icon"
 						aria-label="Mark card as correct button"
 						onClick={handleCorrect}
 						disabled={isProcessing}
+						style={{
+							padding: "0.25rem",
+							backgroundColor: "#4ade80",
+							color: "var(--color-black)",
+						}}
 					>
 						<Check style={{ width: "1.125rem", height: "1.125rem" }} />
-					</CorrectButton>
-					<WrongButton
+					</Button>
+					<Button
+						variant="icon"
 						aria-label="Mark card as wrong button"
 						onClick={handleWrong}
 						disabled={isProcessing}
+						style={{
+							padding: "0.25rem",
+							backgroundColor: "#f87171",
+							color: "var(--color-black)",
+						}}
 					>
 						<X style={{ width: "1.125rem", height: "1.125rem" }} />
-					</WrongButton>
+					</Button>
 				</ActionGroup>
 			</ControlsWrapper>
 		</MainWrapper>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import CardPlayground from "@/components/CardPlayground";
 import CardErrors from "@/components/CardErrors";
+import Button from "@/components/Button";
 import {
 	FRONT,
 	BACK,
@@ -16,7 +17,6 @@ import {
 	PrimaryLink,
 	Form,
 	ButtonGroup,
-	ActionButton,
 } from "@/components/CardClients/CreateCard.style";
 
 export default function CreateCard({
@@ -86,11 +86,13 @@ function SubmitButtons({ deckId }: { deckId: string }) {
 	return (
 		<ButtonGroup>
 			<Link href={`/deck/${deckId}/view`}>
-				<ActionButton disabled={pending}>View cards</ActionButton>
+				<Button variant="regular" disabled={pending}>
+					View cards
+				</Button>
 			</Link>
-			<ActionButton type="submit" disabled={pending}>
+			<Button variant="regular" type="submit" disabled={pending}>
 				Create card
-			</ActionButton>
+			</Button>
 		</ButtonGroup>
 	);
 }

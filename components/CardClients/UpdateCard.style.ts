@@ -42,51 +42,11 @@ const PrimaryLink = styled(Link)`
 
 const ButtonGroup = styled.div`
 	margin-top: 1rem;
-	margin-bottom: 1.5rem;
+	margin-bottom: 3rem;
 	display: flex;
 	align-items: center;
 	gap: 1rem;
 	align-self: center;
 `;
 
-const ActionButton = styled.button`
-	display: flex;
-	cursor: pointer;
-	align-items: center;
-	gap: 0.5rem;
-	border-radius: 1rem;
-	border: 1px solid var(--color-gray-200);
-	background-color: transparent;
-	padding: 0.5rem 1.25rem;
-	color: var(--color-gray-600);
-	transition: all 0.3s ease;
-
-	&:hover {
-		background-color: #f3f4f6;
-	}
-
-	&:disabled {
-		cursor: not-allowed;
-		opacity: 0.5;
-	}
-
-	html.dark & {
-		border-color: var(--color-gray-700);
-		background-color: var(--color-gray-800);
-		color: var(--color-gray-300);
-
-		&:hover {
-			background-color: var(--color-gray-800);
-			color: var(--color-primary);
-		}
-	}
-`;
-
-export {
-	PageWrapper,
-	Form,
-	Description,
-	PrimaryLink,
-	ButtonGroup,
-	ActionButton,
-};
+export { PageWrapper, Form, Description, PrimaryLink, ButtonGroup };

@@ -13,10 +13,10 @@ const NavigationWrapper = styled.nav`
 
 const Logo = styled.div`
 	transition: opacity 0.3s ease;
-  background-color: var(--color-primary);
-  border-radius: 50%;
-  width: 2rem;
-  aspect-ratio: 1 / 1;
+	background-color: var(--color-primary);
+	border-radius: 50%;
+	width: 2rem;
+	aspect-ratio: 1 / 1;
 
 	&:hover {
 		opacity: 0.75;
@@ -26,7 +26,7 @@ const Logo = styled.div`
 const AppName = styled.h1`
 	font-family: var(--font-logo);
 	font-size: 1.25rem;
-  font-weight: 500;
+	font-weight: 500;
 	color: var(--color-black);
 
 	html.dark & {
@@ -41,13 +41,13 @@ const RightSide = styled.div`
 `;
 
 const NavigationList = styled.ul`
-  padding-left: 0;
+	padding-left: 0;
 	margin-left: auto;
 	display: none;
 	align-items: center;
 	gap: 2.5rem;
 	color: var(--color-gray-800);
-  list-style-type: none;
+	list-style-type: none;
 
 	html.dark & {
 		color: var(--color-gray-300);
@@ -67,13 +67,13 @@ const NavigationItem = styled.li`
 		opacity: 0.75;
 	}
 
-  & a {
-    text-decoration: none;
-    color: var(--color-gray-600); 
-  }
-  html.dark & a {
-    color: var(--color-gray-300); 
-  }
+	& a {
+		text-decoration: none;
+		color: var(--color-gray-600);
+	}
+	html.dark & a {
+		color: var(--color-gray-300);
+	}
 `;
 
 const TogglesWrapper = styled.div`
@@ -81,26 +81,25 @@ const TogglesWrapper = styled.div`
 	gap: 1rem;
 `;
 
-// TODO: Change this to use generic Button 
 const SignOutButton = styled.button`
 	cursor: pointer;
-  background-color: transparent;
-  color: var(--color-gray-600);
-  border: none;
+	background-color: transparent;
+	color: var(--color-gray-600);
+	border: none;
 
-  html.dark & {
-    color: var(--color-gray-300);
-  }
+	html.dark & {
+		color: var(--color-gray-300);
+	}
 `;
 
 export {
-  HeaderWrapper,
-  NavigationWrapper,
-  Logo,
-  AppName,
-  RightSide,
-  NavigationList,
-  NavigationItem,
-  TogglesWrapper,
-  SignOutButton,
-}
+	HeaderWrapper,
+	NavigationWrapper,
+	Logo,
+	AppName,
+	RightSide,
+	NavigationList,
+	NavigationItem,
+	TogglesWrapper,
+	SignOutButton,
+};

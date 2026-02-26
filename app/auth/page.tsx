@@ -77,7 +77,7 @@ const Container = styled.div`
 `;
 
 const InstructionText = styled.p`
-	max-width: 28rem; /* max-w-md */
+	max-width: 28rem;
 	text-align: center;
 `;
 

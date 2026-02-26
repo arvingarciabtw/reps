@@ -6,14 +6,12 @@ import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { deleteCard } from "@/actions/card-actions";
 import CardErrors from "@/components/CardErrors";
+import Button from "@/components/Button";
 import {
-	IconButton,
 	Overlay,
 	ModalContent,
 	ModalTitle,
 	ModalDescription,
-	ActionButton,
-	DangerButton,
 } from "@/components/CardClients/DeleteCard.style";
 
 export default function DeleteCard({
@@ -28,9 +26,9 @@ export default function DeleteCard({
 	return (
 		<AlertDialog.Root>
 			<AlertDialog.Trigger asChild>
-				<IconButton aria-label="Delete card button">
+				<Button variant="icon" aria-label="Delete card button">
 					<Trash2 style={{ width: "1rem", height: "1rem" }} />
-				</IconButton>
+				</Button>
 			</AlertDialog.Trigger>
 			<AlertDialog.Portal>
 				<Overlay />
@@ -58,13 +56,13 @@ function SubmitButtons() {
 	return (
 		<>
 			<AlertDialog.Cancel asChild>
-				<ActionButton type="button" disabled={pending}>
+				<Button variant="regular" type="button" disabled={pending}>
 					Cancel
-				</ActionButton>
+				</Button>
 			</AlertDialog.Cancel>
-			<DangerButton type="submit" disabled={pending}>
+			<Button variant="danger" type="submit" disabled={pending}>
 				Delete card
-			</DangerButton>
+			</Button>
 		</>
 	);
 }

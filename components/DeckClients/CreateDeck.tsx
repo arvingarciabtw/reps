@@ -6,6 +6,7 @@ import { createDeck } from "@/actions/deck-actions";
 import { Plus } from "react-feather";
 import { Dialog } from "radix-ui";
 import DeckErrors from "@/components/DeckErrors";
+import Button from "@/components/Button";
 import {
 	HiddenLabel,
 	StyledDialogOverlay,
@@ -15,9 +16,6 @@ import {
 	Fieldset,
 	Input,
 	SubmitButtonsWrapper,
-	CancelButton,
-	SubmitButton,
-	CreateButton,
 } from "@/components/DeckClients/CreateDeck.style";
 
 export default function CreateDeck() {
@@ -26,9 +24,21 @@ export default function CreateDeck() {
 	return (
 		<Dialog.Root>
 			<Dialog.Trigger asChild>
-				<CreateButton aria-label="Create deck button">
+				<Button
+					variant="cta"
+					aria-label="Create deck button"
+					style={{
+						padding: "0.5rem",
+						position: "absolute",
+						right: "0",
+						bottom: "-3.75rem",
+						marginRight: "1.5rem",
+						marginBottom: "1.5rem",
+						borderRadius: "50%",
+					}}
+				>
 					<Plus style={{ stroke: "var(--color-black)" }} />
-				</CreateButton>
+				</Button>
 			</Dialog.Trigger>
 			<Dialog.Portal>
 				<StyledDialogOverlay />
@@ -59,13 +69,13 @@ function SubmitButtons() {
 	return (
 		<SubmitButtonsWrapper>
 			<Dialog.Close asChild style={{ alignSelf: "end" }}>
-				<CancelButton aria-label="Close" disabled={pending}>
+				<Button variant="regular" aria-label="Close" disabled={pending}>
 					Cancel
-				</CancelButton>
+				</Button>
 			</Dialog.Close>
-			<SubmitButton type="submit" disabled={pending}>
+			<Button variant="regular" type="submit" disabled={pending}>
 				Create deck
-			</SubmitButton>
+			</Button>
 		</SubmitButtonsWrapper>
 	);
 }

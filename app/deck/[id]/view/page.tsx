@@ -4,6 +4,7 @@ import DeleteCard from "@/components/CardClients/DeleteCard";
 import Link from "next/link";
 import Pagination from "@/components/Pagination";
 import Search from "@/components/Search";
+import Button from "@/components/Button";
 import { Suspense } from "react";
 import Skeleton from "@/components/CardClients/SkeletonView";
 import { fetchDeck, fetchFilteredCards } from "@/lib/queries";
@@ -88,12 +89,9 @@ async function CardsContent({
 function NoCards({ deck }: { deck: { id: string; title: string } }) {
 	return (
 		<EmptyStateContainer>
-			<EmptyText>
-				No cards yet in your <Link href={`/deck/${deck.id}`}>{deck.title}</Link>{" "}
-				deck. Add some cards now!
-			</EmptyText>
+			<EmptyText>No cards yet in your deck. Add some cards now!</EmptyText>
 			<Link href={`/deck/${deck.id}/create`}>
-				<AddButton>Add cards</AddButton>
+				<Button variant="regular">Add cards</Button>
 			</Link>
 		</EmptyStateContainer>
 	);
@@ -106,12 +104,14 @@ function Header({ id }: { id: string }) {
 			<p>Front</p>
 			<p>Back</p>
 			<span />
-			<Link
-				aria-label="Redirect to create card page"
+			<Button
+				variant="icon"
+				as="a"
 				href={`/deck/${id}/create`}
+				aria-label="Redirect to create card page"
 			>
 				<Plus />
-			</Link>
+			</Button>
 		</ListHeader>
 	);
 }
@@ -144,9 +144,14 @@ function CardsList({
 									gap: "0.75rem",
 								}}
 							>
-								<Link href={`/deck/${id}/update/${card.id}`}>
+								<Button
+									variant="icon"
+									as="a"
+									href={`/deck/${id}/update/${card.id}`}
+									aria-label="Redirect to update card page"
+								>
 									<Edit2 className="edit-icon" />
-								</Link>
+								</Button>
 								<DeleteCard cardId={card.id} deckId={deck.id} />
 							</div>
 						</MobileHeader>
@@ -159,9 +164,14 @@ function CardsList({
 						<p>{card.back}</p>
 
 						<DesktopOnly>
-							<Link href={`/deck/${id}/update/${card.id}`}>
+							<Button
+								variant="icon"
+								as="a"
+								href={`/deck/${id}/update/${card.id}`}
+								aria-label="Redirect to update card page"
+							>
 								<Edit2 className="edit-icon" />
-							</Link>
+							</Button>
 						</DesktopOnly>
 
 						<DesktopOnly style={{ display: "grid", placeItems: "center" }}>
@@ -195,7 +205,7 @@ const EmptyStateContainer = styled.div`
 `;
 
 const EmptyText = styled.p`
-	max-width: 15rem; /* max-w-3xs */
+	max-width: 15rem;
 	text-align: center;
 	color: var(--color-gray-600);
 
@@ -235,14 +245,6 @@ const ListHeader = styled(GridBase)`
 		width: 1.25rem;
 		color: var(--color-gray-600);
 		transition: color 0.3s ease;
-
-		&:hover {
-			color: var(--color-gray-300);
-		}
-
-		html.dark &:hover {
-			color: var(--color-primary);
-		}
 
 		html.dark & {
 			color: var(--color-gray-300);
@@ -290,13 +292,6 @@ const CardRow = styled.div`
 	svg.edit-icon {
 		height: 1rem;
 		width: 1rem;
-		transition: stroke 0.3s ease;
-		&:hover {
-			stroke: var(--color-gray-300);
-		}
-		html.dark &:hover {
-			stroke: var(--color-primary);
-		}
 	}
 `;
 
@@ -313,23 +308,5 @@ const DesktopOnly = styled.div`
 	display: none;
 	@media (min-width: 480px) {
 		display: block;
-	}
-`;
-
-const AddButton = styled.button`
-	cursor: pointer;
-	border-radius: 1rem;
-	border: 1px solid var(--color-gray-700);
-	background-color: var(--color-gray-800);
-	padding: 0.5rem 1.25rem;
-	color: var(--color-white);
-	transition: opacity 0.3s ease;
-
-	&:hover {
-		opacity: 0.75;
-	}
-
-	html.dark & {
-		color: var(--color-gray-300);
 	}
 `;

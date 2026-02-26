@@ -4,10 +4,8 @@ import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { deleteDeck } from "@/actions/deck-actions";
 import DeckErrors from "@/components/DeckErrors";
+import Button from "@/components/Button";
 import {
-	CancelButton,
-	DeleteButton,
-	DeleteDeckButton,
 	StyledAlertDialogOverlay,
 	StyledAlertDialogContent,
 	StyledAlertDialogTitle,
@@ -21,11 +19,13 @@ function DeleteButtons() {
 	return (
 		<>
 			<AlertDialog.Cancel asChild>
-				<CancelButton disabled={pending}>Cancel</CancelButton>
+				<Button variant="regular" disabled={pending}>
+					Cancel
+				</Button>
 			</AlertDialog.Cancel>
-			<DeleteButton type="submit" disabled={pending}>
+			<Button variant="danger" type="submit" disabled={pending}>
 				Delete deck
-			</DeleteButton>
+			</Button>
 		</>
 	);
 }
@@ -36,9 +36,9 @@ export default function DeleteDeckModal({ deckId }: { deckId: string }) {
 	return (
 		<AlertDialog.Root>
 			<AlertDialog.Trigger asChild>
-				<DeleteDeckButton aria-label="Delete deck button">
+				<Button variant="icon" aria-label="Delete deck button">
 					<Trash2 style={{ width: "1rem", height: "1rem" }} />
-				</DeleteDeckButton>
+				</Button>
 			</AlertDialog.Trigger>
 			<AlertDialog.Portal>
 				<StyledAlertDialogOverlay />
