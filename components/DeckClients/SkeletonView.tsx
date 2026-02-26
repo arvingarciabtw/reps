@@ -62,7 +62,6 @@ export default function ViewAllDecksSkeleton() {
 			<DescriptionWrapper>
 				<DescriptionLine $width="" />
 				<DescriptionLine $width="80%" />
-				<DescriptionLine $width="30%" />
 			</DescriptionWrapper>
 
 			<DeckGrid>

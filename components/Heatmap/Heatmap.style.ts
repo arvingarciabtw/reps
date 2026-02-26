@@ -30,7 +30,8 @@ const ReviewActivityWrapper = styled.div`
 `;
 const ReviewActivityHeading = styled.h2`
 	margin-bottom: 0.25rem;
-	font-size: 1.25rem;
+	font-size: 1rem;
+	font-weight: 400;
 
 	html.dark & {
 		color: var(--color-white);
