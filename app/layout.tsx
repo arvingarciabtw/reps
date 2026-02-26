@@ -5,11 +5,7 @@ import {
 	Fira_Code,
 	Fira_Sans,
 } from "next/font/google";
-import { cookies } from "next/headers";
-import {
-	LIGHT_COLORS,
-	DARK_COLORS,
-} from "@/components/ThemeToggle/ThemeToggle.constants";
+import { getTheme, getThemeColors } from "@/utils/theme";
 import { getSession } from "@/utils/session";
 import StyledComponentsRegistry from "@/components/Registry";
 import HljsTheme from "@/components/HljsTheme";
@@ -54,11 +50,8 @@ export default async function RootLayout({
 }>) {
 	const session = await getSession();
 
-	const savedTheme = (await cookies()).get("color-theme");
-	const theme = savedTheme?.value || "light";
-	const themeColors = (
-		theme === "light" ? LIGHT_COLORS : DARK_COLORS
-	) as React.CSSProperties;
+	const theme = await getTheme();
+	const themeColors = await getThemeColors();
 
 	return (
 		<html
