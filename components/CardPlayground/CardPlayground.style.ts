@@ -35,9 +35,9 @@ const CardOutputWrapper = styled(CardBaseWrapper)`
 	align-self: stretch;
 `;
 
-const CardInputTopWrapper = styled.div`
-	display: grid;
-	grid-template-columns: 72px 18px;
+const CardTopWrapper = styled.div`
+	display: flex;
+	justify-content: space-between;
 	align-items: center;
 `;
 
@@ -98,7 +98,7 @@ export {
 	CardInputsGroup,
 	CardInputWrapper,
 	CardOutputWrapper,
-	CardInputTopWrapper,
+	CardTopWrapper,
 	CardInputHeading,
 	CardOutputHeading,
 	TextArea,

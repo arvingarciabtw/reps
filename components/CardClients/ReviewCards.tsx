@@ -3,6 +3,7 @@
 import type { CardType } from "@/components/Card/Card.types";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
+import Maximize from "@/components/Maximize";
 import { Check, X, Edit2 } from "react-feather";
 import { useState } from "react";
 import { markCardCorrect, markCardWrong } from "@/actions/card-actions";
@@ -75,6 +76,11 @@ export default function ReviewCardsSection({
 
 	return (
 		<MainWrapper>
+			<Maximize
+				front={remainingCards[cardIndex].front}
+				back={remainingCards[cardIndex].back}
+				style={{ alignSelf: "flex-end" }}
+			/>
 			<Card
 				key={remainingCards[cardIndex].id}
 				front={remainingCards[cardIndex].front}

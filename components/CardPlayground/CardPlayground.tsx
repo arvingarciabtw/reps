@@ -4,12 +4,13 @@ import React from "react";
 import { Dispatch, SetStateAction } from "react";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
+import Maximize from "@/components/Maximize";
 import { RefreshCw } from "react-feather";
 import {
 	CardPlaygroundWrapper,
 	CardInputWrapper,
 	CardOutputWrapper,
-	CardInputTopWrapper,
+	CardTopWrapper,
 	CardInputHeading,
 	CardOutputHeading,
 	TextArea,
@@ -69,14 +70,14 @@ function CardInput({
 
 	return (
 		<CardInputWrapper>
-			<CardInputTopWrapper>
+			<CardTopWrapper>
 				<CardInputHeading htmlFor="cardInput">
 					{isFront ? "Front" : "Back"}
 				</CardInputHeading>
 				<Button variant="icon" type="button" onClick={toggleCardInput}>
 					<RefreshCw size={16} />
 				</Button>
-			</CardInputTopWrapper>
+			</CardTopWrapper>
 			<TextArea
 				required
 				name="cardInput"
@@ -92,7 +93,10 @@ function CardInput({
 function CardOutput({ front, back }: { front: string; back: string }) {
 	return (
 		<CardOutputWrapper>
-			<CardOutputHeading>Output</CardOutputHeading>
+			<CardTopWrapper>
+				<CardOutputHeading>Output</CardOutputHeading>
+				<Maximize front={front} back={back} />
+			</CardTopWrapper>
 			<Card front={front} back={back} />
 		</CardOutputWrapper>
 	);
