@@ -11,7 +11,7 @@ const MobileMenuTrigger = styled(Button)`
 const StyledDialogOverlay = styled(Dialog.Overlay)`
 	position: fixed;
 	inset: 0;
-	background-color: var(--color-black);
+	background-color: var(--color-gray-900);
 	opacity: 0.75;
 `;
 
@@ -22,13 +22,12 @@ const StyledDialogContent = styled(Dialog.Content)`
 	height: 100%;
 	display: grid;
 	place-items: center;
-	background-color: var(--color-white);
+	background-color: var(--color-bg);
 	color: var(--color-gray-800);
 	border: 1px solid var(--color-gray-700);
 	outline: none;
 
 	html.dark & {
-		background-color: var(--color-black);
 		color: var(--color-gray-300);
 	}
 `;
