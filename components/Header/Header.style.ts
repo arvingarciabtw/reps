@@ -5,16 +5,16 @@ const HeaderWrapper = styled.header``;
 const NavigationWrapper = styled.nav`
 	margin: auto;
 	display: flex;
-	max-width: 56rem;
+	max-width: var(--breakpoint-base);
 	align-items: center;
-	gap: 0.5rem;
-	padding: 1.5rem;
+	gap: var(--space-xs);
+	padding: var(--space-lg);
 `;
 
 const Logo = styled.div`
 	transition: opacity 0.3s ease;
 	background-color: var(--color-primary);
-	border-radius: 50%;
+	border-radius: var(--radius-full);
 	width: 2rem;
 	aspect-ratio: 1 / 1;
 
@@ -25,19 +25,15 @@ const Logo = styled.div`
 
 const AppName = styled.h1`
 	font-family: var(--font-logo);
-	font-size: 1.25rem;
-	font-weight: 500;
-	color: var(--color-black);
-
-	html.dark & {
-		color: var(--color-white);
-	}
+	font-size: var(--font-lg);
+	font-weight: var(--weight-medium);
+	color: var(--color-fg);
 `;
 
 const RightSide = styled.div`
 	margin-left: auto;
 	display: flex;
-	gap: 2.5rem;
+	gap: var(--space-2xl);
 `;
 
 const NavigationList = styled.ul`
@@ -45,7 +41,7 @@ const NavigationList = styled.ul`
 	margin-left: auto;
 	display: none;
 	align-items: center;
-	gap: 2.5rem;
+	gap: var(--space-2xl);
 	color: var(--color-gray-800);
 	list-style-type: none;
 
@@ -69,7 +65,7 @@ const NavigationItem = styled.li`
 
 	& a {
 		text-decoration: none;
-		color: var(--color-gray-600);
+		color: var(--color-gray-700);
 	}
 	html.dark & a {
 		color: var(--color-gray-300);
@@ -78,14 +74,14 @@ const NavigationItem = styled.li`
 
 const TogglesWrapper = styled.div`
 	display: flex;
-	gap: 1rem;
+	gap: var(--space-md);
 `;
 
 const SignOutButton = styled.button`
-	cursor: pointer;
 	background-color: transparent;
-	color: var(--color-gray-600);
+	color: var(--color-gray-700);
 	border: none;
+	cursor: pointer;
 
 	html.dark & {
 		color: var(--color-gray-300);

@@ -3,7 +3,7 @@ import styled from "styled-components";
 const CardPlaygroundWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+	gap: var(--space-md);
 
 	@media (min-width: 640px) {
 		flex-direction: row;
@@ -13,7 +13,7 @@ const CardPlaygroundWrapper = styled.div`
 const CardInputsGroup = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+	gap: var(--space-md);
 
 	@media (min-width: 640px) {
 		flex: 1;
@@ -23,7 +23,7 @@ const CardInputsGroup = styled.div`
 const CardBaseWrapper = styled.section`
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
+	gap: var(--space-xs);
 	min-height: 18rem;
 `;
 const CardInputWrapper = styled(CardBaseWrapper)`
@@ -43,26 +43,18 @@ const CardInputTopWrapper = styled.div`
 
 const CardInputHeading = styled.label`
 	align-self: flex-start;
-	color: var(--color-black);
+	color: var(--color-fg);
 	font-weight: bold;
 	letter-spacing: 0.05rem;
 	text-transform: uppercase;
-
-	html.dark & {
-		color: var(--color-white);
-	}
 `;
 const CardOutputHeading = styled.h1`
 	align-self: flex-start;
-	font-size: 1rem; /* Adjust as needed per your h1 defaults */
-	font-weight: bold;
-	color: var(--color-black);
+	font-size: var(--font-md);
+	font-weight: var(--weight-bold);
+	color: var(--color-fg);
 	text-transform: uppercase;
 	letter-spacing: 0.05rem;
-
-	html.dark & {
-		color: var(--color-white);
-	}
 `;
 
 const TextArea = styled.textarea`
@@ -70,16 +62,17 @@ const TextArea = styled.textarea`
 	width: 100%;
 	resize: none;
 	overflow-y: auto;
-	border-radius: 0.5rem;
-	background-color: var(--color-gray-light);
-	padding: 1rem;
+	border-radius: var(--radius-xs);
+	background-color: var(--color-gray-150);
+	padding: var(--space-md);
 	font-family:
 		ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
 		"Courier New", monospace;
-	font-size: 0.875rem;
+	font-size: var(--font-sm);
 	line-height: 1.25rem;
 	color: var(--color-gray-800);
 	border: none;
+	scrollbar-color: var(--color-gray-300) var(--color-gray-150);
 
 	&:focus {
 		outline: 1px solid var(--color-gray-100);
@@ -90,8 +83,9 @@ const TextArea = styled.textarea`
 	}
 
 	html.dark & {
-		background-color: var(--color-gray-800);
+		background-color: var(--color-gray-850);
 		color: var(--color-gray-300);
+		scrollbar-color: var(--color-gray-700) var(--color-gray-850);
 
 		&:focus {
 			outline-color: var(--color-gray-700);

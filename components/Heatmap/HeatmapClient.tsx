@@ -27,7 +27,7 @@ export default function HeatmapClient({
 
 	const getHeatmapColor = (count: number) => {
 		if (count === 0)
-			return "background-color: var(--color-gray-100); html.dark & { background: var(--color-gray-800) }";
+			return "background-color: var(--color-gray-150); html.dark & { background: var(--color-gray-850) }";
 
 		const maxCount = Math.max(...initialData.map((d) => d.count), 1);
 		const intensity = count / maxCount;

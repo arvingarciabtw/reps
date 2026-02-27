@@ -2,13 +2,13 @@
 
 import UpdateDeck from "@/components/DeckClients/UpdateDeck";
 import DeleteDeck from "@/components/DeckClients/DeleteDeck";
+import Button from "@/components/Button";
 import { Layers } from "react-feather";
 import {
 	DeckWrapper,
 	Card,
 	ActionsWrapper,
 	ReviewDeckWrapper,
-	ViewDeckWrapper,
 } from "@/components/Deck/Deck.style";
 
 export default function Deck({
@@ -61,8 +61,8 @@ function ReviewDeck({
 
 function ViewDeck({ deckId }: { deckId: string }) {
 	return (
-		<ViewDeckWrapper href={`/deck/${deckId}/view`}>
-			<Layers style={{ width: "2.125rem", height: "1.125rem" }} />
-		</ViewDeckWrapper>
+		<Button variant="icon" as="a" href={`/deck/${deckId}/view`}>
+			<Layers style={{ width: "2rem", height: "1.05rem" }} />
+		</Button>
 	);
 }

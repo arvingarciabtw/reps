@@ -30,23 +30,23 @@ const HeaderContainer = styled.div`
 	max-width: 30rem;
 	flex-direction: column;
 	align-items: center;
-	gap: 0.75rem;
+	gap: var(--space-sm);
 	align-self: center;
 `;
 
 const ButtonContainer = styled.div`
-	margin-top: 1rem;
-	margin-bottom: 1.5rem;
+	margin-top: var(--space-md);
+	margin-bottom: var(--space-lg);
 	display: flex;
 	align-items: center;
-	gap: 1rem;
+	gap: var(--space-md);
 	align-self: center;
 `;
 
 const ContentGrid = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+	gap: var(--space-md);
 
 	@media (min-width: 640px) {
 		flex-direction: row;
@@ -56,7 +56,7 @@ const ContentGrid = styled.div`
 const InputColumn = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+	gap: var(--space-md);
 
 	@media (min-width: 640px) {
 		flex: 1;
@@ -66,7 +66,7 @@ const InputColumn = styled.div`
 const Section = styled.section`
 	display: flex;
 	flex-direction: column;
-	gap: 0.75rem;
+	gap: var(--space-sm);
 
 	@media (min-width: 640px) {
 		flex: 1;
@@ -81,7 +81,7 @@ const OutputSection = styled(Section)`
 const TextAreaSkeleton = styled(SkeletonBase)`
 	min-height: 12.5rem;
 	width: 100%;
-	border-radius: 0.5rem;
+	border-radius: var(--radius-xs);
 
 	@media (min-width: 640px) {
 		min-height: 6.25rem;
@@ -91,7 +91,7 @@ const TextAreaSkeleton = styled(SkeletonBase)`
 const BigCardSkeleton = styled(SkeletonBase)`
 	min-height: 12.5rem;
 	flex: 1;
-	border-radius: 0.5rem;
+	border-radius: var(--radius-xs);
 `;
 
 export default function CreateAndUpdateCardSkeleton() {

@@ -3,7 +3,6 @@
 import type { CardType } from "@/components/Card/Card.types";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
-import Link from "next/link";
 import { Check, X, Edit2 } from "react-feather";
 import { useState } from "react";
 import { markCardCorrect, markCardWrong } from "@/actions/card-actions";
@@ -67,9 +66,9 @@ export default function ReviewCardsSection({
 		return (
 			<EmptyStateContainer>
 				<p>No more cards to be reviewed.</p>
-				<Link href="/dashboard">
-					<Button variant="regular">Back to dashboard</Button>
-				</Link>
+				<Button variant="regular" as="a" href="/dashboard">
+					Back to dashboard
+				</Button>
 			</EmptyStateContainer>
 		);
 	}
@@ -93,13 +92,14 @@ export default function ReviewCardsSection({
 						style={{
 							padding: "0.25rem",
 							backgroundColor: "var(--color-primary)",
+							width: "1.625rem",
 						}}
 					>
 						<StyledLink
 							aria-label="Redirect to update card page"
 							href={`/deck/${deckId}/update/${remainingCards[cardIndex].id}`}
 						>
-							<Edit2 style={{ width: "0.9375rem", height: "0.9375rem" }} />
+							<Edit2 style={{ width: "0.975rem", height: "0.975rem" }} />
 						</StyledLink>
 					</Button>
 					<Button
@@ -109,11 +109,16 @@ export default function ReviewCardsSection({
 						disabled={isProcessing}
 						style={{
 							padding: "0.25rem",
-							backgroundColor: "#4ade80",
-							color: "var(--color-black)",
+							backgroundColor: "var(--color-good)",
 						}}
 					>
-						<Check style={{ width: "1.125rem", height: "1.125rem" }} />
+						<Check
+							style={{
+								width: "1.125rem",
+								height: "1.125rem",
+								color: "var(--color-gray-900)",
+							}}
+						/>
 					</Button>
 					<Button
 						variant="icon"
@@ -122,11 +127,16 @@ export default function ReviewCardsSection({
 						disabled={isProcessing}
 						style={{
 							padding: "0.25rem",
-							backgroundColor: "#f87171",
-							color: "var(--color-black)",
+							backgroundColor: "var(--color-danger)",
 						}}
 					>
-						<X style={{ width: "1.125rem", height: "1.125rem" }} />
+						<X
+							style={{
+								width: "1.125rem",
+								height: "1.125rem",
+								color: "var(--color-gray-900)",
+							}}
+						/>
 					</Button>
 				</ActionGroup>
 			</ControlsWrapper>

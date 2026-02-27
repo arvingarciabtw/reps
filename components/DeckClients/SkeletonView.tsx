@@ -16,12 +16,12 @@ const TitleSkeleton = styled(SkeletonBase)`
 `;
 
 const DescriptionWrapper = styled.div`
-	margin-top: 1rem;
-	margin-bottom: 2.5rem;
+	margin-top: var(--space-md);
+	margin-bottom: var(--space-2xl);
 	display: flex;
 	max-width: 32rem;
 	flex-direction: column;
-	gap: 0.75rem;
+	gap: var(--space-sm);
 `;
 
 const DescriptionLine = styled(SkeletonBase)<{ $width: string }>`
@@ -32,7 +32,7 @@ const DescriptionLine = styled(SkeletonBase)<{ $width: string }>`
 const DeckGrid = styled.section`
 	display: grid;
 	grid-template-columns: repeat(1, minmax(0, 1fr));
-	gap: 1rem;
+	gap: var(--space-md);
 
 	@media (min-width: 480px) {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -48,9 +48,9 @@ const DeckCardSkeleton = styled(SkeletonBase)`
 	height: 3.625rem;
 	align-items: center;
 	justify-content: space-between;
-	gap: 1.5rem;
-	border-radius: 0.75rem;
-	padding: 1rem;
+	gap: var(--space-lg);
+	border-radius: var(--radius-sm);
+	padding: var(--space-md);
 	padding-left: 1.25rem;
 `;
 

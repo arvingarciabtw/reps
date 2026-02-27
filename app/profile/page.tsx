@@ -50,20 +50,20 @@ async function HeatmapSection({
 const PageContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 2rem;
+	gap: var(--space-xl);
 `;
 
 const ProfileSection = styled.section`
 	display: flex;
 	align-items: center;
-	gap: 1rem;
+	gap: var(--space-md);
 `;
 
 const ProfileImage = styled(Image)`
 	width: 100%;
-	max-width: 5rem; /* max-w-20 */
+	max-width: 5rem;
 	height: auto;
-	border-radius: 9999px;
+	border-radius: var(--radius-full);
 `;
 
 const TextContainer = styled.div`
@@ -72,16 +72,14 @@ const TextContainer = styled.div`
 `;
 
 const UserName = styled.h1`
-	font-size: 2rem;
-	font-weight: 700;
-
-	html.dark & {
-		color: var(--color-white);
-	}
+	font-size: var(--font-2xl);
+	font-weight: var(--weight-bold);
+	color: var(--color-fg);
 `;
 
 const UserEmail = styled.p`
-	color: var(--color-gray-600);
+	margin-top: calc(var(--space-xs) - (2 * var(--space-xs)));
+	color: var(--color-gray-700);
 
 	html.dark & {
 		color: var(--color-gray-300);

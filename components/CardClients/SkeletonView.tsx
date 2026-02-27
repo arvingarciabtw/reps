@@ -20,7 +20,7 @@ const SkeletonBase = styled.div`
 const CircleSkeleton = styled(SkeletonBase)`
 	height: 1.25rem;
 	width: 1.25rem;
-	border-radius: 9999px;
+	border-radius: var(--radius-full);
 `;
 
 const TextLineSkeleton = styled(SkeletonBase)`
@@ -33,20 +33,20 @@ const GridRow = styled.div`
 	display: grid;
 	grid-template-columns: 20px 1fr 1fr 20px 20px;
 	align-items: center;
-	gap: 1rem;
+	gap: var(--space-md);
 `;
 
 const HeaderRow = styled(GridRow)`
-	margin-bottom: 0.5rem;
+	margin-bottom: var(--space-xs);
 	border-bottom: 1px dashed var(--color-gray-700);
-	padding-bottom: 1rem;
+	padding-bottom: var(--space-md);
 `;
 
 const TableBody = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 1.5rem;
-	padding-top: 1rem;
+	gap: var(--space-lg);
+	padding-top: var(--space-md);
 `;
 
 export default function ViewCardsSkeleton() {

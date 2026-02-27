@@ -10,7 +10,7 @@ const PageWrapper = styled.div`
 	width: 100%;
 	flex-direction: column;
 	text-align: center;
-	color: var(--color-gray-600);
+	color: var(--color-gray-700);
 
 	html.dark & {
 		color: var(--color-gray-300);
@@ -28,24 +28,20 @@ const Description = styled.p`
 `;
 
 const PrimaryLink = styled(Link)`
-	color: var(--color-black);
+	color: var(--color-fg);
 	text-decoration: underline;
 
 	&:hover {
 		text-decoration: none;
 	}
-
-	html.dark & {
-		color: var(--color-white);
-	}
 `;
 
 const ButtonGroup = styled.div`
-	margin-top: 1rem;
-	margin-bottom: 3rem;
+	margin-top: var(--space-md);
+	margin-bottom: var(--space-3xl);
 	display: flex;
 	align-items: center;
-	gap: 1rem;
+	gap: var(--space-md);
 	align-self: center;
 `;
 

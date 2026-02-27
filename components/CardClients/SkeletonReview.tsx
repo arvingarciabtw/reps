@@ -8,7 +8,7 @@ const Container = styled.div`
 	width: 100%;
 	flex-direction: column;
 	align-items: center;
-	gap: 1rem;
+	gap: var(--space-md);
 	align-self: center;
 
 	@media (min-width: 640px) {
@@ -26,9 +26,9 @@ const MainCardSkeleton = styled.div`
 	flex: 1;
 	flex-direction: column;
 	overflow-y: auto;
-	border-radius: 0.5rem;
+	border-radius: var(--radius-xs);
 	background-color: var(--color-gray-200);
-	padding: 1rem;
+	padding: var(--space-md);
 	animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
 	@media (min-width: 640px) {
@@ -47,7 +47,7 @@ const ControlsWrapper = styled.div`
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
-	gap: 0.5rem;
+	gap: var(--space-xs);
 `;
 
 const TextSkeleton = styled.p`
@@ -65,13 +65,13 @@ const TextSkeleton = styled.p`
 
 const ActionGroup = styled.div`
 	display: flex;
-	gap: 1rem;
+	gap: var(--space-md);
 `;
 
 const CircleButtonSkeleton = styled.button`
 	height: 1.625rem;
 	width: 1.625rem;
-	border-radius: 9999px;
+	border-radius: var(--radius-full);
 	border: none;
 	background-color: var(--color-gray-200);
 	animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;

@@ -89,9 +89,9 @@ async function CardsContent({
 function NoCards({ deck }: { deck: { id: string; title: string } }) {
 	return (
 		<EmptyStateContainer>
-			<EmptyText>No cards yet in your deck. Add some cards now!</EmptyText>
+			<EmptyText>No cards found. Create some new cards now!</EmptyText>
 			<Link href={`/deck/${deck.id}/create`}>
-				<Button variant="regular">Add cards</Button>
+				<Button variant="regular">Create cards</Button>
 			</Link>
 		</EmptyStateContainer>
 	);
@@ -201,13 +201,13 @@ const EmptyStateContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 1rem;
+	gap: var(--space-md);
 `;
 
 const EmptyText = styled.p`
-	max-width: 15rem;
+	max-width: 12rem;
 	text-align: center;
-	color: var(--color-gray-600);
+	color: var(--color-gray-700);
 
 	html.dark & {
 		color: var(--color-gray-300);
@@ -226,14 +226,14 @@ const GridBase = styled.div`
 	display: grid;
 	grid-template-columns: 20px 1fr 1fr 20px 20px;
 	align-items: center;
-	gap: 1rem;
+	gap: var(--space-md);
 `;
 
 const ListHeader = styled(GridBase)`
-	margin-bottom: 0.5rem;
+	margin-bottom: var(--space-xs);
 	border-bottom: 1px dashed var(--color-gray-700);
-	padding-bottom: 1rem;
-	color: var(--color-gray-600);
+	padding-bottom: var(--space-md);
+	color: var(--color-gray-700);
 
 	html.dark & {
 		color: var(--color-gray-300);
@@ -255,8 +255,8 @@ const ListHeader = styled(GridBase)`
 const CardListWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 2rem; /* gap-8 */
-	padding-top: 1rem;
+	gap: var(--space-xl);
+	padding-top: var(--space-md);
 
 	& svg {
 		color: var(--color-gray-600);
@@ -267,7 +267,7 @@ const CardListWrapper = styled.div`
 	}
 
 	@media (min-width: 480px) {
-		gap: 0.5rem; /* xs:gap-2 */
+		gap: var(--space-xs);
 	}
 `;
 
@@ -275,10 +275,10 @@ const CardRow = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 1rem;
+	gap: var(--space-md);
 	border-bottom: 1px dashed var(--color-gray-700);
-	padding-bottom: 1rem;
-	color: var(--color-gray-600);
+	padding-bottom: var(--space-md);
+	color: var(--color-gray-700);
 
 	@media (min-width: 480px) {
 		display: grid;

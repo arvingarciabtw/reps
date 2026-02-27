@@ -16,7 +16,7 @@ const StyledDialogOverlay = styled(Dialog.Overlay)`
 `;
 
 const StyledDialogContent = styled(Dialog.Content)`
-	padding: 1.5rem;
+	padding: var(--space-lg);
 	position: fixed;
 	width: 100%;
 	height: 100%;
@@ -35,8 +35,8 @@ const StyledDialogContent = styled(Dialog.Content)`
 
 const StyledDialogClose = styled(Dialog.Close)`
 	position: absolute;
-	top: 1.5rem;
-	left: 1.5rem;
+	top: var(--space-lg);
+	left: var(--space-lg);
 `;
 
 const NavigationList = styled.ul`
@@ -44,8 +44,8 @@ const NavigationList = styled.ul`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 1rem;
-	font-size: 1.5rem;
+	gap: var(--space-md);
+	font-size: var(--font-lg);
 	list-style-type: none;
 `;
 

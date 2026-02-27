@@ -7,9 +7,9 @@ const EmptyStateContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 1rem;
+	gap: var(--space-md);
 	align-self: center;
-	color: var(--color-gray-600);
+	color: var(--color-gray-700);
 
 	html.dark & {
 		color: var(--color-gray-300);
@@ -24,7 +24,7 @@ const MainWrapper = styled.div`
 	width: 100%;
 	flex-direction: column;
 	align-items: center;
-	gap: 1rem;
+	gap: var(--space-md);
 	align-self: center;
 
 	@media (min-width: 640px) {
@@ -39,16 +39,12 @@ const ControlsWrapper = styled.div`
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
-	gap: 0.5rem;
+	gap: var(--space-xs);
 `;
 
 const CardCount = styled.p`
 	margin-right: auto;
-	color: var(--color-gray-600);
-
-	span {
-		font-family: ui-sans-serif, system-ui, sans-serif;
-	}
+	color: var(--color-gray-700);
 
 	html.dark & {
 		color: var(--color-gray-300);
@@ -57,7 +53,7 @@ const CardCount = styled.p`
 
 const ActionGroup = styled.div`
 	display: flex;
-	gap: 1rem;
+	gap: var(--space-md);
 `;
 
 const StyledLink = styled(Link)`
@@ -65,7 +61,7 @@ const StyledLink = styled(Link)`
 	height: 100%;
 	width: 100%;
 	place-items: center;
-	color: var(--color-black);
+	color: var(--color-gray-900);
 `;
 
 export {

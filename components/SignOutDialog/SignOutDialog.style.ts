@@ -4,48 +4,40 @@ import { AlertDialog } from "radix-ui";
 const StyledOverlay = styled(AlertDialog.Overlay)`
 	position: fixed;
 	inset: 0;
-	background-color: var(--color-black);
+	background-color: var(--color-gray-900);
 	opacity: 0.75;
 `;
 
 const StyledContent = styled(AlertDialog.Content)`
+	padding: var(--space-lg);
+	width: 100%;
+	max-width: 20rem;
 	position: fixed;
 	top: 50%;
 	left: 50%;
 	display: flex;
-	width: 100%;
-	max-width: 20rem;
-	transform: translate(-50%, -50%);
 	flex-direction: column;
 	align-items: center;
-	border-radius: 1rem;
+	border-radius: var(--radius-md);
 	border: 1px solid var(--color-gray-700);
-	background-color: var(--color-white);
-	padding: 1.5rem;
+	background-color: var(--color-bg);
 	color: var(--color-gray-300);
 	outline: none;
-
-	html.dark & {
-		background-color: var(--color-gray-800);
-	}
+	transform: translate(-50%, -50%);
 `;
 
 const StyledTitle = styled(AlertDialog.Title)`
-	margin-bottom: 0.5rem;
-	font-size: 1.5rem;
+	margin-bottom: var(--space-xs);
+	font-size: var(--font-xl);
 	line-height: 2rem;
-	font-weight: 500;
-	color: var(--color-gray-800);
-
-	html.dark & {
-		color: var(--color-white);
-	}
+	font-weight: var(--weight-medium);
+	color: var(--color-fg);
 `;
 
 const StyledDescription = styled(AlertDialog.Description)`
-	margin-bottom: 1rem;
+	margin-bottom: var(--space-md);
 	text-align: center;
-	color: var(--color-gray-600);
+	color: var(--color-gray-700);
 
 	html.dark & {
 		color: var(--color-gray-300);
@@ -54,7 +46,7 @@ const StyledDescription = styled(AlertDialog.Description)`
 
 const ButtonGroup = styled.div`
 	display: flex;
-	gap: 1rem;
+	gap: var(--space-md);
 `;
 
 export {

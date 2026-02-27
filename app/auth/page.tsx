@@ -69,7 +69,7 @@ const Container = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	color: var(--color-gray-600);
+	color: var(--color-gray-700);
 
 	html.dark & {
 		color: var(--color-gray-300);
@@ -82,14 +82,9 @@ const InstructionText = styled.p`
 `;
 
 const ButtonGroup = styled.div`
-	margin-top: 1rem;
+	margin-top: var(--space-md);
 	display: flex;
-	gap: 1rem;
-	color: var(--color-white);
-
-	html.dark & {
-		color: var(--color-gray-300);
-	}
+	gap: var(--space-md);
 `;
 
 const Google = styled.svg`

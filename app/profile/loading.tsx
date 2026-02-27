@@ -22,7 +22,7 @@ export default function Loading() {
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 2rem;
+	gap: var(--space-xl);
 `;
 
 const SkeletonBase = styled.span`
@@ -38,18 +38,18 @@ const SkeletonBase = styled.span`
 const ProfileSection = styled.section`
 	display: flex;
 	align-items: center;
-	gap: 1rem;
+	gap: var(--space-md);
 `;
 
 const AvatarSkeleton = styled(SkeletonBase)`
 	height: 5rem;
 	width: 100%;
 	max-width: 5rem;
-	border-radius: 9999px;
+	border-radius: var(--radius-full);
 `;
 
 const TextGroup = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 0.75rem;
+	gap: var(--space-sm);
 `;

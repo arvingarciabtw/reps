@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 const ButtonWrapper = styled.button`
-	padding: 0.5rem 1.25rem;
+	padding: var(--space-xs) 1.25rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 0.5rem;
-	border-radius: 1rem;
+	gap: var(--space-xs);
+	border-radius: var(--radius-md);
 	cursor: pointer;
 	transition: all 0.3s ease;
 
@@ -18,9 +18,9 @@ const ButtonWrapper = styled.button`
 
 const CTA = styled(ButtonWrapper)`
 	background-color: var(--color-primary);
-	color: var(--color-black);
+	color: var(--color-gray-900);
 	border: 1px solid var(--color-primary);
-	font-weight: 500;
+	font-weight: var(--weight-medium);
 
 	&:hover {
 		opacity: 0.75;
@@ -46,40 +46,47 @@ const Ghost = styled(ButtonWrapper)`
 `;
 
 const Regular = styled(ButtonWrapper)`
-	background-color: transparent;
-	color: var(--color-gray-600);
+	background-color: var(--color-gray-100);
+	color: var(--color-fg);
 	border: 1px solid var(--color-gray-200);
 
 	&:hover {
-		background-color: var(--color-gray-light);
+		background-color: var(--color-gray-150);
 	}
 
 	html.dark & {
-		background-color: var(--color-gray-800);
-		color: var(--color-gray-300);
-		border-color: var(--color-gray-700);
+		background-color: var(--color-gray-850);
+		border-color: var(--color-gray-750);
 
 		&:hover {
-			background-color: var(--color-gray-700);
+			background-color: var(--color-gray-800);
 		}
 	}
 `;
 
 const Danger = styled(ButtonWrapper)`
-	background-color: #ef4444;
-	color: var(--color-white);
-	border: 1px solid #ef4444;
+	background-color: var(--color-danger);
+	color: var(--color-bg);
+	border: 1px solid var(--color-danger);
 
 	&:hover {
 		opacity: 0.75;
+	}
+
+	html.dark & {
+		color: var(--color-fg);
 	}
 `;
 
 const Icon = styled(ButtonWrapper)`
 	padding: 0;
 	background-color: transparent;
-	color: var(--color-black);
+	color: var(--color-fg);
 	border: none;
+
+	& > svg {
+		color: var(--color-fg);
+	}
 
 	&:hover {
 		opacity: 0.75;

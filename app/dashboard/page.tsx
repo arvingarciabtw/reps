@@ -46,22 +46,19 @@ async function Decks() {
 }
 
 const Title = styled.h1`
-	font-size: 2rem;
-	font-weight: 700;
-
-	html.dark & {
-		color: var(--color-white);
-	}
+	font-size: var(--font-2xl);
+	font-weight: var(--weight-bold);
+	color: var(--color-fg);
 `;
 
 const Description = styled.p`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-top: 1rem;
-	margin-bottom: 2.5rem;
+	margin-top: var(--space-md);
+	margin-bottom: var(--space-2xl);
 	max-width: 32rem;
-	color: var(--color-gray-600);
+	color: var(--color-gray-700);
 
 	html.dark & {
 		color: var(--color-gray-300);
@@ -71,7 +68,7 @@ const Description = styled.p`
 const DeckGrid = styled.section`
 	display: grid;
 	grid-template-columns: repeat(1, minmax(0, 1fr));
-	gap: 1rem;
+	gap: var(--space-md);
 
 	@media (min-width: 480px) {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -83,7 +80,7 @@ const DeckGrid = styled.section`
 `;
 
 const ErrorText = styled.p`
-	color: var(--color-gray-600);
+	color: var(--color-gray-700);
 	html.dark & {
 		color: var(--color-gray-300);
 	}

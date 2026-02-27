@@ -127,23 +127,20 @@ function Content() {
 }
 
 const Section = styled.section`
-	margin-bottom: 3rem; /* mb-12 */
+	margin-bottom: var(--space-3xl);
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+	gap: var(--space-md);
 `;
 
 const Title = styled.h1`
-	font-size: 2rem;
-	font-weight: 700;
-
-	html.dark & {
-		color: var(--color-white);
-	}
+	font-size: var(--font-2xl);
+	font-weight: var(--weight-bold);
+	color: var(--color-fg);
 `;
 
 const Text = styled.p`
-	color: var(--color-gray-600);
+	color: var(--color-gray-700);
 
 	html.dark & {
 		color: var(--color-gray-300);
@@ -151,28 +148,24 @@ const Text = styled.p`
 `;
 
 const ExternalLink = styled.a`
-	color: var(--color-black);
+	color: var(--color-fg);
 	text-decoration: underline;
 
 	&:hover {
 		text-decoration: none;
 	}
-
-	html.dark & {
-		color: var(--color-white);
-	}
 `;
 
 const List = styled.ol`
 	padding-left: 0;
-	margin-left: 1rem;
+	margin-left: var(--space-md);
 	display: flex;
 	flex-direction: column;
-	gap: 0.25rem;
-	color: var(--color-gray-600);
+	gap: var(--space-2xs);
+	color: var(--color-gray-700);
 
 	@media (min-width: 640px) {
-		margin-left: 1.5rem; /* sm:ml-6 */
+		margin-left: var(--space-lg);
 	}
 
 	html.dark & {
@@ -184,23 +177,18 @@ const ListItem = styled.li<{ $maxWidth?: string }>`
 	${(props) => props.$maxWidth && `max-width: ${props.$maxWidth};`}
 
 	span {
-		color: var(--color-black);
-
-		html.dark & {
-			color: var(--color-white);
-		}
+		color: var(--color-fg);
 	}
 `;
 
 const InlineCode = styled.code`
-	border-radius: 0.5rem;
-	background-color: var(--color-gray-100);
+	border-radius: var(--radius-xs);
+	background-color: var(--color-gray-150);
 	padding: 0.125rem 0.375rem;
-	font-size: 0.875rem;
-	color: var(--color-gray-800);
+	font-size: var(--font-sm);
+	color: var(--color-fg);
 
 	html.dark & {
-		background-color: var(--color-gray-700);
-		color: var(--color-gray-100);
+		background-color: var(--color-gray-800);
 	}
 `;

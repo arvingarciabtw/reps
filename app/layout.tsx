@@ -85,24 +85,20 @@ export default async function RootLayout({
 }
 
 const StyledBody = styled.body`
-	display: flex;
 	min-height: 100dvh;
+	display: flex;
 	flex-direction: column;
-	background-color: var(--color-white);
-
-	html.dark & {
-		background-color: var(--color-black);
-	}
+	background-color: var(--color-bg);
 `;
 
 const MainContent = styled.main`
-	position: relative;
+	padding: var(--space-lg);
 	margin-left: auto;
 	margin-right: auto;
-	display: flex;
 	width: 100%;
-	max-width: 56rem;
+	max-width: var(--breakpoint-base);
+	position: relative;
 	flex: 1;
+	display: flex;
 	flex-direction: column;
-	padding: 1.5rem;
 `;

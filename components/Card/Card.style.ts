@@ -2,19 +2,20 @@ import styled from "styled-components";
 import { motion } from "motion/react";
 
 const OuterCardWrapper = styled(motion.div)`
-	padding: 1rem;
+	padding: var(--space-md);
 	width: 100%;
 	max-width: 26rem;
 	min-height: 12.5rem;
 	display: flex;
 	flex-direction: column;
-	background-color: var(--color-gray-light);
-	border-radius: 0.5rem;
+	background-color: var(--color-gray-150);
+	border-radius: var(--radius-xs);
 	cursor: pointer;
 	overflow-y: auto;
-
+	scrollbar-color: var(--color-gray-300) var(--color-gray-150);
 	html.dark & {
-		background-color: var(--color-gray-800);
+		background-color: var(--color-gray-850);
+		scrollbar-color: var(--color-gray-700) var(--color-gray-850);
 	}
 
 	@media (min-width: 640px) {
@@ -38,7 +39,7 @@ const ContentWrapper = styled(motion.div)`
 	width: 100%;
 	place-items: center;
 	overflow-y: auto;
-	padding: 0.5rem;
+	padding: var(--space-xs);
 	text-align: center;
 	backface-visibility: hidden;
 	overflow-x: auto;
@@ -50,7 +51,7 @@ const Prose = styled.div`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+	gap: var(--space-md);
 
 	/* Headings */
 	h1,
@@ -60,7 +61,7 @@ const Prose = styled.div`
 	h5,
 	h6 {
 		margin: 0;
-		color: var(--color-gray-600);
+		color: var(--color-gray-700);
 
 		.dark & {
 			color: var(--color-gray-300);
@@ -70,26 +71,16 @@ const Prose = styled.div`
 	/* Paragraphs & Strong */
 	p {
 		margin: 0;
-		color: var(--color-gray-600);
+		color: var(--color-fg);
 		max-width: 22rem;
-
-		.dark & {
-			color: var(--color-gray-300);
-		}
-	}
-
-	strong {
-		.dark & {
-			color: var(--color-gray-300);
-		}
 	}
 
 	/* Inline Code */
 	code {
 		border-radius: 0.375rem;
-		background-color: var(--color-gray-100);
+		background-color: var(--color-bg);
 		padding: 0.125rem 0.375rem;
-		font-weight: 400;
+		font-weight: var(--weight-regular);
 		color: var(--color-gray-800);
 
 		&::before,
@@ -107,22 +98,22 @@ const Prose = styled.div`
 	pre {
 		min-width: 100%;
 		max-width: 22rem;
-		background-color: var(--color-white);
-		padding: 1rem;
+		background-color: var(--color-bg);
+		padding: var(--space-md);
 		text-align: left;
-
-		.dark & {
-			background-color: var(--color-black);
+		scrollbar-color: var(--color-gray-300) var(--color-bg);
+		html.dark & {
+			scrollbar-color: var(--color-gray-700) var(--color-bg);
 		}
 
 		/* Nested code inside pre blocks */
 		code {
-			background-color: var(--color-white);
+			background-color: var(--color-bg);
 			padding: 0;
 			color: var(--color-gray-800);
 
 			.dark & {
-				background-color: var(--color-black);
+				background-color: var(--color-bg);
 				color: var(--color-gray-300);
 			}
 		}
@@ -131,12 +122,12 @@ const Prose = styled.div`
 	/* Lists */
 	ol,
 	ul {
-		margin-top: 0.5rem;
+		padding-left: var(--space-md);
 		text-align: left;
-		color: var(--color-gray-600);
+		color: var(--color-gray-700);
 
 		&::marker {
-			color: var(--color-gray-600);
+			color: var(--color-gray-700);
 		}
 
 		.dark & {
@@ -153,9 +144,9 @@ const Prose = styled.div`
 `;
 
 export {
-  OuterCardWrapper,
-  InnerCardWrapper,
-  FrontContentWrapper,
-  BackContentWrapper,
+	OuterCardWrapper,
+	InnerCardWrapper,
+	FrontContentWrapper,
+	BackContentWrapper,
 	Prose,
 };

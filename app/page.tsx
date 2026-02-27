@@ -22,9 +22,9 @@ async function LandingSection() {
 	return (
 		<OuterWrapper>
 			<InnerWrapper>
-				<Title>
+				<Heading>
 					Spaced repetition, for <span>coders.</span>
-				</Title>
+				</Heading>
 				<Description>
 					Reps is a spaced repetition app built for programmers who want a
 					cleaner UI, native syntax highlighting, and an algorithm that moves
@@ -53,29 +53,26 @@ const OuterWrapper = styled.div`
 `;
 
 const InnerWrapper = styled.div`
-	margin-bottom: 1rem;
+	margin-bottom: var(--space-md);
 `;
 
-const Title = styled.h1`
-	margin-bottom: 1rem;
+const Heading = styled.h1`
+	margin-bottom: var(--space-md);
 	width: 100%;
-	font-size: 3.75rem;
+	font-size: var(--font-4xl);
 	font-weight: 700;
 	line-height: 1.125;
+	color: var(--color-fg);
 
 	@media (min-width: 640px) {
 		max-width: 36rem;
 	}
-
-	html.dark & {
-		color: var(--color-white);
-	}
 `;
 
 const Description = styled.p`
-	margin-bottom: 1.5rem;
+	margin-bottom: var(--space-lg);
 	max-width: 32rem;
-	color: var(--color-gray-600);
+	color: var(--color-gray-700);
 
 	html.dark & {
 		color: var(--color-gray-300);
@@ -83,12 +80,12 @@ const Description = styled.p`
 `;
 
 const ButtonGroup = styled.div`
-	margin-bottom: 2rem;
+	margin-bottom: var(--space-lg);
 	display: flex;
-	gap: 0.5rem;
+	gap: var(--space-xs);
 
 	& a {
 		text-decoration: none;
-		color: var(--black);
+		color: var(--color-fg);
 	}
 `;

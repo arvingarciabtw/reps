@@ -26,13 +26,13 @@ const HeatmapWrapper = styled.div`
 	display: flex;
 	width: 100%;
 	flex-direction: column;
-	gap: 1rem;
+	gap: var(--space-md);
 `;
 
 const HeatmapHeader = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+	gap: var(--space-md);
 
 	@media (min-width: 640px) {
 		flex-direction: row;
@@ -44,7 +44,7 @@ const HeatmapHeader = styled.div`
 const StatsGroup = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	gap: 1rem;
+	gap: var(--space-md);
 `;
 
 const SkeletonBase = styled.span`
@@ -64,7 +64,7 @@ const SmallSkeleton = styled(SkeletonBase)`
 const GridSkeleton = styled(SkeletonBase)`
 	height: 9.25rem;
 	overflow-x: auto;
-	border-radius: 0.5rem;
+	border-radius: var(--space-xs);
 `;
 
 export default HeatmapSkeleton;

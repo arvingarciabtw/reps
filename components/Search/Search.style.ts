@@ -1,30 +1,30 @@
 import styled from "styled-components";
 
 const SearchWrapper = styled.form`
-	margin-bottom: 2rem;
+	margin-bottom: var(--space-xl);
 	width: 100%;
 	display: flex;
-	gap: 1rem;
+	gap: var(--space-md);
 `;
 
 const SearchInput = styled.input`
-	padding: 0 1rem;
+	padding: 0 var(--space-md);
 	flex: 1;
-	background-color: var(--color-gray-light);
-	color: var(--color-black);
+	background-color: var(--color-gray-150);
+	color: var(--color-fg);
 	border: none;
-	border-radius: 1rem;
+	border-radius: var(--radius-md);
 
 	&:focus {
 		outline: 1px solid var(--color-gray-200);
 	}
 
 	html.dark & {
-		background-color: var(--color-gray-800);
-		color: var(--color-gray-300);
+		background-color: var(--color-gray-850);
+		color: var(--color-fg);
 	}
 	html.dark &:focus {
-		outline-color: var(--color-gray-600);
+		outline-color: var(--color-gray-700);
 	}
 `;
 

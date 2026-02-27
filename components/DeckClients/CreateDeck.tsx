@@ -37,7 +37,7 @@ export default function CreateDeck() {
 						borderRadius: "50%",
 					}}
 				>
-					<Plus style={{ stroke: "var(--color-black)" }} />
+					<Plus style={{ stroke: "var(--color-gray-900)" }} />
 				</Button>
 			</Dialog.Trigger>
 			<Dialog.Portal>

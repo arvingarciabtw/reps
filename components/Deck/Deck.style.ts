@@ -34,27 +34,28 @@ const DeckWrapper = styled.article`
 	}
 `;
 const Card = styled.div`
-	padding: 0 1rem;
-	width: calc(100%);
+	padding: 0 var(--space-md);
+	width: 100%;
 	height: 100%;
 	position: absolute;
 	display: grid;
 	place-items: center;
-	background: var(--color-white);
-	border: 1px solid var(--color-gray-100);
-	border-radius: 1rem;
+	background: var(--color-gray-100);
+	border: 1px solid var(--color-gray-200);
+	border-radius: var(--radius-md);
 	transition: ease 0.3s;
 	transition-timing-function: cubic-bezier(0.83, 0.11, 0.14, 0.4);
 
 	html.dark & {
-		background-color: var(--color-gray-800);
-		border-color: var(--color-gray-700);
+		background-color: var(--color-gray-850);
+		border-color: var(--color-gray-750);
 	}
 `;
+
 const ActionsWrapper = styled.div`
 	display: flex;
 	gap: 0;
-	color: var(--color-gray-800);
+	color: var(--color-gray-700);
 
 	html.dark & {
 		color: var(--color-gray-300);
@@ -63,7 +64,7 @@ const ActionsWrapper = styled.div`
 	& > * {
 		width: 28px;
 		aspect-ratio: 1 / 1;
-		color: var(--color-black);
+		color: var(--color-fg);
 	}
 	html.dark & > * {
 		color: var(--color-gray-300);
@@ -72,18 +73,14 @@ const ActionsWrapper = styled.div`
 
 const ReviewDeckWrapper = styled(Link)`
 	width: 100%;
-	cursor: pointer;
 	text-decoration: none;
-	color: var(--color-black);
-
-	html.dark & {
-		color: var(--color-white);
-	}
+	color: var(--color-fg);
+	cursor: pointer;
 `;
 
 const ViewDeckWrapper = styled(Link)`
 	cursor: pointer;
-	border-radius: 50%;
+	border-radius: var(--radius-full);
 	padding: 0.375rem;
 	text-decoration: none;
 	transition-property: all;
