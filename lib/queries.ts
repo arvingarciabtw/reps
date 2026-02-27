@@ -1,16 +1,21 @@
 import prisma from "@/lib/prisma";
+import { unstable_cache } from "next/cache";
 
-export async function fetchDecks(userId: string) {
-	try {
-		const decks = await prisma.deck.findMany({
-			where: { userId },
-		});
-		return decks;
-	} catch (err) {
-		console.error("Database error:", err);
-		throw new Error("Failed to fetch decks.");
-	}
-}
+export const fetchDecks = unstable_cache(
+	async (userId: string) => {
+		try {
+			const decks = await prisma.deck.findMany({
+				where: { userId },
+			});
+			return decks;
+		} catch (err) {
+			console.error("Database error:", err);
+			throw new Error("Failed to fetch decks.");
+		}
+	},
+	["decks"],
+	{ revalidate: false },
+);
 
 export async function fetchDeck(id: string) {
 	try {
