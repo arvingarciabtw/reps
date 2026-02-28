@@ -68,6 +68,25 @@ function CardInput({
 		}
 	}
 
+	function handleTab(e: React.KeyboardEvent<HTMLTextAreaElement>) {
+		if (e.key === "Tab") {
+			e.preventDefault();
+			const target = e.currentTarget;
+			const start = target.selectionStart;
+			const end = target.selectionEnd;
+			const newValue =
+				target.value.substring(0, start) + "  " + target.value.substring(end);
+
+			const setter = isFront ? front.setter : back.setter;
+			setter(newValue);
+
+			requestAnimationFrame(() => {
+				target.selectionStart = start + 2;
+				target.selectionEnd = start + 2;
+			});
+		}
+	}
+
 	return (
 		<CardInputWrapper>
 			<CardTopWrapper>
@@ -79,6 +98,7 @@ function CardInput({
 				</Button>
 			</CardTopWrapper>
 			<TextArea
+				onKeyDown={handleTab}
 				required
 				name="cardInput"
 				id="cardInput"
