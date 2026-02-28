@@ -79,7 +79,7 @@ export default function ReviewCardsSection({
 			<Maximize
 				front={remainingCards[cardIndex].front}
 				back={remainingCards[cardIndex].back}
-				style={{ alignSelf: "flex-end" }}
+				style={{ marginTop: "-3rem", alignSelf: "flex-end" }}
 			/>
 			<Card
 				key={remainingCards[cardIndex].id}

@@ -4,8 +4,7 @@ import { motion } from "motion/react";
 const OuterCardWrapper = styled(motion.div)`
 	padding: var(--space-md);
 	width: 100%;
-	max-width: 26rem;
-	min-height: 12.5rem;
+	min-height: 14rem;
 	display: flex;
 	flex-direction: column;
 	background-color: var(--color-gray-150);

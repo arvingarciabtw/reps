@@ -24,7 +24,11 @@ const CardBaseWrapper = styled.section`
 	display: flex;
 	flex-direction: column;
 	gap: var(--space-xs);
-	min-height: 18rem;
+	min-height: 14rem;
+
+	@media (min-width: 640px) {
+		min-height: 18rem;
+	}
 `;
 const CardInputWrapper = styled(CardBaseWrapper)`
 	flex: 1;
@@ -73,13 +77,10 @@ const TextArea = styled.textarea`
 	color: var(--color-gray-800);
 	border: none;
 	scrollbar-color: var(--color-gray-300) var(--color-gray-150);
+	min-height: 14rem;
 
 	&:focus {
 		outline: 1px solid var(--color-gray-100);
-	}
-
-	@media (min-width: 640px) {
-		min-height: 6.25rem;
 	}
 
 	html.dark & {
